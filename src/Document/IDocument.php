@@ -1,8 +1,10 @@
 <?php
 
-namespace eprehled\MoneyS3\Document;
+namespace eProduct\MoneyS3\Document;
 
-interface IDocument
+use eProduct\MoneyS3\ISerializable;
+
+interface IDocument extends ISerializable
 {
 
 }
