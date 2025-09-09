@@ -452,3 +452,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - XML generation
 - Comprehensive test suite
 - Docker development environment
+
+## ⚠️ Disclaimer
+
+**This library is not affiliated with, endorsed by, or associated with MoneyS3 accounting software, Seyfor a. s. company, or its developers.** MoneyS3 is a trademark of Seyfor, a.s. This is an independent, open-source library created to generate XML files compatible with the MoneyS3 XML import format. Use of this library is at your own risk, and the authors are not responsible for any data loss or accounting errors that may result from its use.
