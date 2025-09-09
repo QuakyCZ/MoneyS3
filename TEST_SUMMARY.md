@@ -87,10 +87,10 @@ All generated XML is validated for:
 vendor/bin/phpunit
 
 # Run with readable output
-vendor/bin/phpunit --no-configuration test/ --testdox
+vendor/bin/phpunit --no-configuration tests/ --testdox
 
 # Run specific test class
-vendor/bin/phpunit test/MoneyS3Test.php
+vendor/bin/phpunit tests/MoneyS3Test.php
 
 # Run with coverage (requires Xdebug)
 vendor/bin/phpunit --coverage-html coverage

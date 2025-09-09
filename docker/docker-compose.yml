@@ -1,0 +1,17 @@
+services:
+  php-fpm:
+    build:
+      context: ./php-fpm
+      dockerfile: Dockerfile
+      args:
+        HOST_UID: ${UID:-1000}
+        HOST_GID: ${GID:-1000}
+    container_name: eproduct-moneys3
+    working_dir: /application
+    volumes:
+      - '..:/application'
+      - './php-fpm/php-ini-overrides.ini:/etc/php/8.3/fpm/conf.d/99-overrides.ini'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    ports:
+      - "9000:9000"
