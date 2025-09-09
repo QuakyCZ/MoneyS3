@@ -2,6 +2,11 @@
 
 namespace eProduct\MoneyS3\Test;
 
+use DateTime;
+use eProduct\MoneyS3\Document\Common\Address;
+use eProduct\MoneyS3\Document\Invoice\Company;
+use eProduct\MoneyS3\Document\Invoice\Partner;
+use eProduct\MoneyS3\Document\Invoice\VatSummary;
 use eProduct\MoneyS3\MoneyS3;
 use eProduct\MoneyS3\Document\Invoice\InvoiceType;
 use eProduct\MoneyS3\Document\Invoice\Invoice;
@@ -121,5 +126,67 @@ class MoneyS3Test extends TestCase
         $result = $dom->loadXML($xml);
         
         $this->assertTrue($result, 'Generated XML should be well-formed');
+    }
+
+    public function testSample(): void
+    {
+        $this->moneyS3->addInvoice(InvoiceType::ISSUED)
+            ->setDocumentNumber('VF2025090001')
+            ->setAccountingMethod(1)
+            ->setDescription('test')
+            ->setIssued(new \DateTime('2025-09-08'))
+            ->setAccountingDate(new \DateTime('2025-09-08'))
+            ->setTaxDocumentDate(new DateTime('2025-09-08'))
+            ->setDueDate(new \DateTime('2025-09-22'))
+            ->setSimplified(false)
+            ->setVariableSymbol('2025090001')
+            ->setAccount('BAN')
+            ->setType('N')
+            ->setCreditNote(false)
+            ->setVatRate1(12)
+            ->setVatRate2(21)
+            ->setToPay(1000)
+            ->setSettled(false)
+            ->setVatSummary(
+                (new VatSummary())
+                    ->setBase22(826.45)
+                    ->setVat22(173.55)
+            )
+            ->setTotal(1000)
+            ->setPartner(
+                (new Partner())
+                    ->setName('Jan Novák')
+                    ->setAddress((new Address())
+                        ->setStreet('Hlavní 123')
+                        ->setCity('Praha')
+                        ->setPostalCode('11000')
+                        ->setCountry('Česká republika')
+                        ->setCountryCode('CZ')
+                    )
+                    ->setIco('12345678')
+                    ->setVatPayer(false)
+                    ->setPhysicalPerson(true)
+            )
+            ->setMyCompany(
+                (new Company())
+                    ->setInvoiceName('Firma s.r.o.')
+                    ->setInvoiceAddress(
+                        (new Address())
+                            ->setStreet('Náměstí 1')
+                            ->setCity('Brno')
+                            ->setPostalCode('60200')
+                            ->setCountry('Česká republika')
+                            ->setCountryCode('CZ')
+                    )
+                    ->setIco('87654321')
+                    ->setDic('CZ87654321')
+                    ->setPhysicalPerson(false)
+                    ->setCurrencySymbol('Kč')
+                    ->setCurrencyCode('CZK')
+            );
+
+        $xml = $this->moneyS3->getXml();
+        file_put_contents(__DIR__.'/../temp/test_sample_output.xml', $xml);
+        $this->assertNotEmpty($xml);
     }
 }

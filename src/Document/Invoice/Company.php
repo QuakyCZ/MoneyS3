@@ -21,7 +21,7 @@ class Company implements ISerializable
     /** @var Element<string> */
     private Element $dic;
 
-    /** @var Element<string> */
+    /** @var Element<bool> */
     private Element $physicalPerson;
 
     /** @var Element<string> */
@@ -65,7 +65,7 @@ class Company implements ISerializable
         return $this;
     }
 
-    public function setPhysicalPerson(string $physicalPerson): self
+    public function setPhysicalPerson(bool $physicalPerson): self
     {
         $this->physicalPerson->setValue($physicalPerson);
         return $this;

@@ -30,8 +30,25 @@ class Element implements ISerializable
             $this->value->serialize($writer);
             $writer->endElement();
         } else {
-            $writer->writeElement($this->name, $this->value);
+            $writer->writeElement($this->name, $this->serializeValue());
         }
+    }
+
+    private function serializeValue(): ?string
+    {
+        if ($this->value === null) {
+            return null;
+        }
+
+        if (is_bool($this->value)) {
+            return $this->value ? '1' : '0';
+        }
+
+        if ($this->value instanceof \DateTime) {
+            return $this->value->format('Y-m-d');
+        }
+
+        return (string)$this->value;
     }
 
     /**

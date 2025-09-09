@@ -30,21 +30,21 @@ class Partner implements ISerializable
     /** @var Element<Address> */
     private Element $address;
 
-    /** @var Element<string> */
+    /** @var Element<bool> */
     private Element $vatPayer;
 
-    /** @var Element<string> */
+    /** @var Element<bool> */
     private Element $physicalPerson;
 
     public function __construct()
     {
+        $this->name = new Element("Nazev", true);
+        $this->address = new Element("Adresa", true);
         $this->tradeName = new Element("ObchNazev");
         $this->tradeAddress = new Element("ObchAdresa");
         $this->invoiceName = new Element("FaktNazev");
         $this->ico = new Element("ICO");
         $this->invoiceAddress = new Element("FaktAdresa");
-        $this->name = new Element("Nazev");
-        $this->address = new Element("Adresa");
         $this->vatPayer = new Element("PlatceDPH");
         $this->physicalPerson = new Element("FyzOsoba");
     }
@@ -91,13 +91,13 @@ class Partner implements ISerializable
         return $this;
     }
 
-    public function setVatPayer(string $vatPayer): self
+    public function setVatPayer(bool $vatPayer): self
     {
         $this->vatPayer->setValue($vatPayer);
         return $this;
     }
 
-    public function setPhysicalPerson(string $physicalPerson): self
+    public function setPhysicalPerson(bool $physicalPerson): self
     {
         $this->physicalPerson->setValue($physicalPerson);
         return $this;

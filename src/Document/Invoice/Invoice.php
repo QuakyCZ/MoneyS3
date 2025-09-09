@@ -2,6 +2,7 @@
 
 namespace eProduct\MoneyS3\Document\Invoice;
 
+use DateTime;
 use eProduct\MoneyS3\Document\IDocument;
 use eProduct\MoneyS3\Element;
 use XMLWriter;
@@ -11,31 +12,31 @@ class Invoice implements IDocument
     /** @var Element<string> */
     private Element $documentNumber;
 
-    /** @var Element<string> */
+    /** @var Element<int> */
     private Element $accountingMethod;
 
-    /** @var Element<string> */
+    /** @var Element<int> */
     private Element $numberSeries;
 
     /** @var Element<string> */
     private Element $description;
 
-    /** @var Element<string> */
+    /** @var Element<DateTime> */
     private Element $issued;
 
-    /** @var Element<string> */
+    /** @var Element<DateTime> */
     private Element $accountingDate;
 
     /** @var Element<string> */
     private Element $vatPerformed;
 
-    /** @var Element<string> */
+    /** @var Element<DateTime> */
     private Element $dueDate;
 
-    /** @var Element<string> */
+    /** @var Element<DateTime> */
     private Element $taxDocumentDate;
 
-    /** @var Element<string> */
+    /** @var Element<bool> */
     private Element $simplified;
 
     /** @var Element<string> */
@@ -47,28 +48,28 @@ class Invoice implements IDocument
     /** @var Element<string> */
     private Element $type;
 
-    /** @var Element<string> */
+    /** @var Element<bool> */
     private Element $creditNote;
 
     /** @var Element<string> */
     private Element $vatCalculationMethod;
 
-    /** @var Element<string> */
+    /** @var Element<int> */
     private Element $vatRate1;
 
-    /** @var Element<string> */
+    /** @var Element<int> */
     private Element $vatRate2;
 
-    /** @var Element<string> */
+    /** @var Element<float> */
     private Element $toPay;
 
-    /** @var Element<string> */
+    /** @var Element<bool> */
     private Element $settled;
 
     /** @var Element<VatSummary> */
     private Element $vatSummary;
 
-    /** @var Element<string> */
+    /** @var Element<float> */
     private Element $total;
 
     /** @var Element<string> */
@@ -106,7 +107,7 @@ class Invoice implements IDocument
 
     public function __construct(public readonly InvoiceType $invoiceType)
     {
-        $this->documentNumber = new Element("Doklad");
+        $this->documentNumber = new Element("Doklad", true);
         $this->accountingMethod = new Element("ZpusobUctovani");
         $this->numberSeries = new Element("CisRada");
         $this->description = new Element("Popis");
@@ -137,7 +138,7 @@ class Invoice implements IDocument
         $this->foreignTransport = new Element("DopravZahr");
         $this->discount = new Element("Sleva");
         $this->itemsList = new Element("SeznamPolozek");
-        $this->myCompany = new Element("MojeFirma");
+        $this->myCompany = new Element("MojeFirma", true);
     }
 
     public function setDocumentNumber(string $documentNumber): self
@@ -146,13 +147,13 @@ class Invoice implements IDocument
         return $this;
     }
 
-    public function setAccountingMethod(string $accountingMethod): self
+    public function setAccountingMethod(int $accountingMethod): self
     {
         $this->accountingMethod->setValue($accountingMethod);
         return $this;
     }
 
-    public function setNumberSeries(string $numberSeries): self
+    public function setNumberSeries(int $numberSeries): self
     {
         $this->numberSeries->setValue($numberSeries);
         return $this;
@@ -164,13 +165,13 @@ class Invoice implements IDocument
         return $this;
     }
 
-    public function setIssued(string $issued): self
+    public function setIssued(DateTime $issued): self
     {
         $this->issued->setValue($issued);
         return $this;
     }
 
-    public function setAccountingDate(string $accountingDate): self
+    public function setAccountingDate(DateTime $accountingDate): self
     {
         $this->accountingDate->setValue($accountingDate);
         return $this;
@@ -182,19 +183,19 @@ class Invoice implements IDocument
         return $this;
     }
 
-    public function setDueDate(string $dueDate): self
+    public function setDueDate(DateTime $dueDate): self
     {
         $this->dueDate->setValue($dueDate);
         return $this;
     }
 
-    public function setTaxDocumentDate(string $taxDocumentDate): self
+    public function setTaxDocumentDate(DateTime $taxDocumentDate): self
     {
         $this->taxDocumentDate->setValue($taxDocumentDate);
         return $this;
     }
 
-    public function setSimplified(string $simplified): self
+    public function setSimplified(bool $simplified): self
     {
         $this->simplified->setValue($simplified);
         return $this;
@@ -218,7 +219,7 @@ class Invoice implements IDocument
         return $this;
     }
 
-    public function setCreditNote(string $creditNote): self
+    public function setCreditNote(bool $creditNote): self
     {
         $this->creditNote->setValue($creditNote);
         return $this;
@@ -230,25 +231,25 @@ class Invoice implements IDocument
         return $this;
     }
 
-    public function setVatRate1(string $vatRate1): self
+    public function setVatRate1(int $vatRate1): self
     {
         $this->vatRate1->setValue($vatRate1);
         return $this;
     }
 
-    public function setVatRate2(string $vatRate2): self
+    public function setVatRate2(int $vatRate2): self
     {
         $this->vatRate2->setValue($vatRate2);
         return $this;
     }
 
-    public function setToPay(string $toPay): self
+    public function setToPay(float $toPay): self
     {
         $this->toPay->setValue($toPay);
         return $this;
     }
 
-    public function setSettled(string $settled): self
+    public function setSettled(bool $settled): self
     {
         $this->settled->setValue($settled);
         return $this;
@@ -260,7 +261,7 @@ class Invoice implements IDocument
         return $this;
     }
 
-    public function setTotal(string $total): self
+    public function setTotal(float $total): self
     {
         $this->total->setValue($total);
         return $this;
