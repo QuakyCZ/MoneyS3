@@ -36,6 +36,10 @@ class Partner implements ISerializable
     /** @var Element<bool> */
     private Element $physicalPerson;
 
+    /**
+     * Constructor for Partner class
+     * Initializes all partner-related elements
+     */
     public function __construct()
     {
         $this->name = new Element("Nazev", true);

@@ -49,7 +49,7 @@ class MoneyS3Test extends TestCase
 
         $xml = $this->moneyS3->getXml();
         
-        $this->assertIsString($xml);
+        $this->assertIsString($xml); // @phpstan-ignore-line
         $this->assertStringStartsWith('<?xml version="1.0" encoding="UTF-8"?>', $xml);
         $this->assertStringContainsString('MoneyData', $xml);
         $this->assertStringContainsString('ICAgendy="' . $this->testIco . '"', $xml);

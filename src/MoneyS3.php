@@ -11,25 +11,45 @@ class MoneyS3
 {
     private MoneyS3Data $data;
     
+    /**
+     * Constructor for MoneyS3 class
+     * 
+     * @param string $ico The ICO (company identification number) for the organization
+     */
     public function __construct(private readonly string $ico)
     {
         $this->data = new MoneyS3Data();
     }
 
+    /**
+     * Adds a new invoice to the data collection
+     * 
+     * @param InvoiceType $type The type of invoice (issued or received)
+     * @return Invoice The created invoice instance for method chaining
+     */
     public function addInvoice(InvoiceType $type): Invoice {
         $invoice = new Invoice($type);
         $this->data->invoices[$type->value][] = $invoice;
         return $invoice;
     }
 
+    /**
+     * Adds a new receipt to the data collection
+     * 
+     * @return Receipt The created receipt instance for method chaining
+     */
     public function addReceipt(): Receipt {
         $receipt = new Receipt();
         $this->data->receipts[] = $receipt;
         return $receipt;
     }
 
-    public function getXml(): string
-    {
+    /**
+     * Generates XML representation of all data
+     * 
+     * @return string The complete XML document as a string
+     */
+    public function getXml(bool $flushMemory = true): string {
         $writer = new XMLWriter();
         $writer->openMemory();
         $writer->startDocument('1.0', 'UTF-8');
@@ -38,6 +58,11 @@ class MoneyS3
         $writer->writeAttribute('JazykVerze', 'CZ');
         $this->data->serialize($writer);
         $writer->endElement();
-        return $writer->outputMemory();
+
+        if ($flushMemory) {
+            $this->data = new MoneyS3Data();
+        }
+
+        return $writer->outputMemory($flushMemory);
     }
 }

@@ -54,9 +54,6 @@ class MoneyS3ExceptionTest extends TestCase
             throw new MoneyS3Exception('Test exception');
         } catch (MoneyS3Exception $e) {
             $this->assertEquals('Test exception', $e->getMessage());
-            return;
         }
-        
-        $this->fail('Exception should have been caught');
     }
 }

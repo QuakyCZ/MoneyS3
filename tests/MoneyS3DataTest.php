@@ -24,9 +24,9 @@ class MoneyS3DataTest extends TestCase
 
     public function testInitialState(): void
     {
-        $this->assertIsArray($this->data->invoices);
+        $this->assertIsArray($this->data->invoices); // @phpstan-ignore-line
         $this->assertEmpty($this->data->invoices);
-        $this->assertIsArray($this->data->receipts);
+        $this->assertIsArray($this->data->receipts); // @phpstan-ignore-line
         $this->assertEmpty($this->data->receipts);
     }
 
@@ -35,7 +35,7 @@ class MoneyS3DataTest extends TestCase
         $this->data->serialize($this->writer);
         $xml = $this->writer->outputMemory();
         
-        $this->assertIsString($xml);
+        $this->assertIsString($xml); // @phpstan-ignore-line
         // Should not contain any invoice or receipt elements
         $this->assertStringNotContainsString('<SeznamFaktVyd>', $xml);
         $this->assertStringNotContainsString('<SeznamFaktPrij>', $xml);

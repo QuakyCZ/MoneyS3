@@ -41,6 +41,10 @@ class InvoiceItem implements ISerializable
     /** @var Element<string> */
     private Element $priceAfterDiscount;
 
+    /**
+     * Constructor for InvoiceItem class
+     * Initializes all invoice item elements
+     */
     public function __construct()
     {
         $this->description = new Element("Popis");
@@ -56,72 +60,144 @@ class InvoiceItem implements ISerializable
         $this->priceAfterDiscount = new Element("CenaPoSleve");
     }
 
+    /**
+     * Sets the description of the invoice item
+     * 
+     * @param string $description The item description
+     * @return self Returns this instance for method chaining
+     */
     public function setDescription(string $description): self
     {
         $this->description->setValue($description);
         return $this;
     }
 
+    /**
+     * Sets the quantity of the invoice item
+     * 
+     * @param string $quantity The quantity
+     * @return self Returns this instance for method chaining
+     */
     public function setQuantity(string $quantity): self
     {
         $this->quantity->setValue($quantity);
         return $this;
     }
 
+    /**
+     * Sets the VAT rate for the item
+     * 
+     * @param string $vatRate The VAT rate
+     * @return self Returns this instance for method chaining
+     */
     public function setVatRate(string $vatRate): self
     {
         $this->vatRate->setValue($vatRate);
         return $this;
     }
 
+    /**
+     * Sets the price of the item
+     * 
+     * @param string $price The item price
+     * @return self Returns this instance for method chaining
+     */
     public function setPrice(string $price): self
     {
         $this->price->setValue($price);
         return $this;
     }
 
+    /**
+     * Sets the VAT summary for the item
+     * 
+     * @param ItemVatSummary $vatSummary The VAT summary object
+     * @return self Returns this instance for method chaining
+     */
     public function setVatSummary(ItemVatSummary $vatSummary): self
     {
         $this->vatSummary->setValue($vatSummary);
         return $this;
     }
 
+    /**
+     * Sets the price type
+     * 
+     * @param string $priceType The price type
+     * @return self Returns this instance for method chaining
+     */
     public function setPriceType(string $priceType): self
     {
         $this->priceType->setValue($priceType);
         return $this;
     }
 
+    /**
+     * Sets the discount amount
+     * 
+     * @param string $discount The discount amount
+     * @return self Returns this instance for method chaining
+     */
     public function setDiscount(string $discount): self
     {
         $this->discount->setValue($discount);
         return $this;
     }
 
+    /**
+     * Sets the order/position of the item
+     * 
+     * @param string $order The item order/position
+     * @return self Returns this instance for method chaining
+     */
     public function setOrder(string $order): self
     {
         $this->order->setValue($order);
         return $this;
     }
 
+    /**
+     * Sets the currencies for the item
+     * 
+     * @param string $currencies The currencies information
+     * @return self Returns this instance for method chaining
+     */
     public function setCurrencies(string $currencies): self
     {
         $this->currencies->setValue($currencies);
         return $this;
     }
 
+    /**
+     * Sets the non-stock item information
+     * 
+     * @param NonStockItem $nonStockItem The non-stock item object
+     * @return self Returns this instance for method chaining
+     */
     public function setNonStockItem(NonStockItem $nonStockItem): self
     {
         $this->nonStockItem->setValue($nonStockItem);
         return $this;
     }
 
+    /**
+     * Sets the price after discount
+     * 
+     * @param string $priceAfterDiscount The price after applying discount
+     * @return self Returns this instance for method chaining
+     */
     public function setPriceAfterDiscount(string $priceAfterDiscount): self
     {
         $this->priceAfterDiscount->setValue($priceAfterDiscount);
         return $this;
     }
 
+    /**
+     * Serializes the invoice item to XML
+     * 
+     * @param XMLWriter $writer The XMLWriter instance to write to
+     * @return void
+     */
     public function serialize(XMLWriter $writer): void
     {
         $this->description->serialize($writer);

@@ -61,7 +61,7 @@ class XmlTestUtilityTest extends TestCase
         
         $result = XmlTestUtility::xmlDiffSystem($xml1, $xml2);
         
-        $this->assertIsArray($result);
+        $this->assertIsArray($result); // @phpstan-ignore-line
         $this->assertArrayHasKey('exit_code', $result);
         $this->assertArrayHasKey('output', $result);
         $this->assertArrayHasKey('has_differences', $result);
@@ -85,7 +85,7 @@ class XmlTestUtilityTest extends TestCase
         
         // Should not throw exception
         XmlTestUtility::assertXmlEquals($xml1, $xml2);
-        $this->assertTrue(true); // Test passes if no exception thrown
+        $this->assertTrue(true); // @phpstan-ignore-line Test passes if no exception thrown
     }
 
     public function testAssertXmlEqualsFailure(): void
@@ -104,7 +104,7 @@ class XmlTestUtilityTest extends TestCase
         
         // Should not throw exception (same structure)
         XmlTestUtility::assertXmlStructureEquals($xml1, $xml2);
-        $this->assertTrue(true);
+        $this->assertTrue(true); // @phpstan-ignore-line
     }
 
     public function testAssertXmlStructureEqualsFailure(): void
@@ -127,7 +127,7 @@ class XmlTestUtilityTest extends TestCase
             'other',
             'child' => 'value'
         ]);
-        $this->assertTrue(true);
+        $this->assertTrue(true); // @phpstan-ignore-line
     }
 
     public function testAssertXmlContainsFailure(): void

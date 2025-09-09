@@ -18,6 +18,12 @@ class MoneyS3Data implements ISerializable
     /** @var Receipt[] */
     public array $receipts = [];
 
+    /**
+     * Serializes all invoices and receipts to XML
+     * 
+     * @param XMLWriter $writer The XMLWriter instance to write to
+     * @return void
+     */
     public function serialize(XMLWriter $writer): void
     {
         foreach ($this->invoices as $invoiceType => $invoices) {

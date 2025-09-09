@@ -10,9 +10,9 @@ install: up
 update: up
 	docker exec -it eproduct-moneys3 composer update
 
-phpstan ps: up
+phpstan ps: install
 	docker exec -it eproduct-moneys3 vendor/bin/phpstan analyse -c phpstan.neon src tests
 
-test: up
+test: install
 	docker exec -it eproduct-moneys3 vendor/bin/phpunit --colors=always --testdox tests
 

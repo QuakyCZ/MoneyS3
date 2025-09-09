@@ -20,6 +20,10 @@ class ItemVatSummary implements ISerializable
     /** @var Element<string> */
     private Element $vat;
 
+    /**
+     * Constructor for ItemVatSummary class
+     * Initializes all VAT summary elements for an item
+     */
     public function __construct()
     {
         $this->baseMJ = new Element("Zaklad_MJ");

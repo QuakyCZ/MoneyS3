@@ -30,6 +30,10 @@ class Company implements ISerializable
     /** @var Element<string> */
     private Element $currencyCode;
 
+    /**
+     * Constructor for Company class
+     * Initializes all company-related elements for invoice
+     */
     public function __construct()
     {
         $this->invoiceName = new Element("FaktNazev");
@@ -41,48 +45,96 @@ class Company implements ISerializable
         $this->currencyCode = new Element("MenaKod");
     }
 
+    /**
+     * Sets the company name for invoicing
+     * 
+     * @param string $invoiceName The company name
+     * @return self Returns this instance for method chaining
+     */
     public function setInvoiceName(string $invoiceName): self
     {
         $this->invoiceName->setValue($invoiceName);
         return $this;
     }
 
+    /**
+     * Sets the company address for invoicing
+     * 
+     * @param Address $address The company address
+     * @return self Returns this instance for method chaining
+     */
     public function setInvoiceAddress(Address $address): self
     {
         $this->invoiceAddress->setValue($address);
         return $this;
     }
 
+    /**
+     * Sets the company identification number (ICO)
+     * 
+     * @param string $ico The company identification number
+     * @return self Returns this instance for method chaining
+     */
     public function setIco(string $ico): self
     {
         $this->ico->setValue($ico);
         return $this;
     }
 
+    /**
+     * Sets the VAT identification number (DIC)
+     * 
+     * @param string $dic The VAT identification number
+     * @return self Returns this instance for method chaining
+     */
     public function setDic(string $dic): self
     {
         $this->dic->setValue($dic);
         return $this;
     }
 
+    /**
+     * Sets whether the company is a physical person
+     * 
+     * @param bool $physicalPerson True if physical person, false if legal entity
+     * @return self Returns this instance for method chaining
+     */
     public function setPhysicalPerson(bool $physicalPerson): self
     {
         $this->physicalPerson->setValue($physicalPerson);
         return $this;
     }
 
+    /**
+     * Sets the currency symbol
+     * 
+     * @param string $currencySymbol The currency symbol (e.g., "Kč", "€", "$")
+     * @return self Returns this instance for method chaining
+     */
     public function setCurrencySymbol(string $currencySymbol): self
     {
         $this->currencySymbol->setValue($currencySymbol);
         return $this;
     }
 
+    /**
+     * Sets the currency code
+     * 
+     * @param string $currencyCode The currency code (e.g., "CZK", "EUR", "USD")
+     * @return self Returns this instance for method chaining
+     */
     public function setCurrencyCode(string $currencyCode): self
     {
         $this->currencyCode->setValue($currencyCode);
         return $this;
     }
 
+    /**
+     * Serializes the company data to XML
+     * 
+     * @param XMLWriter $writer The XMLWriter instance to write to
+     * @return void
+     */
     public function serialize(XMLWriter $writer): void
     {
         $this->invoiceName->serialize($writer);

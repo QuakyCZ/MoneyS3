@@ -24,12 +24,12 @@ class MoneyS3IntegrationTest extends TestCase
         $invoice
             ->setDocumentNumber('2023001')
             ->setDescription('Test Product')
-            ->setIssued('2023-01-01')
-            ->setDueDate('2023-01-31')
+            ->setIssued(new \DateTime('2023-01-01'))
+            ->setDueDate(new \DateTime('2023-01-31'))
             ->setVariableSymbol('123456789')
-            ->setTotal('1210.00')
-            ->setToPay('1210.00')
-            ->setVatRate1('21');
+            ->setTotal(1210.00)
+            ->setToPay(1210.00)
+            ->setVatRate1(21);
 
         // Generate XML
         $xml = $this->moneyS3->getXml();
@@ -88,9 +88,9 @@ class MoneyS3IntegrationTest extends TestCase
         $invoice1
             ->setDocumentNumber('2023001')
             ->setDescription('Complex Invoice')
-            ->setIssued('2023-01-01')
-            ->setDueDate('2023-01-31')
-            ->setTotal('1000.00');
+            ->setIssued(new \DateTime('2023-01-01'))
+            ->setDueDate(new \DateTime('2023-01-31'))
+            ->setTotal(1000.00);
 
         $invoice2 = $this->moneyS3->addInvoice(InvoiceType::RECEIVED);
         $invoice2->setDocumentNumber('IN001');
@@ -108,6 +108,7 @@ class MoneyS3IntegrationTest extends TestCase
         $this->assertTrue($result, 'Generated XML should be well-formed and valid');
 
         // Verify root element
+        $this->assertNotNull($dom->documentElement, 'Document should have a root element');
         $this->assertEquals('MoneyData', $dom->documentElement->nodeName);
         $this->assertEquals($this->testIco, $dom->documentElement->getAttribute('ICAgendy'));
         $this->assertEquals('CZ', $dom->documentElement->getAttribute('JazykVerze'));
@@ -142,10 +143,10 @@ class MoneyS3IntegrationTest extends TestCase
             ->addInvoice(InvoiceType::ISSUED)
             ->setDocumentNumber('CHAIN001')
             ->setDescription('Fluent Interface Test')
-            ->setIssued('2023-01-01')
-            ->setDueDate('2023-01-31')
-            ->setTotal('500.00')
-            ->setVatRate1('21');
+            ->setIssued(new \DateTime('2023-01-01'))
+            ->setDueDate(new \DateTime('2023-01-31'))
+            ->setTotal(500.00)
+            ->setVatRate1(21);
 
         $this->assertInstanceOf(\eProduct\MoneyS3\Document\Invoice\Invoice::class, $invoice);
 
@@ -162,7 +163,7 @@ class MoneyS3IntegrationTest extends TestCase
             $issuedInvoice
                 ->setDocumentNumber(sprintf("OUT%03d", $i))
                 ->setDescription("Test Invoice {$i}")
-                ->setTotal(($i * 100) . '.00');
+                ->setTotal((float)($i * 100));
 
             $receivedInvoice = $this->moneyS3->addInvoice(InvoiceType::RECEIVED);
             $receivedInvoice

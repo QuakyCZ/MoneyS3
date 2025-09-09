@@ -13,6 +13,11 @@ class XmlTestUtility
 {
     /**
      * Compare two XML strings and return detailed comparison results
+     * 
+     * @param string $xml1 First XML string to compare
+     * @param string $xml2 Second XML string to compare  
+     * @param array<string, mixed> $options Comparison options
+     * @return array<string, mixed> Comparison results
      */
     public static function compareXml(string $xml1, string $xml2, array $options = []): array
     {
@@ -65,6 +70,11 @@ class XmlTestUtility
 
     /**
      * Use system xmldiff tool for detailed XML comparison
+     * 
+     * @param string $xml1 First XML string to compare
+     * @param string $xml2 Second XML string to compare
+     * @param array<string, mixed> $options Diff options
+     * @return array<string, mixed> Diff results
      */
     public static function xmlDiffSystem(string $xml1, string $xml2, array $options = []): array
     {
@@ -147,6 +157,11 @@ class XmlTestUtility
 
     /**
      * Assert XML contains specific elements/attributes
+     * 
+     * @param string $xml XML string to check
+     * @param array<int|string, mixed> $expectedElements Expected elements and attributes
+     * @param string $message Custom assertion message
+     * @return void
      */
     public static function assertXmlContains(string $xml, array $expectedElements, string $message = ''): void
     {
@@ -159,13 +174,13 @@ class XmlTestUtility
                 if (is_numeric($element)) {
                     // Simple element name check
                     $nodes = $xpath->query("//*[local-name()='$value']");
-                    if ($nodes->length === 0) {
+                    if ($nodes === false || $nodes->length === 0) {
                         $missing[] = "Element '$value' not found";
                     }
                 } else {
                     // Element with specific value check
                     $nodes = $xpath->query("//*[local-name()='$element' and text()='$value']");
-                    if ($nodes->length === 0) {
+                    if ($nodes === false || $nodes->length === 0) {
                         $missing[] = "Element '$element' with value '$value' not found";
                     }
                 }
@@ -219,8 +234,12 @@ class XmlTestUtility
         $xpath = new DOMXPath($dom);
         $whitespaceNodes = $xpath->query('//text()[normalize-space(.) = ""]');
         
-        foreach ($whitespaceNodes as $node) {
-            $node->parentNode->removeChild($node);
+        if ($whitespaceNodes !== false) {
+            foreach ($whitespaceNodes as $node) {
+                if ($node->parentNode !== null) {
+                    $node->parentNode->removeChild($node);
+                }
+            }
         }
         
         // Normalize format
@@ -242,8 +261,11 @@ class XmlTestUtility
 
     /**
      * Extract XML structure as array
+     * 
+     * @param \DOMElement|null $element DOM element to extract structure from
+     * @return array<string, mixed> Structure representation
      */
-    private static function extractStructure($element): array
+    private static function extractStructure(?\DOMElement $element): array
     {
         if (!$element) return [];
         
@@ -263,7 +285,7 @@ class XmlTestUtility
         // Extract child elements
         $children = [];
         foreach ($element->childNodes as $child) {
-            if ($child->nodeType === XML_ELEMENT_NODE) {
+            if ($child->nodeType === XML_ELEMENT_NODE && $child instanceof \DOMElement) {
                 $children[] = self::extractStructure($child);
             }
         }
@@ -277,12 +299,21 @@ class XmlTestUtility
 
     /**
      * Find specific differences between two XML documents
+     * 
+     * @param \DOMDocument $dom1 First XML document
+     * @param \DOMDocument $dom2 Second XML document  
+     * @return array<int|string, mixed> List of differences found
      */
     private static function findDifferences(DOMDocument $dom1, DOMDocument $dom2): array
     {
         $differences = [];
         
         // Compare root elements
+        if ($dom1->documentElement === null || $dom2->documentElement === null) {
+            $differences[] = "One or both documents are missing root elements";
+            return $differences;
+        }
+        
         if ($dom1->documentElement->localName !== $dom2->documentElement->localName) {
             $differences[] = sprintf(
                 "Root element differs: '%s' vs '%s'",
@@ -302,21 +333,31 @@ class XmlTestUtility
 
     /**
      * Compare attributes between two elements
+     * 
+     * @param \DOMElement|null $element1 First element to compare
+     * @param \DOMElement|null $element2 Second element to compare
+     * @param string $path Current XML path for error reporting
+     * @param array<int|string, mixed> $differences Array to collect differences
+     * @return void
      */
-    private static function compareElementAttributes($element1, $element2, string $path, array &$differences): void
+    private static function compareElementAttributes(?\DOMElement $element1, ?\DOMElement $element2, string $path, array &$differences): void
     {
         $attrs1 = [];
         $attrs2 = [];
         
         if ($element1 && $element1->hasAttributes()) {
             foreach ($element1->attributes as $attr) {
-                $attrs1[$attr->localName] = $attr->value;
+                if ($attr instanceof \DOMAttr) {
+                    $attrs1[$attr->localName] = $attr->value;
+                }
             }
         }
         
         if ($element2 && $element2->hasAttributes()) {
             foreach ($element2->attributes as $attr) {
-                $attrs2[$attr->localName] = $attr->value;
+                if ($attr instanceof \DOMAttr) {
+                    $attrs2[$attr->localName] = $attr->value;
+                }
             }
         }
         
@@ -342,8 +383,14 @@ class XmlTestUtility
 
     /**
      * Compare child elements recursively
+     * 
+     * @param \DOMElement|null $element1 First element to compare
+     * @param \DOMElement|null $element2 Second element to compare  
+     * @param string $path Current XML path for error reporting
+     * @param array<int|string, mixed> $differences Array to collect differences
+     * @return void
      */
-    private static function compareChildElements($element1, $element2, string $path, array &$differences): void
+    private static function compareChildElements(?\DOMElement $element1, ?\DOMElement $element2, string $path, array &$differences): void
     {
         $children1 = self::getElementChildren($element1);
         $children2 = self::getElementChildren($element2);
@@ -392,13 +439,16 @@ class XmlTestUtility
 
     /**
      * Get element children (excluding text nodes)
+     * 
+     * @param \DOMElement|null $element Element to get children from
+     * @return array<\DOMElement> Array of child elements
      */
-    private static function getElementChildren($element): array
+    private static function getElementChildren(?\DOMElement $element): array
     {
         $children = [];
         if ($element) {
             foreach ($element->childNodes as $child) {
-                if ($child->nodeType === XML_ELEMENT_NODE) {
+                if ($child->nodeType === XML_ELEMENT_NODE && $child instanceof \DOMElement) {
                     $children[] = $child;
                 }
             }
@@ -408,6 +458,10 @@ class XmlTestUtility
 
     /**
      * Generate comparison statistics
+     * 
+     * @param \DOMDocument $dom1 First XML document
+     * @param \DOMDocument $dom2 Second XML document
+     * @return array<string, mixed> Statistics about the documents
      */
     private static function generateStatistics(DOMDocument $dom1, DOMDocument $dom2): array
     {
@@ -427,7 +481,8 @@ class XmlTestUtility
     private static function countElements(DOMDocument $dom): int
     {
         $xpath = new DOMXPath($dom);
-        return $xpath->query('//*')->length;
+        $result = $xpath->query('//*');
+        return $result === false ? 0 : $result->length;
     }
 
     /**
@@ -436,7 +491,8 @@ class XmlTestUtility
     private static function countAttributes(DOMDocument $dom): int
     {
         $xpath = new DOMXPath($dom);
-        return $xpath->query('//@*')->length;
+        $result = $xpath->query('//@*');
+        return $result === false ? 0 : $result->length;
     }
 
     /**
@@ -445,6 +501,7 @@ class XmlTestUtility
     private static function countTextNodes(DOMDocument $dom): int
     {
         $xpath = new DOMXPath($dom);
-        return $xpath->query('//text()[normalize-space(.) != ""]')->length;
+        $result = $xpath->query('//text()[normalize-space(.) != ""]');
+        return $result === false ? 0 : $result->length;
     }
 }

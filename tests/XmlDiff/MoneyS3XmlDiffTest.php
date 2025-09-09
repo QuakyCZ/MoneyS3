@@ -139,14 +139,14 @@ class MoneyS3XmlDiffTest extends TestCase
         $invoice1 = $moneyS31->addInvoice(InvoiceType::ISSUED);
         $invoice1->setDocumentNumber('2023001')
                  ->setDescription('Invoice 1')
-                 ->setTotal('1000.00');
+                 ->setTotal(1000.00);
         $moneyS31->addReceipt();
         
         $moneyS32 = new MoneyS3($this->testIco);
         $invoice2 = $moneyS32->addInvoice(InvoiceType::ISSUED);
         $invoice2->setDocumentNumber('2023002')  // Different number
                  ->setDescription('Invoice 1')   // Same description
-                 ->setTotal('2000.00');          // Different total
+                 ->setTotal(2000.00);          // Different total
         $moneyS32->addReceipt();
         $moneyS32->addReceipt();  // Extra receipt
         
@@ -180,7 +180,7 @@ class MoneyS3XmlDiffTest extends TestCase
         
         // Should not throw exception
         XmlTestUtility::assertXmlEquals($xml1, $xml2);
-        $this->assertTrue(true);
+        $this->assertTrue(true); // @phpstan-ignore-line
     }
 
     public function testXmlAssertionFailure(): void
@@ -207,7 +207,7 @@ class MoneyS3XmlDiffTest extends TestCase
         $invoice = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
         $invoice->setDocumentNumber('2023001')
                 ->setDescription('Test Invoice')
-                ->setTotal('1500.00');
+                ->setTotal(1500.00);
         
         $xml = $this->moneyS3->getXml();
         
@@ -221,7 +221,7 @@ class MoneyS3XmlDiffTest extends TestCase
             'Celkem' => '1500.00'
         ]);
         
-        $this->assertTrue(true);
+        $this->assertTrue(true); // @phpstan-ignore-line
     }
 
     public function testXmlStructureAssertion(): void
@@ -239,7 +239,7 @@ class MoneyS3XmlDiffTest extends TestCase
         
         // Should not throw exception (same structure)
         XmlTestUtility::assertXmlStructureEquals($xml1, $xml2);
-        $this->assertTrue(true);
+        $this->assertTrue(true); // @phpstan-ignore-line
     }
 
     public function testStatisticsGeneration(): void
@@ -247,7 +247,7 @@ class MoneyS3XmlDiffTest extends TestCase
         $invoice = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
         $invoice->setDocumentNumber('2023001')
                 ->setDescription('Test Invoice')
-                ->setTotal('1000.00')
+                ->setTotal(1000.00)
                 ->setVariableSymbol('123456');
         $this->moneyS3->addReceipt();
         

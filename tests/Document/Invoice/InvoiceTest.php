@@ -47,7 +47,7 @@ class InvoiceTest extends TestCase
         $result = $this->invoice
             ->setDocumentNumber('2023001')
             ->setDescription('Test Invoice')
-            ->setTotal('1000.00');
+            ->setTotal(1000.00);
         
         $this->assertSame($this->invoice, $result);
     }
@@ -57,7 +57,7 @@ class InvoiceTest extends TestCase
         $this->invoice
             ->setDocumentNumber('2023001')
             ->setDescription('Test Invoice')
-            ->setTotal('1000.00');
+            ->setTotal(1000.00);
         
         $this->invoice->serialize($this->writer);
         $xml = $this->writer->outputMemory();
@@ -65,7 +65,7 @@ class InvoiceTest extends TestCase
         $this->assertStringContainsString('<FaktVyd>', $xml);
         $this->assertStringContainsString('<Doklad>2023001</Doklad>', $xml);
         $this->assertStringContainsString('<Popis>Test Invoice</Popis>', $xml);
-        $this->assertStringContainsString('<Celkem>1000.00</Celkem>', $xml);
+        $this->assertStringContainsString('<Celkem>1000</Celkem>', $xml);
         $this->assertStringContainsString('</FaktVyd>', $xml);
     }
 
@@ -86,23 +86,23 @@ class InvoiceTest extends TestCase
     {
         // Test all setter methods to ensure they work and return the invoice instance
         $methods = [
-            'setAccountingMethod' => 'accounting',
-            'setNumberSeries' => 'series',
-            'setIssued' => '2023-01-01',
-            'setAccountingDate' => '2023-01-01',
+            'setAccountingMethod' => 1,
+            'setNumberSeries' => 1,
+            'setIssued' => new \DateTime('2023-01-01'),
+            'setAccountingDate' => new \DateTime('2023-01-01'),
             'setVatPerformed' => '2023-01-01',
-            'setDueDate' => '2023-01-31',
-            'setTaxDocumentDate' => '2023-01-01',
-            'setSimplified' => 'false',
+            'setDueDate' => new \DateTime('2023-01-31'),
+            'setTaxDocumentDate' => new \DateTime('2023-01-01'),
+            'setSimplified' => false,
             'setVariableSymbol' => '123456',
             'setAccount' => 'account123',
             'setType' => 'standard',
-            'setCreditNote' => 'false',
+            'setCreditNote' => false,
             'setVatCalculationMethod' => 'standard',
-            'setVatRate1' => '21',
-            'setVatRate2' => '15',
-            'setToPay' => '1000.00',
-            'setSettled' => '0.00',
+            'setVatRate1' => 21,
+            'setVatRate2' => 15,
+            'setToPay' => 1000.00,
+            'setSettled' => false,
             'setReceivableRemaining' => '1000.00',
             'setCurrenciesProperty' => 'CZK',
             'setDepositSum' => '0.00',
@@ -122,15 +122,15 @@ class InvoiceTest extends TestCase
     {
         $this->invoice
             ->setDocumentNumber('2023001')
-            ->setAccountingMethod('accounting')
-            ->setNumberSeries('series')
+            ->setAccountingMethod(1)
+            ->setNumberSeries(1)
             ->setDescription('Test Invoice')
-            ->setIssued('2023-01-01')
-            ->setAccountingDate('2023-01-01')
+            ->setIssued(new \DateTime('2023-01-01'))
+            ->setAccountingDate(new \DateTime('2023-01-01'))
             ->setVatPerformed('2023-01-01')
-            ->setDueDate('2023-01-31')
+            ->setDueDate(new \DateTime('2023-01-31'))
             ->setVariableSymbol('123456')
-            ->setTotal('1000.00');
+            ->setTotal(1000.00);
         
         $this->invoice->serialize($this->writer);
         $xml = $this->writer->outputMemory();
