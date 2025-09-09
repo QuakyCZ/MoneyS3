@@ -33,6 +33,11 @@ class MoneyS3
         return $invoice;
     }
 
+    public function addInvoiceRaw(Invoice $invoice): self {
+        $this->data->invoices[$invoice->invoiceType->value][] = $invoice;
+        return $this;
+    }
+
     /**
      * Adds a new receipt to the data collection
      * 
@@ -42,6 +47,18 @@ class MoneyS3
         $receipt = new Receipt();
         $this->data->receipts[] = $receipt;
         return $receipt;
+    }
+
+    /**
+     * 
+     * Adds an existing receipt to the data collection
+     * 
+     * @param \eProduct\MoneyS3\Document\Receipt\Receipt $receipt
+     * @return MoneyS3
+     */
+    public function addReceiptRaw(Receipt $receipt): self {
+        $this->data->receipts[] = $receipt;
+        return $this;
     }
 
     /**
