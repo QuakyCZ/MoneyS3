@@ -53,55 +53,55 @@ class Partner implements ISerializable
         $this->physicalPerson = new Element("FyzOsoba");
     }
 
-    public function setTradeName(string $tradeName): self
+    public function setTradeName(?string $tradeName): self
     {
         $this->tradeName->setValue($tradeName);
         return $this;
     }
 
-    public function setTradeAddress(Address $address): self
+    public function setTradeAddress(?Address $address): self
     {
         $this->tradeAddress->setValue($address);
         return $this;
     }
 
-    public function setInvoiceName(string $invoiceName): self
+    public function setInvoiceName(?string $invoiceName): self
     {
         $this->invoiceName->setValue($invoiceName);
         return $this;
     }
 
-    public function setIco(string $ico): self
+    public function setIco(?string $ico): self
     {
         $this->ico->setValue($ico);
         return $this;
     }
 
-    public function setInvoiceAddress(Address $address): self
+    public function setInvoiceAddress(?Address $address): self
     {
         $this->invoiceAddress->setValue($address);
         return $this;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name->setValue($name);
         return $this;
     }
 
-    public function setAddress(Address $address): self
+    public function setAddress(?Address $address): self
     {
         $this->address->setValue($address);
         return $this;
     }
 
-    public function setVatPayer(bool $vatPayer): self
+    public function setVatPayer(?bool $vatPayer): self
     {
         $this->vatPayer->setValue($vatPayer);
         return $this;
     }
 
-    public function setPhysicalPerson(bool $physicalPerson): self
+    public function setPhysicalPerson(?bool $physicalPerson): self
     {
         $this->physicalPerson->setValue($physicalPerson);
         return $this;

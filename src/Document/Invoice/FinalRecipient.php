@@ -40,10 +40,10 @@ class FinalRecipient implements ISerializable
     /**
      * Sets the name of the final recipient
      * 
-     * @param string $name The recipient's name
+     * @param string|null $name The recipient's name
      * @return self Returns this instance for method chaining
      */
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name->setValue($name);
         return $this;
@@ -52,10 +52,10 @@ class FinalRecipient implements ISerializable
     /**
      * Sets the address of the final recipient
      * 
-     * @param Address $address The recipient's address object
+     * @param Address|null $address The recipient's address object
      * @return self Returns this instance for method chaining
      */
-    public function setAddress(Address $address): self
+    public function setAddress(?Address $address): self
     {
         $this->address->setValue($address);
         return $this;
@@ -64,10 +64,10 @@ class FinalRecipient implements ISerializable
     /**
      * Sets the company identification number (ICO) of the final recipient
      * 
-     * @param string $ico The company identification number
+     * @param string|null $ico The company identification number
      * @return self Returns this instance for method chaining
      */
-    public function setIco(string $ico): self
+    public function setIco(?string $ico): self
     {
         $this->ico->setValue($ico);
         return $this;
@@ -76,10 +76,10 @@ class FinalRecipient implements ISerializable
     /**
      * Sets whether the final recipient is a VAT payer
      * 
-     * @param string $vatPayer The VAT payer status
+     * @param string|null $vatPayer The VAT payer status
      * @return self Returns this instance for method chaining
      */
-    public function setVatPayer(string $vatPayer): self
+    public function setVatPayer(?string $vatPayer): self
     {
         $this->vatPayer->setValue($vatPayer);
         return $this;
@@ -88,10 +88,10 @@ class FinalRecipient implements ISerializable
     /**
      * Sets whether the final recipient is a physical person
      * 
-     * @param string $physicalPerson The physical person status
+     * @param string|null $physicalPerson The physical person status
      * @return self Returns this instance for method chaining
      */
-    public function setPhysicalPerson(string $physicalPerson): self
+    public function setPhysicalPerson(?string $physicalPerson): self
     {
         $this->physicalPerson->setValue($physicalPerson);
         return $this;

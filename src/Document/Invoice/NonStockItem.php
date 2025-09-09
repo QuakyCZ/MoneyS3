@@ -39,10 +39,10 @@ class NonStockItem implements ISerializable
     /**
      * Sets the deposit amount for the non-stock item
      * 
-     * @param string $deposit The deposit amount
+     * @param string|null $deposit The deposit amount
      * @return self Returns this instance for method chaining
      */
-    public function setDeposit(string $deposit): self
+    public function setDeposit(?string $deposit): self
     {
         $this->deposit->setValue($deposit);
         return $this;
@@ -51,10 +51,10 @@ class NonStockItem implements ISerializable
     /**
      * Sets the period type for the non-stock item
      * 
-     * @param string $periodType The period type
+     * @param string|null $periodType The period type
      * @return self Returns this instance for method chaining
      */
-    public function setPeriodType(string $periodType): self
+    public function setPeriodType(?string $periodType): self
     {
         $this->periodType->setValue($periodType);
         return $this;
@@ -63,10 +63,10 @@ class NonStockItem implements ISerializable
     /**
      * Sets the period for the non-stock item
      * 
-     * @param string $period The period value
+     * @param string|null $period The period value
      * @return self Returns this instance for method chaining
      */
-    public function setPeriod(string $period): self
+    public function setPeriod(?string $period): self
     {
         $this->period->setValue($period);
         return $this;
@@ -75,10 +75,10 @@ class NonStockItem implements ISerializable
     /**
      * Sets the counter entry for the non-stock item
      * 
-     * @param string $counterEntry The counter entry value
+     * @param string|null $counterEntry The counter entry value
      * @return self Returns this instance for method chaining
      */
-    public function setCounterEntry(string $counterEntry): self
+    public function setCounterEntry(?string $counterEntry): self
     {
         $this->counterEntry->setValue($counterEntry);
         return $this;
@@ -87,10 +87,10 @@ class NonStockItem implements ISerializable
     /**
      * Sets the weight of the non-stock item
      * 
-     * @param string $weight The weight value
+     * @param string|null $weight The weight value
      * @return self Returns this instance for method chaining
      */
-    public function setWeight(string $weight): self
+    public function setWeight(?string $weight): self
     {
         $this->weight->setValue($weight);
         return $this;

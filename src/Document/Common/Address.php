@@ -40,10 +40,10 @@ class Address implements ISerializable
     /**
      * Sets the street address
      * 
-     * @param string $street The street address
+     * @param string|null $street The street address
      * @return self Returns this instance for method chaining
      */
-    public function setStreet(string $street): self
+    public function setStreet(?string $street): self
     {
         $this->street->setValue($street);
         return $this;
@@ -52,10 +52,10 @@ class Address implements ISerializable
     /**
      * Sets the city name
      * 
-     * @param string $city The city name
+     * @param string|null $city The city name
      * @return self Returns this instance for method chaining
      */
-    public function setCity(string $city): self
+    public function setCity(?string $city): self
     {
         $this->city->setValue($city);
         return $this;
@@ -64,10 +64,10 @@ class Address implements ISerializable
     /**
      * Sets the postal code
      * 
-     * @param string $postalCode The postal code
+     * @param string|null $postalCode The postal code
      * @return self Returns this instance for method chaining
      */
-    public function setPostalCode(string $postalCode): self
+    public function setPostalCode(?string $postalCode): self
     {
         $this->postalCode->setValue($postalCode);
         return $this;
@@ -76,10 +76,10 @@ class Address implements ISerializable
     /**
      * Sets the country name
      * 
-     * @param string $country The country name
+     * @param string|null $country The country name
      * @return self Returns this instance for method chaining
      */
-    public function setCountry(string $country): self
+    public function setCountry(?string $country): self
     {
         $this->country->setValue($country);
         return $this;
@@ -88,10 +88,10 @@ class Address implements ISerializable
     /**
      * Sets the country code
      * 
-     * @param string $countryCode The country code (e.g., "CZ", "SK", "DE")
+     * @param string|null $countryCode The country code (e.g., "CZ", "SK", "DE")
      * @return self Returns this instance for method chaining
      */
-    public function setCountryCode(string $countryCode): self
+    public function setCountryCode(?string $countryCode): self
     {
         $this->countryCode->setValue($countryCode);
         return $this;

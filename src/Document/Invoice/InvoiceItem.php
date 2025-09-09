@@ -63,10 +63,10 @@ class InvoiceItem implements ISerializable
     /**
      * Sets the description of the invoice item
      * 
-     * @param string $description The item description
+     * @param string|null $description The item description
      * @return self Returns this instance for method chaining
      */
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description->setValue($description);
         return $this;
@@ -75,10 +75,10 @@ class InvoiceItem implements ISerializable
     /**
      * Sets the quantity of the invoice item
      * 
-     * @param string $quantity The quantity
+     * @param string|null $quantity The quantity
      * @return self Returns this instance for method chaining
      */
-    public function setQuantity(string $quantity): self
+    public function setQuantity(?string $quantity): self
     {
         $this->quantity->setValue($quantity);
         return $this;
@@ -87,10 +87,10 @@ class InvoiceItem implements ISerializable
     /**
      * Sets the VAT rate for the item
      * 
-     * @param string $vatRate The VAT rate
+     * @param string|null $vatRate The VAT rate
      * @return self Returns this instance for method chaining
      */
-    public function setVatRate(string $vatRate): self
+    public function setVatRate(?string $vatRate): self
     {
         $this->vatRate->setValue($vatRate);
         return $this;
@@ -99,10 +99,10 @@ class InvoiceItem implements ISerializable
     /**
      * Sets the price of the item
      * 
-     * @param string $price The item price
+     * @param string|null $price The item price
      * @return self Returns this instance for method chaining
      */
-    public function setPrice(string $price): self
+    public function setPrice(?string $price): self
     {
         $this->price->setValue($price);
         return $this;
@@ -111,10 +111,10 @@ class InvoiceItem implements ISerializable
     /**
      * Sets the VAT summary for the item
      * 
-     * @param ItemVatSummary $vatSummary The VAT summary object
+     * @param ItemVatSummary|null $vatSummary The VAT summary object
      * @return self Returns this instance for method chaining
      */
-    public function setVatSummary(ItemVatSummary $vatSummary): self
+    public function setVatSummary(?ItemVatSummary $vatSummary): self
     {
         $this->vatSummary->setValue($vatSummary);
         return $this;
@@ -123,10 +123,10 @@ class InvoiceItem implements ISerializable
     /**
      * Sets the price type
      * 
-     * @param string $priceType The price type
+     * @param string|null $priceType The price type
      * @return self Returns this instance for method chaining
      */
-    public function setPriceType(string $priceType): self
+    public function setPriceType(?string $priceType): self
     {
         $this->priceType->setValue($priceType);
         return $this;
@@ -135,10 +135,10 @@ class InvoiceItem implements ISerializable
     /**
      * Sets the discount amount
      * 
-     * @param string $discount The discount amount
+     * @param string|null $discount The discount amount
      * @return self Returns this instance for method chaining
      */
-    public function setDiscount(string $discount): self
+    public function setDiscount(?string $discount): self
     {
         $this->discount->setValue($discount);
         return $this;
@@ -147,10 +147,10 @@ class InvoiceItem implements ISerializable
     /**
      * Sets the order/position of the item
      * 
-     * @param string $order The item order/position
+     * @param string|null $order The item order/position
      * @return self Returns this instance for method chaining
      */
-    public function setOrder(string $order): self
+    public function setOrder(?string $order): self
     {
         $this->order->setValue($order);
         return $this;
@@ -159,10 +159,10 @@ class InvoiceItem implements ISerializable
     /**
      * Sets the currencies for the item
      * 
-     * @param string $currencies The currencies information
+     * @param string|null $currencies The currencies information
      * @return self Returns this instance for method chaining
      */
-    public function setCurrencies(string $currencies): self
+    public function setCurrencies(?string $currencies): self
     {
         $this->currencies->setValue($currencies);
         return $this;
@@ -171,10 +171,10 @@ class InvoiceItem implements ISerializable
     /**
      * Sets the non-stock item information
      * 
-     * @param NonStockItem $nonStockItem The non-stock item object
+     * @param NonStockItem|null $nonStockItem The non-stock item object
      * @return self Returns this instance for method chaining
      */
-    public function setNonStockItem(NonStockItem $nonStockItem): self
+    public function setNonStockItem(?NonStockItem $nonStockItem): self
     {
         $this->nonStockItem->setValue($nonStockItem);
         return $this;
@@ -183,10 +183,10 @@ class InvoiceItem implements ISerializable
     /**
      * Sets the price after discount
      * 
-     * @param string $priceAfterDiscount The price after applying discount
+     * @param string|null $priceAfterDiscount The price after applying discount
      * @return self Returns this instance for method chaining
      */
-    public function setPriceAfterDiscount(string $priceAfterDiscount): self
+    public function setPriceAfterDiscount(?string $priceAfterDiscount): self
     {
         $this->priceAfterDiscount->setValue($priceAfterDiscount);
         return $this;

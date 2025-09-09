@@ -48,10 +48,10 @@ class Company implements ISerializable
     /**
      * Sets the company name for invoicing
      * 
-     * @param string $invoiceName The company name
+     * @param string|null $invoiceName The company name
      * @return self Returns this instance for method chaining
      */
-    public function setInvoiceName(string $invoiceName): self
+    public function setInvoiceName(?string $invoiceName): self
     {
         $this->invoiceName->setValue($invoiceName);
         return $this;
@@ -60,10 +60,10 @@ class Company implements ISerializable
     /**
      * Sets the company address for invoicing
      * 
-     * @param Address $address The company address
+     * @param Address|null $address The company address
      * @return self Returns this instance for method chaining
      */
-    public function setInvoiceAddress(Address $address): self
+    public function setInvoiceAddress(?Address $address): self
     {
         $this->invoiceAddress->setValue($address);
         return $this;
@@ -72,10 +72,10 @@ class Company implements ISerializable
     /**
      * Sets the company identification number (ICO)
      * 
-     * @param string $ico The company identification number
+     * @param string|null $ico The company identification number
      * @return self Returns this instance for method chaining
      */
-    public function setIco(string $ico): self
+    public function setIco(?string $ico): self
     {
         $this->ico->setValue($ico);
         return $this;
@@ -84,10 +84,10 @@ class Company implements ISerializable
     /**
      * Sets the VAT identification number (DIC)
      * 
-     * @param string $dic The VAT identification number
+     * @param string|null $dic The VAT identification number
      * @return self Returns this instance for method chaining
      */
-    public function setDic(string $dic): self
+    public function setDic(?string $dic): self
     {
         $this->dic->setValue($dic);
         return $this;
@@ -96,10 +96,10 @@ class Company implements ISerializable
     /**
      * Sets whether the company is a physical person
      * 
-     * @param bool $physicalPerson True if physical person, false if legal entity
+     * @param bool|null $physicalPerson True if physical person, false if legal entity
      * @return self Returns this instance for method chaining
      */
-    public function setPhysicalPerson(bool $physicalPerson): self
+    public function setPhysicalPerson(?bool $physicalPerson): self
     {
         $this->physicalPerson->setValue($physicalPerson);
         return $this;
@@ -108,10 +108,10 @@ class Company implements ISerializable
     /**
      * Sets the currency symbol
      * 
-     * @param string $currencySymbol The currency symbol (e.g., "Kč", "€", "$")
+     * @param string|null $currencySymbol The currency symbol (e.g., "Kč", "€", "$")
      * @return self Returns this instance for method chaining
      */
-    public function setCurrencySymbol(string $currencySymbol): self
+    public function setCurrencySymbol(?string $currencySymbol): self
     {
         $this->currencySymbol->setValue($currencySymbol);
         return $this;
@@ -120,10 +120,10 @@ class Company implements ISerializable
     /**
      * Sets the currency code
      * 
-     * @param string $currencyCode The currency code (e.g., "CZK", "EUR", "USD")
+     * @param string|null $currencyCode The currency code (e.g., "CZK", "EUR", "USD")
      * @return self Returns this instance for method chaining
      */
-    public function setCurrencyCode(string $currencyCode): self
+    public function setCurrencyCode(?string $currencyCode): self
     {
         $this->currencyCode->setValue($currencyCode);
         return $this;

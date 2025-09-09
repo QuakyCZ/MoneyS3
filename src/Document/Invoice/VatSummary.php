@@ -55,10 +55,10 @@ class VatSummary implements ISerializable
     /**
      * Sets the base amount for 0% VAT rate
      * 
-     * @param float $base0 The base amount for 0% VAT
+     * @param float|null $base0 The base amount for 0% VAT
      * @return self Returns this instance for method chaining
      */
-    public function setBase0(float $base0): self
+    public function setBase0(?float $base0): self
     {
         $this->base0->setValue($base0);
         return $this;
@@ -67,10 +67,10 @@ class VatSummary implements ISerializable
     /**
      * Sets the base amount for lower VAT rate
      * 
-     * @param float $base5 The base amount for lower VAT
+     * @param float|null $base5 The base amount for lower VAT
      * @return self Returns this instance for method chaining
      */
-    public function setBase5(float $base5): self
+    public function setBase5(?float $base5): self
     {
         $this->base5->setValue($base5);
         return $this;
@@ -79,10 +79,10 @@ class VatSummary implements ISerializable
     /**
      * Sets the base amount for higher VAT rate
      * 
-     * @param float $base22 The base amount for higher VAT
+     * @param float|null $base22 The base amount for higher VAT
      * @return self Returns this instance for method chaining
      */
-    public function setBase22(float $base22): self
+    public function setBase22(?float $base22): self
     {
         $this->base22->setValue($base22);
         return $this;
@@ -91,10 +91,10 @@ class VatSummary implements ISerializable
     /**
      * Sets the VAT amount for lower rate
      * 
-     * @param float $vat5 The VAT amount for lower rate
+     * @param float|null $vat5 The VAT amount for lower rate
      * @return self Returns this instance for method chaining
      */
-    public function setVat5(float $vat5): self
+    public function setVat5(?float $vat5): self
     {
         $this->vat5->setValue($vat5);
         return $this;
@@ -103,10 +103,10 @@ class VatSummary implements ISerializable
     /**
      * Sets the VAT amount for higher rate
      * 
-     * @param float $vat22 The VAT amount for higher rate
+     * @param float|null $vat22 The VAT amount for higher rate
      * @return self Returns this instance for method chaining
      */
-    public function setVat22(float $vat22): self
+    public function setVat22(?float $vat22): self
     {
         $this->vat22->setValue($vat22);
         return $this;

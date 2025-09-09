@@ -32,25 +32,25 @@ class ItemVatSummary implements ISerializable
         $this->vat = new Element("DPH");
     }
 
-    public function setBaseMJ(string $baseMJ): self
+    public function setBaseMJ(?string $baseMJ): self
     {
         $this->baseMJ->setValue($baseMJ);
         return $this;
     }
 
-    public function setVatMJ(string $vatMJ): self
+    public function setVatMJ(?string $vatMJ): self
     {
         $this->vatMJ->setValue($vatMJ);
         return $this;
     }
 
-    public function setBase(string $base): self
+    public function setBase(?string $base): self
     {
         $this->base->setValue($base);
         return $this;
     }
 
-    public function setVat(string $vat): self
+    public function setVat(?string $vat): self
     {
         $this->vat->setValue($vat);
         return $this;

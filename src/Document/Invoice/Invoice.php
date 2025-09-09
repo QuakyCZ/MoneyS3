@@ -149,10 +149,10 @@ class Invoice implements IDocument
     /**
      * Sets the document number of the invoice
      * 
-     * @param string $documentNumber The invoice document number
+     * @param string|null $documentNumber The invoice document number
      * @return self Returns this instance for method chaining
      */
-    public function setDocumentNumber(string $documentNumber): self
+    public function setDocumentNumber(?string $documentNumber): self
     {
         $this->documentNumber->setValue($documentNumber);
         return $this;
@@ -161,10 +161,10 @@ class Invoice implements IDocument
     /**
      * Sets the accounting method
      * 
-     * @param int $accountingMethod The accounting method identifier
+     * @param int|null $accountingMethod The accounting method identifier
      * @return self Returns this instance for method chaining
      */
-    public function setAccountingMethod(int $accountingMethod): self
+    public function setAccountingMethod(?int $accountingMethod): self
     {
         $this->accountingMethod->setValue($accountingMethod);
         return $this;
@@ -173,10 +173,10 @@ class Invoice implements IDocument
     /**
      * Sets the number series for the invoice
      * 
-     * @param int $numberSeries The number series identifier
+     * @param int|null $numberSeries The number series identifier
      * @return self Returns this instance for method chaining
      */
-    public function setNumberSeries(int $numberSeries): self
+    public function setNumberSeries(?int $numberSeries): self
     {
         $this->numberSeries->setValue($numberSeries);
         return $this;
@@ -185,10 +185,10 @@ class Invoice implements IDocument
     /**
      * Sets the description of the invoice
      * 
-     * @param string $description The invoice description
+     * @param string|null $description The invoice description
      * @return self Returns this instance for method chaining
      */
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description->setValue($description);
         return $this;
@@ -197,10 +197,10 @@ class Invoice implements IDocument
     /**
      * Sets the invoice issue date
      * 
-     * @param DateTime $issued The date when the invoice was issued
+     * @param DateTime|null $issued The date when the invoice was issued
      * @return self Returns this instance for method chaining
      */
-    public function setIssued(DateTime $issued): self
+    public function setIssued(?DateTime $issued): self
     {
         $this->issued->setValue($issued);
         return $this;
@@ -209,10 +209,10 @@ class Invoice implements IDocument
     /**
      * Sets the accounting date
      * 
-     * @param DateTime $accountingDate The accounting date for the invoice
+     * @param DateTime|null $accountingDate The accounting date for the invoice
      * @return self Returns this instance for method chaining
      */
-    public function setAccountingDate(DateTime $accountingDate): self
+    public function setAccountingDate(?DateTime $accountingDate): self
     {
         $this->accountingDate->setValue($accountingDate);
         return $this;
@@ -221,10 +221,10 @@ class Invoice implements IDocument
     /**
      * Sets when VAT was performed
      * 
-     * @param string $vatPerformed The VAT performance date/period
+     * @param string|null $vatPerformed The VAT performance date/period
      * @return self Returns this instance for method chaining
      */
-    public function setVatPerformed(string $vatPerformed): self
+    public function setVatPerformed(?string $vatPerformed): self
     {
         $this->vatPerformed->setValue($vatPerformed);
         return $this;
@@ -233,10 +233,10 @@ class Invoice implements IDocument
     /**
      * Sets the due date for payment
      * 
-     * @param DateTime $dueDate The date when payment is due
+     * @param DateTime|null $dueDate The date when payment is due
      * @return self Returns this instance for method chaining
      */
-    public function setDueDate(DateTime $dueDate): self
+    public function setDueDate(?DateTime $dueDate): self
     {
         $this->dueDate->setValue($dueDate);
         return $this;
@@ -245,10 +245,10 @@ class Invoice implements IDocument
     /**
      * Sets the tax document date
      * 
-     * @param DateTime $taxDocumentDate The tax document date
+     * @param DateTime|null $taxDocumentDate The tax document date
      * @return self Returns this instance for method chaining
      */
-    public function setTaxDocumentDate(DateTime $taxDocumentDate): self
+    public function setTaxDocumentDate(?DateTime $taxDocumentDate): self
     {
         $this->taxDocumentDate->setValue($taxDocumentDate);
         return $this;
@@ -257,10 +257,10 @@ class Invoice implements IDocument
     /**
      * Sets whether this is a simplified invoice
      * 
-     * @param bool $simplified True if simplified, false otherwise
+     * @param bool|null $simplified True if simplified, false otherwise
      * @return self Returns this instance for method chaining
      */
-    public function setSimplified(bool $simplified): self
+    public function setSimplified(?bool $simplified): self
     {
         $this->simplified->setValue($simplified);
         return $this;
@@ -269,10 +269,10 @@ class Invoice implements IDocument
     /**
      * Sets the variable symbol for payment identification
      * 
-     * @param string $variableSymbol The variable symbol
+     * @param string|null $variableSymbol The variable symbol
      * @return self Returns this instance for method chaining
      */
-    public function setVariableSymbol(string $variableSymbol): self
+    public function setVariableSymbol(?string $variableSymbol): self
     {
         $this->variableSymbol->setValue($variableSymbol);
         return $this;
@@ -281,10 +281,10 @@ class Invoice implements IDocument
     /**
      * Sets the bank account for payments
      * 
-     * @param string $account The bank account identifier
+     * @param string|null $account The bank account identifier
      * @return self Returns this instance for method chaining
      */
-    public function setAccount(string $account): self
+    public function setAccount(?string $account): self
     {
         $this->account->setValue($account);
         return $this;
@@ -293,10 +293,10 @@ class Invoice implements IDocument
     /**
      * Sets the type of the invoice
      * 
-     * @param string $type The invoice type
+     * @param string|null $type The invoice type
      * @return self Returns this instance for method chaining
      */
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->type->setValue($type);
         return $this;
@@ -305,10 +305,10 @@ class Invoice implements IDocument
     /**
      * Sets whether this is a credit note
      * 
-     * @param bool $creditNote True if credit note, false otherwise
+     * @param bool|null $creditNote True if credit note, false otherwise
      * @return self Returns this instance for method chaining
      */
-    public function setCreditNote(bool $creditNote): self
+    public function setCreditNote(?bool $creditNote): self
     {
         $this->creditNote->setValue($creditNote);
         return $this;
@@ -317,10 +317,10 @@ class Invoice implements IDocument
     /**
      * Sets the VAT calculation method
      * 
-     * @param string $vatCalculationMethod The VAT calculation method
+     * @param string|null $vatCalculationMethod The VAT calculation method
      * @return self Returns this instance for method chaining
      */
-    public function setVatCalculationMethod(string $vatCalculationMethod): self
+    public function setVatCalculationMethod(?string $vatCalculationMethod): self
     {
         $this->vatCalculationMethod->setValue($vatCalculationMethod);
         return $this;
@@ -329,10 +329,10 @@ class Invoice implements IDocument
     /**
      * Sets the first VAT rate
      * 
-     * @param int $vatRate1 The first VAT rate in percentage
+     * @param int|null $vatRate1 The first VAT rate in percentage
      * @return self Returns this instance for method chaining
      */
-    public function setVatRate1(int $vatRate1): self
+    public function setVatRate1(?int $vatRate1): self
     {
         $this->vatRate1->setValue($vatRate1);
         return $this;
@@ -341,10 +341,10 @@ class Invoice implements IDocument
     /**
      * Sets the second VAT rate
      * 
-     * @param int $vatRate2 The second VAT rate in percentage
+     * @param int|null $vatRate2 The second VAT rate in percentage
      * @return self Returns this instance for method chaining
      */
-    public function setVatRate2(int $vatRate2): self
+    public function setVatRate2(?int $vatRate2): self
     {
         $this->vatRate2->setValue($vatRate2);
         return $this;
@@ -353,10 +353,10 @@ class Invoice implements IDocument
     /**
      * Sets the amount to pay
      * 
-     * @param float $toPay The total amount to pay
+     * @param float|null $toPay The total amount to pay
      * @return self Returns this instance for method chaining
      */
-    public function setToPay(float $toPay): self
+    public function setToPay(?float $toPay): self
     {
         $this->toPay->setValue($toPay);
         return $this;
@@ -365,10 +365,10 @@ class Invoice implements IDocument
     /**
      * Sets whether the invoice is settled
      * 
-     * @param bool $settled True if settled, false otherwise
+     * @param bool|null $settled True if settled, false otherwise
      * @return self Returns this instance for method chaining
      */
-    public function setSettled(bool $settled): self
+    public function setSettled(?bool $settled): self
     {
         $this->settled->setValue($settled);
         return $this;
@@ -377,10 +377,10 @@ class Invoice implements IDocument
     /**
      * Sets the VAT summary for the invoice
      * 
-     * @param VatSummary $vatSummary The VAT summary object
+     * @param VatSummary|null $vatSummary The VAT summary object
      * @return self Returns this instance for method chaining
      */
-    public function setVatSummary(VatSummary $vatSummary): self
+    public function setVatSummary(?VatSummary $vatSummary): self
     {
         $this->vatSummary->setValue($vatSummary);
         return $this;
@@ -389,10 +389,10 @@ class Invoice implements IDocument
     /**
      * Sets the total amount of the invoice
      * 
-     * @param float $total The total invoice amount
+     * @param float|null $total The total invoice amount
      * @return self Returns this instance for method chaining
      */
-    public function setTotal(float $total): self
+    public function setTotal(?float $total): self
     {
         $this->total->setValue($total);
         return $this;
@@ -401,10 +401,10 @@ class Invoice implements IDocument
     /**
      * Sets the remaining receivable amount
      * 
-     * @param string $receivableRemaining The remaining receivable amount
+     * @param string|null $receivableRemaining The remaining receivable amount
      * @return self Returns this instance for method chaining
      */
-    public function setReceivableRemaining(string $receivableRemaining): self
+    public function setReceivableRemaining(?string $receivableRemaining): self
     {
         $this->receivableRemaining->setValue($receivableRemaining);
         return $this;
@@ -413,10 +413,10 @@ class Invoice implements IDocument
     /**
      * Sets the currencies property
      * 
-     * @param string $currenciesProperty The currencies property
+     * @param string|null $currenciesProperty The currencies property
      * @return self Returns this instance for method chaining
      */
-    public function setCurrenciesProperty(string $currenciesProperty): self
+    public function setCurrenciesProperty(?string $currenciesProperty): self
     {
         $this->currenciesProperty->setValue($currenciesProperty);
         return $this;
@@ -425,10 +425,10 @@ class Invoice implements IDocument
     /**
      * Sets the deposit sum
      * 
-     * @param string $depositSum The deposit sum amount
+     * @param string|null $depositSum The deposit sum amount
      * @return self Returns this instance for method chaining
      */
-    public function setDepositSum(string $depositSum): self
+    public function setDepositSum(?string $depositSum): self
     {
         $this->depositSum->setValue($depositSum);
         return $this;
@@ -437,10 +437,10 @@ class Invoice implements IDocument
     /**
      * Sets the total deposit sum
      * 
-     * @param string $depositSumTotal The total deposit sum amount
+     * @param string|null $depositSumTotal The total deposit sum amount
      * @return self Returns this instance for method chaining
      */
-    public function setDepositSumTotal(string $depositSumTotal): self
+    public function setDepositSumTotal(?string $depositSumTotal): self
     {
         $this->depositSumTotal->setValue($depositSumTotal);
         return $this;
@@ -449,10 +449,10 @@ class Invoice implements IDocument
     /**
      * Sets the business partner information
      * 
-     * @param Partner $partner The partner object containing business partner details
+     * @param Partner|null $partner The partner object containing business partner details
      * @return self Returns this instance for method chaining
      */
-    public function setPartner(Partner $partner): self
+    public function setPartner(?Partner $partner): self
     {
         $this->partner->setValue($partner);
         return $this;
@@ -461,10 +461,10 @@ class Invoice implements IDocument
     /**
      * Sets the final recipient information
      * 
-     * @param FinalRecipient $finalRecipient The final recipient object
+     * @param FinalRecipient|null $finalRecipient The final recipient object
      * @return self Returns this instance for method chaining
      */
-    public function setFinalRecipient(FinalRecipient $finalRecipient): self
+    public function setFinalRecipient(?FinalRecipient $finalRecipient): self
     {
         $this->finalRecipient->setValue($finalRecipient);
         return $this;
@@ -473,10 +473,10 @@ class Invoice implements IDocument
     /**
      * Sets the domestic transport costs
      * 
-     * @param string $domesticTransport The domestic transport cost amount
+     * @param string|null $domesticTransport The domestic transport cost amount
      * @return self Returns this instance for method chaining
      */
-    public function setDomesticTransport(string $domesticTransport): self
+    public function setDomesticTransport(?string $domesticTransport): self
     {
         $this->domesticTransport->setValue($domesticTransport);
         return $this;
@@ -485,10 +485,10 @@ class Invoice implements IDocument
     /**
      * Sets the foreign transport costs
      * 
-     * @param string $foreignTransport The foreign transport cost amount
+     * @param string|null $foreignTransport The foreign transport cost amount
      * @return self Returns this instance for method chaining
      */
-    public function setForeignTransport(string $foreignTransport): self
+    public function setForeignTransport(?string $foreignTransport): self
     {
         $this->foreignTransport->setValue($foreignTransport);
         return $this;
@@ -497,10 +497,10 @@ class Invoice implements IDocument
     /**
      * Sets the discount amount
      * 
-     * @param string $discount The discount amount
+     * @param string|null $discount The discount amount
      * @return self Returns this instance for method chaining
      */
-    public function setDiscount(string $discount): self
+    public function setDiscount(?string $discount): self
     {
         $this->discount->setValue($discount);
         return $this;
@@ -509,10 +509,10 @@ class Invoice implements IDocument
     /**
      * Sets the list of invoice items
      * 
-     * @param InvoiceItem[] $items Array of invoice items
+     * @param InvoiceItem[]|null $items Array of invoice items
      * @return self Returns this instance for method chaining
      */
-    public function setItemsList(array $items): self
+    public function setItemsList(?array $items): self
     {
         $this->itemsList->setValue($items);
         return $this;
@@ -521,10 +521,10 @@ class Invoice implements IDocument
     /**
      * Sets the company information for this invoice
      * 
-     * @param Company $company The company object containing business details
+     * @param Company|null $company The company object containing business details
      * @return self Returns this instance for method chaining
      */
-    public function setMyCompany(Company $company): self
+    public function setMyCompany(?Company $company): self
     {
         $this->myCompany->setValue($company);
         return $this;
