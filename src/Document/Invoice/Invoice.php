@@ -143,7 +143,7 @@ class Invoice implements IDocument
         $this->foreignTransport = new Element("DopravZahr");
         $this->discount = new Element("Sleva");
         $this->itemsList = new Element("SeznamPolozek");
-        $this->myCompany = new Element("MojeFirma", true);
+        $this->myCompany = new Element("MojeFirma");
     }
 
     /**
