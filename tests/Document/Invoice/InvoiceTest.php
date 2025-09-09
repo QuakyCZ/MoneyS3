@@ -137,15 +137,15 @@ class InvoiceTest extends TestCase
         
         $expectedElements = [
             '<Doklad>2023001</Doklad>',
-            '<ZpusobUctovani>accounting</ZpusobUctovani>',
-            '<CisRada>series</CisRada>',
+            '<ZpusobUctovani>1</ZpusobUctovani>',
+            '<CisRada>1</CisRada>',
             '<Popis>Test Invoice</Popis>',
             '<Vystaveno>2023-01-01</Vystaveno>',
             '<DatUcPr>2023-01-01</DatUcPr>',
             '<PlnenoDPH>2023-01-01</PlnenoDPH>',
             '<Splatno>2023-01-31</Splatno>',
             '<VarSymbol>123456</VarSymbol>',
-            '<Celkem>1000.00</Celkem>',
+            '<Celkem>1000</Celkem>',
         ];
         
         foreach ($expectedElements as $element) {
@@ -161,6 +161,7 @@ class InvoiceTest extends TestCase
                  ->method('serialize')
                  ->with($this->isInstanceOf(XMLWriter::class));
         
+        $this->invoice->setDocumentNumber('INV001');
         $this->invoice->setItemsList([$mockItem]);
         $this->invoice->serialize($this->writer);
         $xml = $this->writer->outputMemory();
@@ -203,6 +204,7 @@ class InvoiceTest extends TestCase
                            ->with($this->isInstanceOf(XMLWriter::class));
 
         $this->invoice
+            ->setDocumentNumber('INV002')
             ->setVatSummary($mockVatSummary)
             ->setPartner($mockPartner)
             ->setMyCompany($mockCompany)

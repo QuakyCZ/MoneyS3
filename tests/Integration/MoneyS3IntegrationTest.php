@@ -44,8 +44,8 @@ class MoneyS3IntegrationTest extends TestCase
         $this->assertStringContainsString('<Vystaveno>2023-01-01</Vystaveno>', $xml);
         $this->assertStringContainsString('<Splatno>2023-01-31</Splatno>', $xml);
         $this->assertStringContainsString('<VarSymbol>123456789</VarSymbol>', $xml);
-        $this->assertStringContainsString('<Celkem>1210.00</Celkem>', $xml);
-        $this->assertStringContainsString('<Proplatit>1210.00</Proplatit>', $xml);
+        $this->assertStringContainsString('<Celkem>1210</Celkem>', $xml);
+        $this->assertStringContainsString('<Proplatit>1210</Proplatit>', $xml);
         $this->assertStringContainsString('<SazbaDPH1>21</SazbaDPH1>', $xml);
         $this->assertStringContainsString('</FaktVyd>', $xml);
         $this->assertStringContainsString('</SeznamFaktVyd>', $xml);

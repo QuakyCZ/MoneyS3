@@ -116,7 +116,8 @@ class MoneyS3Test extends TestCase
 
     public function testXmlValidatesAsWellFormedXml(): void
     {
-        $this->moneyS3->addInvoice(InvoiceType::ISSUED);
+        $invoice = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
+        $invoice->setDocumentNumber('TEST001');
         $this->moneyS3->addReceipt();
         
         $xml = $this->moneyS3->getXml();
