@@ -7,7 +7,8 @@
     },
     "autoload": {
         "psr-4": {
-            "eProduct\\MoneyS3\\": "src/"
+            "eProduct\\MoneyS3\\": "src/",
+            "eProduct\\MoneyS3\\Test\\": "tests/"
         }
     },
     "autoload-dev": {

@@ -6,10 +6,12 @@ namespace eProduct\MoneyS3\Agenda;
 
 use eProduct\MoneyS3\Exception\MoneyS3Exception;
 
-class AgendaFactory
+readonly class AgendaFactory
 {
-    /** @var array<string, IAgenda> */
-    public readonly array $instances;
+    /**
+     * @var array<class-string, IAgenda>
+     */
+    public array $instances;
 
     public function __construct()
     {
@@ -25,7 +27,7 @@ class AgendaFactory
             if (!$instance instanceof IAgenda) {
                 throw new MoneyS3Exception("Class '{$className}' does not implement IAgenda");
             }
-            $instances[$agenda->value] = $instance;
+            $instances[$className] = $instance;
         }
 
         $this->instances = $instances;

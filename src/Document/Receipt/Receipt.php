@@ -3,10 +3,20 @@
 namespace eProduct\MoneyS3\Document\Receipt;
 
 use eProduct\MoneyS3\Document\IDocument;
+use eProduct\MoneyS3\Element;
 use XMLWriter;
 
-class Receipt implements IDocument
+readonly class Receipt implements IDocument
 {
+    /** @var Element<?string> */
+    private Element $documentNumber;
+
+
+    public function __construct()
+    {
+        $this->documentNumber = new Element('Doklad');
+    }
+
     /**
      * Serializes the receipt to XML
      *
@@ -16,7 +26,12 @@ class Receipt implements IDocument
     public function serialize(XMLWriter $writer): void
     {
         $writer->startElement('PokDokl');
-        $writer->text(''); // Force non-self-closing tag
+        $this->documentNumber->serialize($writer);
         $writer->endElement();
+    }
+
+    public function setDocumentNumber(?string $string): void
+    {
+        $this->documentNumber->setValue($string);
     }
 }
