@@ -6,5 +6,4 @@ use eProduct\MoneyS3\ISerializable;
 
 interface IDocument extends ISerializable
 {
-
 }

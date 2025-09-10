@@ -108,7 +108,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Constructor for WarehouseDocument class
-     * 
+     *
      * @param WarehouseType $warehouseType The type of warehouse document
      */
     public function __construct(public readonly WarehouseType $warehouseType)
@@ -149,7 +149,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the document number
-     * 
+     *
      * @param string|null $documentNumber The document number
      * @return self Returns this instance for method chaining
      */
@@ -161,7 +161,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the accounting method
-     * 
+     *
      * @param int|null $accountingMethod The accounting method (0=automatic, 1=no accounting)
      * @return self Returns this instance for method chaining
      */
@@ -173,7 +173,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the order number
-     * 
+     *
      * @param string|null $orderNumber The order number (only for delivery notes and sales receipts)
      * @return self Returns this instance for method chaining
      */
@@ -185,7 +185,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets whether final recipient address should be taken from partner
-     * 
+     *
      * @param bool|null $finalRecipientFromPartner True to use partner address
      * @return self Returns this instance for method chaining
      */
@@ -197,7 +197,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the document date
-     * 
+     *
      * @param DateTime|null $date The document date
      * @return self Returns this instance for method chaining
      */
@@ -209,7 +209,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the total amount
-     * 
+     *
      * @param float|null $total The total amount with VAT
      * @return self Returns this instance for method chaining
      */
@@ -221,7 +221,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the number series abbreviation
-     * 
+     *
      * @param string|null $numberSeries The number series abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -233,7 +233,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the center/cost center
-     * 
+     *
      * @param string|null $center The center code
      * @return self Returns this instance for method chaining
      */
@@ -245,7 +245,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the project
-     * 
+     *
      * @param string|null $project The project code
      * @return self Returns this instance for method chaining
      */
@@ -257,7 +257,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the activity
-     * 
+     *
      * @param string|null $activity The activity code
      * @return self Returns this instance for method chaining
      */
@@ -269,7 +269,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets who issued the document
-     * 
+     *
      * @param string|null $issuedBy The person who issued the document
      * @return self Returns this instance for method chaining
      */
@@ -281,7 +281,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the MOSS state code
-     * 
+     *
      * @param string|null $mosscode The MOSS state code (only for certain document types)
      * @return self Returns this instance for method chaining
      */
@@ -293,7 +293,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the VAT calculation method
-     * 
+     *
      * @param int|null $vatCalculationMethod The VAT calculation method (1=mathematical, 2=coefficient)
      * @return self Returns this instance for method chaining
      */
@@ -305,7 +305,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the first VAT rate
-     * 
+     *
      * @param int|null $vatRate1 The reduced VAT rate in percentage
      * @return self Returns this instance for method chaining
      */
@@ -317,7 +317,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the second VAT rate
-     * 
+     *
      * @param int|null $vatRate2 The standard VAT rate in percentage
      * @return self Returns this instance for method chaining
      */
@@ -329,7 +329,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the primary document reference
-     * 
+     *
      * @param string|null $primaryDocument The received document number
      * @return self Returns this instance for method chaining
      */
@@ -341,7 +341,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the variable symbol
-     * 
+     *
      * @param string|null $variableSymbol The variable symbol
      * @return self Returns this instance for method chaining
      */
@@ -353,7 +353,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the pairing symbol
-     * 
+     *
      * @param string|null $pairingSymbol The pairing symbol
      * @return self Returns this instance for method chaining
      */
@@ -365,7 +365,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the business partner
-     * 
+     *
      * @param string|null $partner The partner reference
      * @return self Returns this instance for method chaining
      */
@@ -377,7 +377,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the final recipient address
-     * 
+     *
      * @param Address|null $finalRecipient The final recipient address
      * @return self Returns this instance for method chaining
      */
@@ -389,7 +389,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the transaction type for Intrastat
-     * 
+     *
      * @param string|null $transactionType The transaction type (2 characters)
      * @return self Returns this instance for method chaining
      */
@@ -401,7 +401,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the delivery terms for Intrastat
-     * 
+     *
      * @param string|null $deliveryTerms The delivery terms (3 characters max)
      * @return self Returns this instance for method chaining
      */
@@ -413,7 +413,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the transport type for Intrastat
-     * 
+     *
      * @param string|null $transportType The transport type (1 character)
      * @return self Returns this instance for method chaining
      */
@@ -425,7 +425,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the origin/destination state for Intrastat
-     * 
+     *
      * @param string|null $originDestinationState The origin or destination state
      * @return self Returns this instance for method chaining
      */
@@ -437,7 +437,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the Intrastat code for customers without VAT ID
-     * 
+     *
      * @param string|null $intrastatCode The Intrastat code
      * @return self Returns this instance for method chaining
      */
@@ -449,7 +449,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the alternative VAT ID for Intrastat
-     * 
+     *
      * @param string|null $intrastatVatId The alternative VAT ID
      * @return self Returns this instance for method chaining
      */
@@ -461,7 +461,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the domestic transport costs
-     * 
+     *
      * @param float|null $domesticTransport The domestic transport costs
      * @return self Returns this instance for method chaining
      */
@@ -473,7 +473,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the foreign transport costs
-     * 
+     *
      * @param float|null $foreignTransport The foreign transport costs
      * @return self Returns this instance for method chaining
      */
@@ -485,7 +485,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the Intrastat date
-     * 
+     *
      * @param DateTime|null $intrastatDate The Intrastat date
      * @return self Returns this instance for method chaining
      */
@@ -497,7 +497,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the total discount for the document
-     * 
+     *
      * @param float|null $discount The total discount amount
      * @return self Returns this instance for method chaining
      */
@@ -509,7 +509,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the list of warehouse items
-     * 
+     *
      * @param WarehouseItem[]|null $items Array of warehouse items
      * @return self Returns this instance for method chaining
      */
@@ -521,7 +521,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Sets the company information
-     * 
+     *
      * @param string|null $company The company information
      * @return self Returns this instance for method chaining
      */
@@ -533,7 +533,7 @@ class WarehouseDocument implements IDocument
 
     /**
      * Serializes the warehouse document to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

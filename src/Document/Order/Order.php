@@ -114,7 +114,7 @@ class Order implements IDocument
 
     /**
      * Constructor for Order class
-     * 
+     *
      * @param OrderType $orderType The type of order (received, issued, offer, inquiry)
      */
     public function __construct(public readonly OrderType $orderType)
@@ -157,7 +157,7 @@ class Order implements IDocument
 
     /**
      * Sets the document number of the order
-     * 
+     *
      * @param string|null $documentNumber The order document number
      * @return self Returns this instance for method chaining
      */
@@ -169,7 +169,7 @@ class Order implements IDocument
 
     /**
      * Sets the description of the order
-     * 
+     *
      * @param string|null $description The order description
      * @return self Returns this instance for method chaining
      */
@@ -181,7 +181,7 @@ class Order implements IDocument
 
     /**
      * Sets a note for the order
-     * 
+     *
      * @param string|null $note The order note
      * @return self Returns this instance for method chaining
      */
@@ -193,7 +193,7 @@ class Order implements IDocument
 
     /**
      * Sets text to appear before items
-     * 
+     *
      * @param string|null $textBeforeItems Text before items list
      * @return self Returns this instance for method chaining
      */
@@ -205,7 +205,7 @@ class Order implements IDocument
 
     /**
      * Sets text to appear after items
-     * 
+     *
      * @param string|null $textAfterItems Text after items list
      * @return self Returns this instance for method chaining
      */
@@ -217,7 +217,7 @@ class Order implements IDocument
 
     /**
      * Sets the order issue date
-     * 
+     *
      * @param DateTime|null $issued The date when the order was issued
      * @return self Returns this instance for method chaining
      */
@@ -229,7 +229,7 @@ class Order implements IDocument
 
     /**
      * Sets the due date for completion
-     * 
+     *
      * @param DateTime|null $dueDate The date when order should be completed
      * @return self Returns this instance for method chaining
      */
@@ -241,7 +241,7 @@ class Order implements IDocument
 
     /**
      * Sets the completion date
-     * 
+     *
      * @param DateTime|null $completed The date when order was completed
      * @return self Returns this instance for method chaining
      */
@@ -253,7 +253,7 @@ class Order implements IDocument
 
     /**
      * Sets the business partner information
-     * 
+     *
      * @param string|null $partner The partner reference
      * @return self Returns this instance for method chaining
      */
@@ -265,7 +265,7 @@ class Order implements IDocument
 
     /**
      * Sets the final recipient information
-     * 
+     *
      * @param Address|null $finalRecipient The final recipient address
      * @return self Returns this instance for method chaining
      */
@@ -277,7 +277,7 @@ class Order implements IDocument
 
     /**
      * Sets whether final recipient should be taken from partner
-     * 
+     *
      * @param bool|null $finalRecipientFromPartner True to use partner address
      * @return self Returns this instance for method chaining
      */
@@ -289,7 +289,7 @@ class Order implements IDocument
 
     /**
      * Sets the total amount of the order
-     * 
+     *
      * @param float|null $total The total order amount
      * @return self Returns this instance for method chaining
      */
@@ -301,7 +301,7 @@ class Order implements IDocument
 
     /**
      * Sets the number series for the order
-     * 
+     *
      * @param string|null $numberSeries The number series abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -313,7 +313,7 @@ class Order implements IDocument
 
     /**
      * Sets the document serial number
-     * 
+     *
      * @param int|null $documentSerialNumber The document serial number
      * @return self Returns this instance for method chaining
      */
@@ -325,7 +325,7 @@ class Order implements IDocument
 
     /**
      * Sets the center/cost center
-     * 
+     *
      * @param string|null $center The center code
      * @return self Returns this instance for method chaining
      */
@@ -337,7 +337,7 @@ class Order implements IDocument
 
     /**
      * Sets the project
-     * 
+     *
      * @param string|null $project The project code
      * @return self Returns this instance for method chaining
      */
@@ -349,7 +349,7 @@ class Order implements IDocument
 
     /**
      * Sets the activity
-     * 
+     *
      * @param string|null $activity The activity code
      * @return self Returns this instance for method chaining
      */
@@ -361,7 +361,7 @@ class Order implements IDocument
 
     /**
      * Sets who issued the order
-     * 
+     *
      * @param string|null $issuedBy The person who issued the order
      * @return self Returns this instance for method chaining
      */
@@ -373,7 +373,7 @@ class Order implements IDocument
 
     /**
      * Sets whether items should not be reserved
-     * 
+     *
      * @param bool|null $doNotReserve True if items should not be reserved
      * @return self Returns this instance for method chaining
      */
@@ -385,7 +385,7 @@ class Order implements IDocument
 
     /**
      * Sets whether prices are fixed
-     * 
+     *
      * @param bool|null $fixedPrices True if prices are fixed
      * @return self Returns this instance for method chaining
      */
@@ -397,7 +397,7 @@ class Order implements IDocument
 
     /**
      * Sets the payment terms
-     * 
+     *
      * @param string|null $paymentTerms The payment terms
      * @return self Returns this instance for method chaining
      */
@@ -409,7 +409,7 @@ class Order implements IDocument
 
     /**
      * Sets the shipping method
-     * 
+     *
      * @param string|null $shipping The shipping method
      * @return self Returns this instance for method chaining
      */
@@ -421,7 +421,7 @@ class Order implements IDocument
 
     /**
      * Sets the title
-     * 
+     *
      * @param string|null $title The order title
      * @return self Returns this instance for method chaining
      */
@@ -433,7 +433,7 @@ class Order implements IDocument
 
     /**
      * Sets the latest due date
-     * 
+     *
      * @param DateTime|null $latestDueDate The latest completion date
      * @return self Returns this instance for method chaining
      */
@@ -445,7 +445,7 @@ class Order implements IDocument
 
     /**
      * Sets the type abbreviation
-     * 
+     *
      * @param string|null $typeAbbreviation The type abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -457,7 +457,7 @@ class Order implements IDocument
 
     /**
      * Sets the primary document reference
-     * 
+     *
      * @param string|null $primaryDocument The primary document reference
      * @return self Returns this instance for method chaining
      */
@@ -469,7 +469,7 @@ class Order implements IDocument
 
     /**
      * Sets the variable symbol
-     * 
+     *
      * @param string|null $variableSymbol The variable symbol
      * @return self Returns this instance for method chaining
      */
@@ -481,7 +481,7 @@ class Order implements IDocument
 
     /**
      * Sets whether order should not be processed
-     * 
+     *
      * @param bool|null $doNotProcess True if order should not be processed
      * @return self Returns this instance for method chaining
      */
@@ -493,7 +493,7 @@ class Order implements IDocument
 
     /**
      * Sets the VAT calculation method
-     * 
+     *
      * @param int|null $vatCalculationMethod The VAT calculation method (1 = mathematical, 2 = coefficient)
      * @return self Returns this instance for method chaining
      */
@@ -505,7 +505,7 @@ class Order implements IDocument
 
     /**
      * Sets the first VAT rate
-     * 
+     *
      * @param int|null $vatRate1 The first VAT rate in percentage
      * @return self Returns this instance for method chaining
      */
@@ -517,7 +517,7 @@ class Order implements IDocument
 
     /**
      * Sets the second VAT rate
-     * 
+     *
      * @param int|null $vatRate2 The second VAT rate in percentage
      * @return self Returns this instance for method chaining
      */
@@ -529,7 +529,7 @@ class Order implements IDocument
 
     /**
      * Sets the discount amount
-     * 
+     *
      * @param float|null $discount The discount amount
      * @return self Returns this instance for method chaining
      */
@@ -541,7 +541,7 @@ class Order implements IDocument
 
     /**
      * Sets the list of order items
-     * 
+     *
      * @param OrderItem[]|null $items Array of order items
      * @return self Returns this instance for method chaining
      */
@@ -553,7 +553,7 @@ class Order implements IDocument
 
     /**
      * Sets the company information for this order
-     * 
+     *
      * @param string|null $company The company information
      * @return self Returns this instance for method chaining
      */
@@ -565,7 +565,7 @@ class Order implements IDocument
 
     /**
      * Serializes the order to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

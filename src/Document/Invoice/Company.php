@@ -47,7 +47,7 @@ class Company implements ISerializable
 
     /**
      * Sets the company name for invoicing
-     * 
+     *
      * @param string|null $invoiceName The company name
      * @return self Returns this instance for method chaining
      */
@@ -59,7 +59,7 @@ class Company implements ISerializable
 
     /**
      * Sets the company address for invoicing
-     * 
+     *
      * @param Address|null $address The company address
      * @return self Returns this instance for method chaining
      */
@@ -71,7 +71,7 @@ class Company implements ISerializable
 
     /**
      * Sets the company identification number (ICO)
-     * 
+     *
      * @param string|null $ico The company identification number
      * @return self Returns this instance for method chaining
      */
@@ -83,7 +83,7 @@ class Company implements ISerializable
 
     /**
      * Sets the VAT identification number (DIC)
-     * 
+     *
      * @param string|null $dic The VAT identification number
      * @return self Returns this instance for method chaining
      */
@@ -95,7 +95,7 @@ class Company implements ISerializable
 
     /**
      * Sets whether the company is a physical person
-     * 
+     *
      * @param bool|null $physicalPerson True if physical person, false if legal entity
      * @return self Returns this instance for method chaining
      */
@@ -107,7 +107,7 @@ class Company implements ISerializable
 
     /**
      * Sets the currency symbol
-     * 
+     *
      * @param string|null $currencySymbol The currency symbol (e.g., "Kč", "€", "$")
      * @return self Returns this instance for method chaining
      */
@@ -119,7 +119,7 @@ class Company implements ISerializable
 
     /**
      * Sets the currency code
-     * 
+     *
      * @param string|null $currencyCode The currency code (e.g., "CZK", "EUR", "USD")
      * @return self Returns this instance for method chaining
      */
@@ -131,7 +131,7 @@ class Company implements ISerializable
 
     /**
      * Serializes the company data to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

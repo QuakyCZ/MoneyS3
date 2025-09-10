@@ -8,7 +8,6 @@ use XMLWriter;
 
 class Address implements ISerializable
 {
-
     /** @var Element<string>  */
     private Element $street;
 
@@ -23,7 +22,7 @@ class Address implements ISerializable
 
     /** @var Element<string> */
     private Element $countryCode;
-    
+
     /**
      * Constructor for Address class
      * Initializes all address-related elements
@@ -39,7 +38,7 @@ class Address implements ISerializable
 
     /**
      * Sets the street address
-     * 
+     *
      * @param string|null $street The street address
      * @return self Returns this instance for method chaining
      */
@@ -51,7 +50,7 @@ class Address implements ISerializable
 
     /**
      * Sets the city name
-     * 
+     *
      * @param string|null $city The city name
      * @return self Returns this instance for method chaining
      */
@@ -63,7 +62,7 @@ class Address implements ISerializable
 
     /**
      * Sets the postal code
-     * 
+     *
      * @param string|null $postalCode The postal code
      * @return self Returns this instance for method chaining
      */
@@ -75,7 +74,7 @@ class Address implements ISerializable
 
     /**
      * Sets the country name
-     * 
+     *
      * @param string|null $country The country name
      * @return self Returns this instance for method chaining
      */
@@ -87,7 +86,7 @@ class Address implements ISerializable
 
     /**
      * Sets the country code
-     * 
+     *
      * @param string|null $countryCode The country code (e.g., "CZ", "SK", "DE")
      * @return self Returns this instance for method chaining
      */
@@ -99,7 +98,7 @@ class Address implements ISerializable
 
     /**
      * Serializes the address to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

@@ -52,7 +52,7 @@ class InventoryItem implements ISerializable
 
     /**
      * Sets the description
-     * 
+     *
      * @param string|null $description The item description
      * @return self Returns this instance for method chaining
      */
@@ -64,7 +64,7 @@ class InventoryItem implements ISerializable
 
     /**
      * Sets the abbreviation
-     * 
+     *
      * @param string|null $abbreviation The item abbreviation (max 50 characters)
      * @return self Returns this instance for method chaining
      */
@@ -76,7 +76,7 @@ class InventoryItem implements ISerializable
 
     /**
      * Sets the group number
-     * 
+     *
      * @param int|null $group The group number
      * @return self Returns this instance for method chaining
      */
@@ -88,7 +88,7 @@ class InventoryItem implements ISerializable
 
     /**
      * Sets the unit
-     * 
+     *
      * @param string|null $unit The measurement unit
      * @return self Returns this instance for method chaining
      */
@@ -100,7 +100,7 @@ class InventoryItem implements ISerializable
 
     /**
      * Sets the quantity
-     * 
+     *
      * @param float|null $quantity The quantity in the measurement unit
      * @return self Returns this instance for method chaining
      */
@@ -112,7 +112,7 @@ class InventoryItem implements ISerializable
 
     /**
      * Sets the warehouse
-     * 
+     *
      * @param string|null $warehouse The warehouse identifier
      * @return self Returns this instance for method chaining
      */
@@ -124,7 +124,7 @@ class InventoryItem implements ISerializable
 
     /**
      * Sets the stock card
-     * 
+     *
      * @param string|null $stockCard The stock card identifier
      * @return self Returns this instance for method chaining
      */
@@ -136,7 +136,7 @@ class InventoryItem implements ISerializable
 
     /**
      * Adds a serial number
-     * 
+     *
      * @param SerialNumber $serialNumber The serial number to add
      * @return self Returns this instance for method chaining
      */
@@ -148,7 +148,7 @@ class InventoryItem implements ISerializable
 
     /**
      * Sets all serial numbers
-     * 
+     *
      * @param SerialNumber[] $serialNumbers The serial numbers to set
      * @return self Returns this instance for method chaining
      */
@@ -160,7 +160,7 @@ class InventoryItem implements ISerializable
 
     /**
      * Gets all serial numbers
-     * 
+     *
      * @return SerialNumber[] The serial numbers
      */
     public function getSerialNumbers(): array
@@ -170,7 +170,7 @@ class InventoryItem implements ISerializable
 
     /**
      * Adds a sub-item (for composite cards)
-     * 
+     *
      * @param SubItem $subItem The sub-item to add
      * @return self Returns this instance for method chaining
      */
@@ -182,7 +182,7 @@ class InventoryItem implements ISerializable
 
     /**
      * Sets all sub-items
-     * 
+     *
      * @param SubItem[] $subItems The sub-items to set
      * @return self Returns this instance for method chaining
      */
@@ -194,7 +194,7 @@ class InventoryItem implements ISerializable
 
     /**
      * Gets all sub-items
-     * 
+     *
      * @return SubItem[] The sub-items
      */
     public function getSubItems(): array
@@ -204,7 +204,7 @@ class InventoryItem implements ISerializable
 
     /**
      * Serializes the inventory item to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

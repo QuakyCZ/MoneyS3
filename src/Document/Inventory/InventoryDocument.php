@@ -44,7 +44,7 @@ class InventoryDocument implements IDocument
 
     /**
      * Sets the document number
-     * 
+     *
      * @param int|null $documentNumber The document number within the inventory
      * @return self Returns this instance for method chaining
      */
@@ -56,7 +56,7 @@ class InventoryDocument implements IDocument
 
     /**
      * Sets the inventory ID
-     * 
+     *
      * @param int|null $inventoryId The inventory line number, together with documentNumber makes unique identifier
      * @return self Returns this instance for method chaining
      */
@@ -68,7 +68,7 @@ class InventoryDocument implements IDocument
 
     /**
      * Sets the description
-     * 
+     *
      * @param string|null $description The document description (max 50 characters)
      * @return self Returns this instance for method chaining
      */
@@ -80,7 +80,7 @@ class InventoryDocument implements IDocument
 
     /**
      * Sets the worker
-     * 
+     *
      * @param string|null $worker The worker who performed the inventory (max 50 characters)
      * @return self Returns this instance for method chaining
      */
@@ -92,7 +92,7 @@ class InventoryDocument implements IDocument
 
     /**
      * Sets the controller
-     * 
+     *
      * @param string|null $controller The person who controlled the inventory (max 50 characters)
      * @return self Returns this instance for method chaining
      */
@@ -104,7 +104,7 @@ class InventoryDocument implements IDocument
 
     /**
      * Sets a note
-     * 
+     *
      * @param string|null $note The document note
      * @return self Returns this instance for method chaining
      */
@@ -116,7 +116,7 @@ class InventoryDocument implements IDocument
 
     /**
      * Adds an inventory item
-     * 
+     *
      * @param InventoryItem $item The inventory item to add
      * @return self Returns this instance for method chaining
      */
@@ -128,7 +128,7 @@ class InventoryDocument implements IDocument
 
     /**
      * Sets all inventory items
-     * 
+     *
      * @param InventoryItem[] $items The inventory items to set
      * @return self Returns this instance for method chaining
      */
@@ -140,7 +140,7 @@ class InventoryDocument implements IDocument
 
     /**
      * Gets all inventory items
-     * 
+     *
      * @return InventoryItem[] The inventory items
      */
     public function getItems(): array
@@ -150,7 +150,7 @@ class InventoryDocument implements IDocument
 
     /**
      * Serializes the inventory document to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

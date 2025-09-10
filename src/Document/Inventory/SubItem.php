@@ -16,7 +16,7 @@ class SubItem implements ISerializable
 
     /**
      * Constructor for SubItem class
-     * 
+     *
      * @param InventoryItem $item The inventory item
      */
     public function __construct(InventoryItem $item)
@@ -27,7 +27,7 @@ class SubItem implements ISerializable
 
     /**
      * Sets the quantity per set
-     * 
+     *
      * @param float|null $quantity The quantity per set (must be greater than 0)
      * @return self Returns this instance for method chaining
      */
@@ -39,7 +39,7 @@ class SubItem implements ISerializable
 
     /**
      * Gets the inventory item
-     * 
+     *
      * @return InventoryItem The inventory item
      */
     public function getItem(): InventoryItem
@@ -49,7 +49,7 @@ class SubItem implements ISerializable
 
     /**
      * Serializes the sub-item to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

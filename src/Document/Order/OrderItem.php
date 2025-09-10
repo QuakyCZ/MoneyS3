@@ -86,7 +86,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the description of the item
-     * 
+     *
      * @param string|null $description The item description
      * @return self Returns this instance for method chaining
      */
@@ -98,7 +98,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets a note for the item
-     * 
+     *
      * @param string|null $note The item note
      * @return self Returns this instance for method chaining
      */
@@ -110,7 +110,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the quantity
-     * 
+     *
      * @param float|null $quantity The item quantity
      * @return self Returns this instance for method chaining
      */
@@ -122,7 +122,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the remaining quantity
-     * 
+     *
      * @param float|null $remainingQuantity The remaining quantity to be processed
      * @return self Returns this instance for method chaining
      */
@@ -134,7 +134,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the price
-     * 
+     *
      * @param float|null $price The item price
      * @return self Returns this instance for method chaining
      */
@@ -146,7 +146,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the VAT rate
-     * 
+     *
      * @param int|null $vatRate The VAT rate in percentage
      * @return self Returns this instance for method chaining
      */
@@ -158,7 +158,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the price type
-     * 
+     *
      * @param int|null $priceType The price type (0=without VAT, 1=with VAT, 2=VAT only, 3=base only)
      * @return self Returns this instance for method chaining
      */
@@ -170,7 +170,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the discount amount
-     * 
+     *
      * @param float|null $discount The discount amount
      * @return self Returns this instance for method chaining
      */
@@ -182,7 +182,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the issue date
-     * 
+     *
      * @param DateTime|null $issued The date when item was issued
      * @return self Returns this instance for method chaining
      */
@@ -194,7 +194,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the latest due date
-     * 
+     *
      * @param DateTime|null $latestDueDate The latest due date
      * @return self Returns this instance for method chaining
      */
@@ -206,7 +206,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the due date
-     * 
+     *
      * @param DateTime|null $dueDate The due date
      * @return self Returns this instance for method chaining
      */
@@ -218,7 +218,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the completion date
-     * 
+     *
      * @param DateTime|null $completed The completion date
      * @return self Returns this instance for method chaining
      */
@@ -230,7 +230,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the order sequence
-     * 
+     *
      * @param int|null $order The order sequence for printing
      * @return self Returns this instance for method chaining
      */
@@ -242,7 +242,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the center/cost center
-     * 
+     *
      * @param string|null $center The center code
      * @return self Returns this instance for method chaining
      */
@@ -254,7 +254,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the project
-     * 
+     *
      * @param string|null $project The project code
      * @return self Returns this instance for method chaining
      */
@@ -266,7 +266,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the activity
-     * 
+     *
      * @param string|null $activity The activity code
      * @return self Returns this instance for method chaining
      */
@@ -278,7 +278,7 @@ class OrderItem implements ISerializable
 
     /**
      * Sets the price level
-     * 
+     *
      * @param string|null $priceLevel The price level
      * @return self Returns this instance for method chaining
      */
@@ -290,7 +290,7 @@ class OrderItem implements ISerializable
 
     /**
      * Serializes the order item to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

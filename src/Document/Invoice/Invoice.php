@@ -107,7 +107,7 @@ class Invoice implements IDocument
 
     /**
      * Constructor for Invoice class
-     * 
+     *
      * @param InvoiceType $invoiceType The type of invoice (issued or received)
      */
     public function __construct(public readonly InvoiceType $invoiceType)
@@ -148,7 +148,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the document number of the invoice
-     * 
+     *
      * @param string|null $documentNumber The invoice document number
      * @return self Returns this instance for method chaining
      */
@@ -160,7 +160,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the accounting method
-     * 
+     *
      * @param int|null $accountingMethod The accounting method identifier
      * @return self Returns this instance for method chaining
      */
@@ -172,7 +172,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the number series for the invoice
-     * 
+     *
      * @param int|null $numberSeries The number series identifier
      * @return self Returns this instance for method chaining
      */
@@ -184,7 +184,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the description of the invoice
-     * 
+     *
      * @param string|null $description The invoice description
      * @return self Returns this instance for method chaining
      */
@@ -196,7 +196,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the invoice issue date
-     * 
+     *
      * @param DateTime|null $issued The date when the invoice was issued
      * @return self Returns this instance for method chaining
      */
@@ -208,7 +208,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the accounting date
-     * 
+     *
      * @param DateTime|null $accountingDate The accounting date for the invoice
      * @return self Returns this instance for method chaining
      */
@@ -220,7 +220,7 @@ class Invoice implements IDocument
 
     /**
      * Sets when VAT was performed
-     * 
+     *
      * @param string|null $vatPerformed The VAT performance date/period
      * @return self Returns this instance for method chaining
      */
@@ -232,7 +232,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the due date for payment
-     * 
+     *
      * @param DateTime|null $dueDate The date when payment is due
      * @return self Returns this instance for method chaining
      */
@@ -244,7 +244,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the tax document date
-     * 
+     *
      * @param DateTime|null $taxDocumentDate The tax document date
      * @return self Returns this instance for method chaining
      */
@@ -256,7 +256,7 @@ class Invoice implements IDocument
 
     /**
      * Sets whether this is a simplified invoice
-     * 
+     *
      * @param bool|null $simplified True if simplified, false otherwise
      * @return self Returns this instance for method chaining
      */
@@ -268,7 +268,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the variable symbol for payment identification
-     * 
+     *
      * @param string|null $variableSymbol The variable symbol
      * @return self Returns this instance for method chaining
      */
@@ -280,7 +280,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the bank account for payments
-     * 
+     *
      * @param string|null $account The bank account identifier
      * @return self Returns this instance for method chaining
      */
@@ -292,7 +292,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the type of the invoice
-     * 
+     *
      * @param string|null $type The invoice type
      * @return self Returns this instance for method chaining
      */
@@ -304,7 +304,7 @@ class Invoice implements IDocument
 
     /**
      * Sets whether this is a credit note
-     * 
+     *
      * @param bool|null $creditNote True if credit note, false otherwise
      * @return self Returns this instance for method chaining
      */
@@ -316,7 +316,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the VAT calculation method
-     * 
+     *
      * @param string|null $vatCalculationMethod The VAT calculation method
      * @return self Returns this instance for method chaining
      */
@@ -328,7 +328,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the first VAT rate
-     * 
+     *
      * @param int|null $vatRate1 The first VAT rate in percentage
      * @return self Returns this instance for method chaining
      */
@@ -340,7 +340,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the second VAT rate
-     * 
+     *
      * @param int|null $vatRate2 The second VAT rate in percentage
      * @return self Returns this instance for method chaining
      */
@@ -352,7 +352,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the amount to pay
-     * 
+     *
      * @param float|null $toPay The total amount to pay
      * @return self Returns this instance for method chaining
      */
@@ -364,7 +364,7 @@ class Invoice implements IDocument
 
     /**
      * Sets whether the invoice is settled
-     * 
+     *
      * @param bool|null $settled True if settled, false otherwise
      * @return self Returns this instance for method chaining
      */
@@ -376,7 +376,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the VAT summary for the invoice
-     * 
+     *
      * @param VatSummary|null $vatSummary The VAT summary object
      * @return self Returns this instance for method chaining
      */
@@ -388,7 +388,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the total amount of the invoice
-     * 
+     *
      * @param float|null $total The total invoice amount
      * @return self Returns this instance for method chaining
      */
@@ -400,7 +400,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the remaining receivable amount
-     * 
+     *
      * @param string|null $receivableRemaining The remaining receivable amount
      * @return self Returns this instance for method chaining
      */
@@ -412,7 +412,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the currencies property
-     * 
+     *
      * @param string|null $currenciesProperty The currencies property
      * @return self Returns this instance for method chaining
      */
@@ -424,7 +424,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the deposit sum
-     * 
+     *
      * @param string|null $depositSum The deposit sum amount
      * @return self Returns this instance for method chaining
      */
@@ -436,7 +436,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the total deposit sum
-     * 
+     *
      * @param string|null $depositSumTotal The total deposit sum amount
      * @return self Returns this instance for method chaining
      */
@@ -448,7 +448,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the business partner information
-     * 
+     *
      * @param Partner|null $partner The partner object containing business partner details
      * @return self Returns this instance for method chaining
      */
@@ -460,7 +460,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the final recipient information
-     * 
+     *
      * @param FinalRecipient|null $finalRecipient The final recipient object
      * @return self Returns this instance for method chaining
      */
@@ -472,7 +472,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the domestic transport costs
-     * 
+     *
      * @param string|null $domesticTransport The domestic transport cost amount
      * @return self Returns this instance for method chaining
      */
@@ -484,7 +484,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the foreign transport costs
-     * 
+     *
      * @param string|null $foreignTransport The foreign transport cost amount
      * @return self Returns this instance for method chaining
      */
@@ -496,7 +496,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the discount amount
-     * 
+     *
      * @param string|null $discount The discount amount
      * @return self Returns this instance for method chaining
      */
@@ -508,7 +508,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the list of invoice items
-     * 
+     *
      * @param InvoiceItem[]|null $items Array of invoice items
      * @return self Returns this instance for method chaining
      */
@@ -520,7 +520,7 @@ class Invoice implements IDocument
 
     /**
      * Sets the company information for this invoice
-     * 
+     *
      * @param Company|null $company The company object containing business details
      * @return self Returns this instance for method chaining
      */
@@ -532,7 +532,7 @@ class Invoice implements IDocument
 
     /**
      * Serializes the invoice to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

@@ -6,5 +6,4 @@ use RuntimeException;
 
 class MoneyS3Exception extends RuntimeException
 {
-
 }

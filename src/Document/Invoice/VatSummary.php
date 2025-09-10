@@ -25,9 +25,9 @@ class VatSummary implements ISerializable
 
     /**
      * Constructor for VatSummary class
-     * 
+     *
      * @param float|null $base0 Base amount for 0% VAT rate
-     * @param float|null $base5 Base amount for lower VAT rate  
+     * @param float|null $base5 Base amount for lower VAT rate
      * @param float|null $base22 Base amount for higher VAT rate
      * @param float|null $vat5 VAT amount for lower rate
      * @param float|null $vat22 VAT amount for higher rate
@@ -38,8 +38,7 @@ class VatSummary implements ISerializable
         ?float $base22 = 0,
         ?float $vat5 = 0,
         ?float $vat22 = 0,
-    )
-    {
+    ) {
         $this->base0 = new Element("Zaklad0");
         $this->base0->setValue($base0);
         $this->base5 = new Element("Zaklad5");
@@ -54,7 +53,7 @@ class VatSummary implements ISerializable
 
     /**
      * Sets the base amount for 0% VAT rate
-     * 
+     *
      * @param float|null $base0 The base amount for 0% VAT
      * @return self Returns this instance for method chaining
      */
@@ -66,7 +65,7 @@ class VatSummary implements ISerializable
 
     /**
      * Sets the base amount for lower VAT rate
-     * 
+     *
      * @param float|null $base5 The base amount for lower VAT
      * @return self Returns this instance for method chaining
      */
@@ -78,7 +77,7 @@ class VatSummary implements ISerializable
 
     /**
      * Sets the base amount for higher VAT rate
-     * 
+     *
      * @param float|null $base22 The base amount for higher VAT
      * @return self Returns this instance for method chaining
      */
@@ -90,7 +89,7 @@ class VatSummary implements ISerializable
 
     /**
      * Sets the VAT amount for lower rate
-     * 
+     *
      * @param float|null $vat5 The VAT amount for lower rate
      * @return self Returns this instance for method chaining
      */
@@ -102,7 +101,7 @@ class VatSummary implements ISerializable
 
     /**
      * Sets the VAT amount for higher rate
-     * 
+     *
      * @param float|null $vat22 The VAT amount for higher rate
      * @return self Returns this instance for method chaining
      */
@@ -114,7 +113,7 @@ class VatSummary implements ISerializable
 
     /**
      * Serializes the VAT summary to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

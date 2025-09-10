@@ -6,7 +6,7 @@ enum OrderType: string
 {
     case RECEIVED = 'received';        // SeznamObjPrij
     case ISSUED = 'issued';            // SeznamObjVyd
-    case OFFER_RECEIVED = 'offer_received'; // SeznamNabPrij 
+    case OFFER_RECEIVED = 'offer_received'; // SeznamNabPrij
     case OFFER_ISSUED = 'offer_issued';     // SeznamNabVyd
     case INQUIRY_RECEIVED = 'inquiry_received'; // SeznamPoptPrij
     case INQUIRY_ISSUED = 'inquiry_issued';     // SeznamPoptVyd

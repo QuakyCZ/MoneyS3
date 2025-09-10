@@ -62,7 +62,7 @@ class InvoiceItem implements ISerializable
 
     /**
      * Sets the description of the invoice item
-     * 
+     *
      * @param string|null $description The item description
      * @return self Returns this instance for method chaining
      */
@@ -74,7 +74,7 @@ class InvoiceItem implements ISerializable
 
     /**
      * Sets the quantity of the invoice item
-     * 
+     *
      * @param string|null $quantity The quantity
      * @return self Returns this instance for method chaining
      */
@@ -86,7 +86,7 @@ class InvoiceItem implements ISerializable
 
     /**
      * Sets the VAT rate for the item
-     * 
+     *
      * @param string|null $vatRate The VAT rate
      * @return self Returns this instance for method chaining
      */
@@ -98,7 +98,7 @@ class InvoiceItem implements ISerializable
 
     /**
      * Sets the price of the item
-     * 
+     *
      * @param string|null $price The item price
      * @return self Returns this instance for method chaining
      */
@@ -110,7 +110,7 @@ class InvoiceItem implements ISerializable
 
     /**
      * Sets the VAT summary for the item
-     * 
+     *
      * @param ItemVatSummary|null $vatSummary The VAT summary object
      * @return self Returns this instance for method chaining
      */
@@ -122,7 +122,7 @@ class InvoiceItem implements ISerializable
 
     /**
      * Sets the price type
-     * 
+     *
      * @param string|null $priceType The price type
      * @return self Returns this instance for method chaining
      */
@@ -134,7 +134,7 @@ class InvoiceItem implements ISerializable
 
     /**
      * Sets the discount amount
-     * 
+     *
      * @param string|null $discount The discount amount
      * @return self Returns this instance for method chaining
      */
@@ -146,7 +146,7 @@ class InvoiceItem implements ISerializable
 
     /**
      * Sets the order/position of the item
-     * 
+     *
      * @param string|null $order The item order/position
      * @return self Returns this instance for method chaining
      */
@@ -158,7 +158,7 @@ class InvoiceItem implements ISerializable
 
     /**
      * Sets the currencies for the item
-     * 
+     *
      * @param string|null $currencies The currencies information
      * @return self Returns this instance for method chaining
      */
@@ -170,7 +170,7 @@ class InvoiceItem implements ISerializable
 
     /**
      * Sets the non-stock item information
-     * 
+     *
      * @param NonStockItem|null $nonStockItem The non-stock item object
      * @return self Returns this instance for method chaining
      */
@@ -182,7 +182,7 @@ class InvoiceItem implements ISerializable
 
     /**
      * Sets the price after discount
-     * 
+     *
      * @param string|null $priceAfterDiscount The price after applying discount
      * @return self Returns this instance for method chaining
      */
@@ -194,7 +194,7 @@ class InvoiceItem implements ISerializable
 
     /**
      * Serializes the invoice item to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

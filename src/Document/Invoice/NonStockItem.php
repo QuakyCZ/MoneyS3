@@ -38,7 +38,7 @@ class NonStockItem implements ISerializable
 
     /**
      * Sets the deposit amount for the non-stock item
-     * 
+     *
      * @param string|null $deposit The deposit amount
      * @return self Returns this instance for method chaining
      */
@@ -50,7 +50,7 @@ class NonStockItem implements ISerializable
 
     /**
      * Sets the period type for the non-stock item
-     * 
+     *
      * @param string|null $periodType The period type
      * @return self Returns this instance for method chaining
      */
@@ -62,7 +62,7 @@ class NonStockItem implements ISerializable
 
     /**
      * Sets the period for the non-stock item
-     * 
+     *
      * @param string|null $period The period value
      * @return self Returns this instance for method chaining
      */
@@ -74,7 +74,7 @@ class NonStockItem implements ISerializable
 
     /**
      * Sets the counter entry for the non-stock item
-     * 
+     *
      * @param string|null $counterEntry The counter entry value
      * @return self Returns this instance for method chaining
      */
@@ -86,7 +86,7 @@ class NonStockItem implements ISerializable
 
     /**
      * Sets the weight of the non-stock item
-     * 
+     *
      * @param string|null $weight The weight value
      * @return self Returns this instance for method chaining
      */
@@ -98,7 +98,7 @@ class NonStockItem implements ISerializable
 
     /**
      * Serializes the non-stock item to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

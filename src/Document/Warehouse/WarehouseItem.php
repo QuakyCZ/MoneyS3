@@ -57,7 +57,7 @@ class WarehouseItem implements ISerializable
 
     /**
      * Sets the item name/description
-     * 
+     *
      * @param string|null $name The item name
      * @return self Returns this instance for method chaining
      */
@@ -69,7 +69,7 @@ class WarehouseItem implements ISerializable
 
     /**
      * Sets the quantity
-     * 
+     *
      * @param float|null $quantity The quantity in measurement units
      * @return self Returns this instance for method chaining
      */
@@ -82,7 +82,7 @@ class WarehouseItem implements ISerializable
     /**
      * Sets the price
      * For receipts: purchase price. For issues: delivery note and sales receipt - sales price, issue - acquisition price by default.
-     * 
+     *
      * @param float|null $price The item price
      * @return self Returns this instance for method chaining
      */
@@ -94,7 +94,7 @@ class WarehouseItem implements ISerializable
 
     /**
      * Sets the amount in foreign currency
-     * 
+     *
      * @param float|null $foreignCurrencyAmount The amount in foreign currency
      * @return self Returns this instance for method chaining
      */
@@ -106,7 +106,7 @@ class WarehouseItem implements ISerializable
 
     /**
      * Sets the VAT rate
-     * 
+     *
      * @param int|null $vatRate The VAT rate in percentage
      * @return self Returns this instance for method chaining
      */
@@ -118,7 +118,7 @@ class WarehouseItem implements ISerializable
 
     /**
      * Sets the price type
-     * 
+     *
      * @param int|null $priceType The price type (0=without VAT, 1=with VAT, etc.)
      * @return self Returns this instance for method chaining
      */
@@ -130,7 +130,7 @@ class WarehouseItem implements ISerializable
 
     /**
      * Sets the item discount
-     * 
+     *
      * @param float|null $discount The discount amount for this item
      * @return self Returns this instance for method chaining
      */
@@ -142,7 +142,7 @@ class WarehouseItem implements ISerializable
 
     /**
      * Sets the activity
-     * 
+     *
      * @param string|null $activity The activity code
      * @return self Returns this instance for method chaining
      */
@@ -154,7 +154,7 @@ class WarehouseItem implements ISerializable
 
     /**
      * Sets the project
-     * 
+     *
      * @param string|null $project The project code
      * @return self Returns this instance for method chaining
      */
@@ -166,7 +166,7 @@ class WarehouseItem implements ISerializable
 
     /**
      * Sets the center/cost center
-     * 
+     *
      * @param string|null $center The center code
      * @return self Returns this instance for method chaining
      */
@@ -178,7 +178,7 @@ class WarehouseItem implements ISerializable
 
     /**
      * Serializes the warehouse item to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

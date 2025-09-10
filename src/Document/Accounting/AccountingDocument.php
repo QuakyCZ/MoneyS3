@@ -120,7 +120,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Constructor for AccountingDocument class
-     * 
+     *
      * @param AccountingDocumentType $documentType The type of accounting document
      */
     public function __construct(public readonly AccountingDocumentType $documentType)
@@ -165,7 +165,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets whether this is an expense/issue (true) or income/receipt (false)
-     * 
+     *
      * @param bool|null $isExpense True for expense/issue, false for income/receipt
      * @return self Returns this instance for method chaining
      */
@@ -177,7 +177,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the document number
-     * 
+     *
      * @param string|null $documentNumber The document number in Money S3
      * @return self Returns this instance for method chaining
      */
@@ -189,7 +189,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the registration number for tax document
-     * 
+     *
      * @param string|null $registrationNumber The registration number for VAT control report
      * @return self Returns this instance for method chaining
      */
@@ -201,7 +201,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the accounting method
-     * 
+     *
      * @param int|null $accountingMethod The accounting method (0=automatic, 1=no accounting)
      * @return self Returns this instance for method chaining
      */
@@ -213,7 +213,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the storno information
-     * 
+     *
      * @param int|null $storno Storno info (0=normal, 1=cancelled, 2=cancelling counter-document)
      * @return self Returns this instance for method chaining
      */
@@ -225,7 +225,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets whether the document is deleted
-     * 
+     *
      * @param bool|null $deleted True if document is deleted
      * @return self Returns this instance for method chaining
      */
@@ -237,7 +237,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the description
-     * 
+     *
      * @param string|null $description The document description
      * @return self Returns this instance for method chaining
      */
@@ -249,7 +249,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the accounting date
-     * 
+     *
      * @param DateTime|null $accountingDate The accounting transaction date
      * @return self Returns this instance for method chaining
      */
@@ -261,7 +261,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the issue date
-     * 
+     *
      * @param DateTime|null $issueDate The document issue date
      * @return self Returns this instance for method chaining
      */
@@ -273,7 +273,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the payment date
-     * 
+     *
      * @param DateTime|null $paymentDate The payment date
      * @return self Returns this instance for method chaining
      */
@@ -285,7 +285,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the taxable supply date
-     * 
+     *
      * @param DateTime|null $taxableSupplyDate The taxable supply date
      * @return self Returns this instance for method chaining
      */
@@ -297,7 +297,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the VAT application date
-     * 
+     *
      * @param DateTime|null $vatApplicationDate The VAT application date
      * @return self Returns this instance for method chaining
      */
@@ -309,7 +309,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the bank statement number
-     * 
+     *
      * @param int|null $statementNumber The bank statement number
      * @return self Returns this instance for method chaining
      */
@@ -321,7 +321,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the statement item identification
-     * 
+     *
      * @param string|null $statementItemId The statement item identification
      * @return self Returns this instance for method chaining
      */
@@ -333,7 +333,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the counterparty account number
-     * 
+     *
      * @param string|null $counterpartyAccount The counterparty account number
      * @return self Returns this instance for method chaining
      */
@@ -345,7 +345,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the counterparty bank code
-     * 
+     *
      * @param string|null $counterpartyBankCode The counterparty bank code
      * @return self Returns this instance for method chaining
      */
@@ -357,7 +357,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the received document number
-     * 
+     *
      * @param string|null $receivedDocument The received document number
      * @return self Returns this instance for method chaining
      */
@@ -369,7 +369,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the variable symbol
-     * 
+     *
      * @param string|null $variableSymbol The variable symbol
      * @return self Returns this instance for method chaining
      */
@@ -381,7 +381,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the pairing symbol
-     * 
+     *
      * @param string|null $pairingSymbol The pairing symbol
      * @return self Returns this instance for method chaining
      */
@@ -393,7 +393,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the constant symbol
-     * 
+     *
      * @param string|null $constantSymbol The constant symbol
      * @return self Returns this instance for method chaining
      */
@@ -405,7 +405,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the specific symbol
-     * 
+     *
      * @param string|null $specificSymbol The specific symbol (counterparty account)
      * @return self Returns this instance for method chaining
      */
@@ -417,7 +417,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the document partner
-     * 
+     *
      * @param Address|null $partner The document partner
      * @return self Returns this instance for method chaining
      */
@@ -429,7 +429,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the pre-account
-     * 
+     *
      * @param string|null $preAccount The pre-account abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -441,7 +441,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the VAT segmentation
-     * 
+     *
      * @param string|null $vatSegmentation The VAT segmentation abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -453,7 +453,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the center
-     * 
+     *
      * @param string|null $center The center abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -465,7 +465,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the project
-     * 
+     *
      * @param string|null $project The project abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -477,7 +477,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the activity
-     * 
+     *
      * @param string|null $activity The activity abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -489,7 +489,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the MOSS state code
-     * 
+     *
      * @param string|null $mossStateCode The MOSS state code (2 characters, only for income bank documents)
      * @return self Returns this instance for method chaining
      */
@@ -501,7 +501,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the VAT calculation method
-     * 
+     *
      * @param int|null $vatCalculationMethod The VAT calculation method (1=mathematical, 2=coefficient)
      * @return self Returns this instance for method chaining
      */
@@ -513,7 +513,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the reduced VAT rate
-     * 
+     *
      * @param int|null $reducedVatRate The reduced VAT rate in percentage
      * @return self Returns this instance for method chaining
      */
@@ -525,7 +525,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the standard VAT rate
-     * 
+     *
      * @param int|null $standardVatRate The standard VAT rate in percentage
      * @return self Returns this instance for method chaining
      */
@@ -537,7 +537,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the total amount
-     * 
+     *
      * @param float|null $total The total amount with VAT
      * @return self Returns this instance for method chaining
      */
@@ -549,7 +549,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets a note
-     * 
+     *
      * @param string|null $note The document note
      * @return self Returns this instance for method chaining
      */
@@ -561,7 +561,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the number series prefix
-     * 
+     *
      * @param string|null $numberSeries The number series prefix
      * @return self Returns this instance for method chaining
      */
@@ -573,7 +573,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets the serial number counter
-     * 
+     *
      * @param int|null $serialNumber The number series counter
      * @return self Returns this instance for method chaining
      */
@@ -585,7 +585,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Sets who issued the document
-     * 
+     *
      * @param string|null $issuedBy The user who issued the document
      * @return self Returns this instance for method chaining
      */
@@ -597,7 +597,7 @@ class AccountingDocument implements IDocument
 
     /**
      * Serializes the accounting document to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */
@@ -607,7 +607,7 @@ class AccountingDocument implements IDocument
             AccountingDocumentType::BANK_DOCUMENT => 'BanDokl',
             AccountingDocumentType::CASH_DOCUMENT => 'PokDokl',
         };
-        
+
         $writer->startElement($elementName);
 
         $this->isExpense->serialize($writer);
@@ -622,7 +622,7 @@ class AccountingDocument implements IDocument
         $this->paymentDate->serialize($writer);
         $this->taxableSupplyDate->serialize($writer);
         $this->vatApplicationDate->serialize($writer);
-        
+
         // Bank document specific fields
         if ($this->documentType === AccountingDocumentType::BANK_DOCUMENT) {
             $this->statementNumber->serialize($writer);
@@ -630,7 +630,7 @@ class AccountingDocument implements IDocument
             $this->counterpartyAccount->serialize($writer);
             $this->counterpartyBankCode->serialize($writer);
         }
-        
+
         $this->receivedDocument->serialize($writer);
         $this->variableSymbol->serialize($writer);
         $this->pairingSymbol->serialize($writer);

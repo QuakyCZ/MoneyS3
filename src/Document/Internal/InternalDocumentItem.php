@@ -57,7 +57,7 @@ class InternalDocumentItem implements ISerializable
 
     /**
      * Sets the item description
-     * 
+     *
      * @param string|null $description The item description
      * @return self Returns this instance for method chaining
      */
@@ -69,7 +69,7 @@ class InternalDocumentItem implements ISerializable
 
     /**
      * Sets the debit account
-     * 
+     *
      * @param string|null $debitAccount The debit account (MD)
      * @return self Returns this instance for method chaining
      */
@@ -81,7 +81,7 @@ class InternalDocumentItem implements ISerializable
 
     /**
      * Sets the credit account
-     * 
+     *
      * @param string|null $creditAccount The credit account (Dal)
      * @return self Returns this instance for method chaining
      */
@@ -93,7 +93,7 @@ class InternalDocumentItem implements ISerializable
 
     /**
      * Sets the item amount
-     * 
+     *
      * @param float|null $amount The item amount
      * @return self Returns this instance for method chaining
      */
@@ -105,7 +105,7 @@ class InternalDocumentItem implements ISerializable
 
     /**
      * Sets the pre-account
-     * 
+     *
      * @param string|null $preAccount The pre-account abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -117,7 +117,7 @@ class InternalDocumentItem implements ISerializable
 
     /**
      * Sets the VAT segmentation
-     * 
+     *
      * @param string|null $vatSegmentation The VAT segmentation
      * @return self Returns this instance for method chaining
      */
@@ -129,7 +129,7 @@ class InternalDocumentItem implements ISerializable
 
     /**
      * Sets the center
-     * 
+     *
      * @param string|null $center The center abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -141,7 +141,7 @@ class InternalDocumentItem implements ISerializable
 
     /**
      * Sets the project
-     * 
+     *
      * @param string|null $project The project abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -153,7 +153,7 @@ class InternalDocumentItem implements ISerializable
 
     /**
      * Sets the activity
-     * 
+     *
      * @param string|null $activity The activity abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -165,7 +165,7 @@ class InternalDocumentItem implements ISerializable
 
     /**
      * Sets a note for the item
-     * 
+     *
      * @param string|null $note The item note
      * @return self Returns this instance for method chaining
      */
@@ -177,7 +177,7 @@ class InternalDocumentItem implements ISerializable
 
     /**
      * Serializes the internal document item to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

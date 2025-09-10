@@ -2,7 +2,8 @@
     "name": "eproduct/money-s3",
     "require-dev": {
         "phpstan/phpstan": "^2.1",
-        "phpunit/phpunit": "^12.3"
+        "phpunit/phpunit": "^12.3",
+        "friendsofphp/php-cs-fixer": "^3.87"
     },
     "autoload": {
         "psr-4": {

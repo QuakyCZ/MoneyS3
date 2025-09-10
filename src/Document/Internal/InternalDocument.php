@@ -151,7 +151,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the document number
-     * 
+     *
      * @param string|null $documentNumber The document number
      * @return self Returns this instance for method chaining
      */
@@ -163,7 +163,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the accounting method
-     * 
+     *
      * @param int|null $accountingMethod The accounting method (0=automatic, 1=no accounting)
      * @return self Returns this instance for method chaining
      */
@@ -175,7 +175,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the storno information
-     * 
+     *
      * @param int|null $storno Storno info (0=normal, 1=cancelled, 2=cancelling counter-document)
      * @return self Returns this instance for method chaining
      */
@@ -187,7 +187,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets whether the document is deleted
-     * 
+     *
      * @param bool|null $deleted True if document is deleted
      * @return self Returns this instance for method chaining
      */
@@ -199,7 +199,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the description
-     * 
+     *
      * @param string|null $description The document description
      * @return self Returns this instance for method chaining
      */
@@ -211,7 +211,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the accounting date
-     * 
+     *
      * @param DateTime|null $accountingDate The accounting transaction date
      * @return self Returns this instance for method chaining
      */
@@ -223,7 +223,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the taxable supply date
-     * 
+     *
      * @param DateTime|null $taxableSupplyDate The taxable supply date
      * @return self Returns this instance for method chaining
      */
@@ -235,7 +235,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the VAT application date (CZ version only)
-     * 
+     *
      * @param DateTime|null $vatApplicationDate The VAT application date
      * @return self Returns this instance for method chaining
      */
@@ -247,7 +247,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the KV entry date (SK version only)
-     * 
+     *
      * @param DateTime|null $kvEntryDate The KV entry date
      * @return self Returns this instance for method chaining
      */
@@ -259,7 +259,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the mutual offset number
-     * 
+     *
      * @param string|null $offsetNumber The mutual offset number
      * @return self Returns this instance for method chaining
      */
@@ -271,7 +271,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the received document number
-     * 
+     *
      * @param string|null $receivedDocument The received document number
      * @return self Returns this instance for method chaining
      */
@@ -283,7 +283,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the variable symbol
-     * 
+     *
      * @param string|null $variableSymbol The variable symbol
      * @return self Returns this instance for method chaining
      */
@@ -295,7 +295,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the pairing symbol
-     * 
+     *
      * @param string|null $pairingSymbol The pairing symbol
      * @return self Returns this instance for method chaining
      */
@@ -307,7 +307,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the document addressee
-     * 
+     *
      * @param Address|null $address The document addressee
      * @return self Returns this instance for method chaining
      */
@@ -319,7 +319,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the pre-account
-     * 
+     *
      * @param string|null $preAccount The pre-account abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -331,7 +331,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the VAT segmentation
-     * 
+     *
      * @param string|null $vatSegmentation The VAT segmentation
      * @return self Returns this instance for method chaining
      */
@@ -343,7 +343,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the center
-     * 
+     *
      * @param string|null $center The center abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -355,7 +355,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the project
-     * 
+     *
      * @param string|null $project The project abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -367,7 +367,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the activity
-     * 
+     *
      * @param string|null $activity The activity abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -379,7 +379,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the production amount (for Production module needs)
-     * 
+     *
      * @param float|null $production The production amount
      * @return self Returns this instance for method chaining
      */
@@ -391,7 +391,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the MOSS state code
-     * 
+     *
      * @param string|null $mossStateCode The MOSS state code (2 characters)
      * @return self Returns this instance for method chaining
      */
@@ -403,7 +403,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the VAT calculation method
-     * 
+     *
      * @param int|null $vatCalculationMethod The VAT calculation method (1=mathematical, 2=coefficient)
      * @return self Returns this instance for method chaining
      */
@@ -415,7 +415,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the reduced VAT rate
-     * 
+     *
      * @param int|null $reducedVatRate The reduced VAT rate in percentage
      * @return self Returns this instance for method chaining
      */
@@ -427,7 +427,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the standard VAT rate
-     * 
+     *
      * @param int|null $standardVatRate The standard VAT rate in percentage
      * @return self Returns this instance for method chaining
      */
@@ -439,7 +439,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the total amount
-     * 
+     *
      * @param float|null $total The total amount with VAT
      * @return self Returns this instance for method chaining
      */
@@ -451,7 +451,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets a note
-     * 
+     *
      * @param string|null $note The document note
      * @return self Returns this instance for method chaining
      */
@@ -463,7 +463,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the number series prefix
-     * 
+     *
      * @param string|null $numberSeries The number series prefix
      * @return self Returns this instance for method chaining
      */
@@ -475,7 +475,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the serial number counter
-     * 
+     *
      * @param int|null $serialNumber The number series counter
      * @return self Returns this instance for method chaining
      */
@@ -487,7 +487,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets who issued the document
-     * 
+     *
      * @param string|null $issuedBy The user who issued the document
      * @return self Returns this instance for method chaining
      */
@@ -499,7 +499,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the regime
-     * 
+     *
      * @param bool|null $regime The regime setting
      * @return self Returns this instance for method chaining
      */
@@ -511,7 +511,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets price correction
-     * 
+     *
      * @param bool|null $priceCorrection The price correction setting
      * @return self Returns this instance for method chaining
      */
@@ -523,7 +523,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the document type
-     * 
+     *
      * @param string|null $documentType The document type abbreviation
      * @return self Returns this instance for method chaining
      */
@@ -535,7 +535,7 @@ class InternalDocument implements IDocument
 
     /**
      * Sets the list of document items
-     * 
+     *
      * @param InternalDocumentItem[]|null $items Array of document items
      * @return self Returns this instance for method chaining
      */
@@ -547,7 +547,7 @@ class InternalDocument implements IDocument
 
     /**
      * Serializes the internal document to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

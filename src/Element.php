@@ -12,20 +12,22 @@ class Element implements ISerializable
 {
     /** @var T|null value */
     private mixed $value = null;
-    
+
     /**
      * Constructor for Element class
-     * 
+     *
      * @param string $name The XML element name
      * @param bool $required Whether this element is required in XML output
      */
-    public function __construct(private readonly string $name, private readonly bool $required = false)
-    {
+    public function __construct(
+        private readonly string $name,
+        private readonly bool $required = false
+    ) {
     }
 
     /**
      * Serializes this element to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @throws MoneyS3Exception When required element is not set
      * @return void
@@ -50,7 +52,7 @@ class Element implements ISerializable
 
     /**
      * Converts the value to a string representation for XML serialization
-     * 
+     *
      * @return string|null String representation of the value or null if value is null
      */
     private function serializeValue(): ?string
@@ -72,7 +74,7 @@ class Element implements ISerializable
 
     /**
      * Sets the value of this element
-     * 
+     *
      * @param T|null $value The value to set
      * @return void
      */
@@ -83,7 +85,7 @@ class Element implements ISerializable
 
     /**
      * Gets the value of this element
-     * 
+     *
      * @return T|null The current value or null if not set
      */
     public function getValue(): mixed

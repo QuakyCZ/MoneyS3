@@ -30,7 +30,7 @@ class SerialNumber implements ISerializable
 
     /**
      * Sets the serial number
-     * 
+     *
      * @param string|null $serialNumber The serial number
      * @return self Returns this instance for method chaining
      */
@@ -42,7 +42,7 @@ class SerialNumber implements ISerializable
 
     /**
      * Sets the manufacturing date
-     * 
+     *
      * @param DateTime|null $manufacturingDate The manufacturing date
      * @return self Returns this instance for method chaining
      */
@@ -54,7 +54,7 @@ class SerialNumber implements ISerializable
 
     /**
      * Sets the barcode
-     * 
+     *
      * @param string|null $barcode The barcode (max 20 characters)
      * @return self Returns this instance for method chaining
      */
@@ -66,7 +66,7 @@ class SerialNumber implements ISerializable
 
     /**
      * Serializes the serial number to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */

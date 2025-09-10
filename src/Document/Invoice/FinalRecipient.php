@@ -39,7 +39,7 @@ class FinalRecipient implements ISerializable
 
     /**
      * Sets the name of the final recipient
-     * 
+     *
      * @param string|null $name The recipient's name
      * @return self Returns this instance for method chaining
      */
@@ -51,7 +51,7 @@ class FinalRecipient implements ISerializable
 
     /**
      * Sets the address of the final recipient
-     * 
+     *
      * @param Address|null $address The recipient's address object
      * @return self Returns this instance for method chaining
      */
@@ -63,7 +63,7 @@ class FinalRecipient implements ISerializable
 
     /**
      * Sets the company identification number (ICO) of the final recipient
-     * 
+     *
      * @param string|null $ico The company identification number
      * @return self Returns this instance for method chaining
      */
@@ -75,7 +75,7 @@ class FinalRecipient implements ISerializable
 
     /**
      * Sets whether the final recipient is a VAT payer
-     * 
+     *
      * @param string|null $vatPayer The VAT payer status
      * @return self Returns this instance for method chaining
      */
@@ -87,7 +87,7 @@ class FinalRecipient implements ISerializable
 
     /**
      * Sets whether the final recipient is a physical person
-     * 
+     *
      * @param string|null $physicalPerson The physical person status
      * @return self Returns this instance for method chaining
      */
@@ -99,7 +99,7 @@ class FinalRecipient implements ISerializable
 
     /**
      * Serializes the final recipient to XML
-     * 
+     *
      * @param XMLWriter $writer The XMLWriter instance to write to
      * @return void
      */
