@@ -52,7 +52,7 @@ class MoneyS3
      * @param bool $flushMemory Whether to flush memory after generating XML
      * @return array<string, string> Generated XML strings for each agenda, keyed by agenda {@see EAgenda}
      */
-    public function getXml(bool $flushMemory = true): array
+    public function getXmls(bool $flushMemory = true): array
     {
         $xmls = [];
         foreach ($this->agendaFactory->instances as $key => $agenda) {

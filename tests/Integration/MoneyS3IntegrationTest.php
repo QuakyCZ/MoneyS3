@@ -2,6 +2,8 @@
 
 namespace eProduct\MoneyS3\Test\Integration;
 
+use eProduct\MoneyS3\Agenda\EAgenda;
+use eProduct\MoneyS3\Document\Invoice\Invoice;
 use eProduct\MoneyS3\MoneyS3;
 use eProduct\MoneyS3\Document\Invoice\InvoiceType;
 use PHPUnit\Framework\TestCase;
@@ -21,8 +23,9 @@ class MoneyS3IntegrationTest extends TestCase
 
     public function testCompleteInvoiceWorkflow(): void
     {
+        $agenda = $this->moneyS3->getInvoiceAgenda();
         // Create an issued invoice
-        $invoice = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
+        $invoice = $agenda->addInvoice(InvoiceType::ISSUED);
         $invoice
             ->setDocumentNumber('2023001')
             ->setMyCompany(
@@ -38,7 +41,12 @@ class MoneyS3IntegrationTest extends TestCase
             ->setVatRate1(21);
 
         // Generate XML
-        $xml = $this->moneyS3->getXml();
+        $xmls = $this->moneyS3->getXmls();
+
+        $this->assertCount(1, $xmls);
+        $this->assertArrayHasKey(EAgenda::INVOICES_ISSUED_AND_RECEIVED->value, $xmls);
+
+        $xml = $xmls[EAgenda::INVOICES_ISSUED_AND_RECEIVED->value];
 
         // Verify XML structure
         $this->assertStringStartsWith('<?xml version="1.0" encoding="UTF-8"?>', $xml);
@@ -59,33 +67,35 @@ class MoneyS3IntegrationTest extends TestCase
         $this->assertStringContainsString('</MoneyData>', $xml);
     }
 
-    public function testMultipleInvoicesAndReceipts(): void
+    public function testMultipleInvoices(): void
     {
+        $agenda = $this->moneyS3->getInvoiceAgenda();
         // Add multiple invoices
-        $issuedInvoice = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
+        $issuedInvoice = $agenda->addInvoice(InvoiceType::ISSUED);
         $issuedInvoice->setDocumentNumber('OUT001')
             ->setDescription('Issued Invoice')
             ->setMyCompany(
-                (new \eProduct\MoneyS3\Document\Invoice\Company())
+                (new Company())
                     ->setInvoiceName('Test Company')
                     ->setIco('12345678')
             );
 
-        $receivedInvoice = $this->moneyS3->addInvoice(InvoiceType::RECEIVED);
+        $receivedInvoice = $agenda->addInvoice(InvoiceType::RECEIVED);
         $receivedInvoice->setDocumentNumber('IN001')
             ->setDescription('Received Invoice')
             ->setMyCompany(
-                (new \eProduct\MoneyS3\Document\Invoice\Company())
+                (new Company())
                     ->setInvoiceName('Test Company')
                     ->setIco('12345678')
             );
 
-        // Add receipts
-        $receipt1 = $this->moneyS3->addReceipt();
-        $receipt2 = $this->moneyS3->addReceipt();
-
         // Generate XML
-        $xml = $this->moneyS3->getXml();
+        $xmls = $this->moneyS3->getXmls();
+
+        $this->assertCount(1, $xmls);
+        $this->assertArrayHasKey(EAgenda::INVOICES_ISSUED_AND_RECEIVED->value, $xmls);
+
+        $xml = $xmls[EAgenda::INVOICES_ISSUED_AND_RECEIVED->value];
 
         // Verify all elements are present
         $this->assertStringContainsString('<SeznamFaktVyd>', $xml);
@@ -102,8 +112,10 @@ class MoneyS3IntegrationTest extends TestCase
 
     public function testXmlValidation(): void
     {
+
+        $agenda = $this->moneyS3->getInvoiceAgenda();
         // Create a complex document structure
-        $invoice1 = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
+        $invoice1 = $agenda->addInvoice(InvoiceType::ISSUED);
         $invoice1
             ->setDocumentNumber('2023001')
             ->setDescription('Complex Invoice')
@@ -116,7 +128,7 @@ class MoneyS3IntegrationTest extends TestCase
                     ->setIco('12345678')
             );
 
-        $invoice2 = $this->moneyS3->addInvoice(InvoiceType::RECEIVED);
+        $invoice2 = $agenda->addInvoice(InvoiceType::RECEIVED);
         $invoice2->setDocumentNumber('IN001')
             ->setMyCompany(
                 (new Company())
@@ -124,10 +136,13 @@ class MoneyS3IntegrationTest extends TestCase
                     ->setIco('12345678')
             );
 
-        $receipt = $this->moneyS3->addReceipt();
-
         // Generate XML
-        $xml = $this->moneyS3->getXml();
+        $xmls = $this->moneyS3->getXmls();
+
+        $this->assertCount(1, $xmls);
+        $this->assertArrayHasKey(EAgenda::INVOICES_ISSUED_AND_RECEIVED->value, $xmls);
+
+        $xml = $xmls[EAgenda::INVOICES_ISSUED_AND_RECEIVED->value];
 
         // Validate XML structure
         $dom = new \DOMDocument();
@@ -146,29 +161,16 @@ class MoneyS3IntegrationTest extends TestCase
     public function testEmptyDocument(): void
     {
         // Generate XML without adding any invoices or receipts
-        $xml = $this->moneyS3->getXml();
+        $xmls = $this->moneyS3->getXmls();
 
-        // Should still be valid XML with just the root structure
-        $this->assertStringStartsWith('<?xml version="1.0" encoding="UTF-8"?>', $xml);
-        $this->assertStringContainsString('ICAgendy="12345678"', $xml);
-        $this->assertStringContainsString('JazykVerze="CZ"', $xml);
-        $this->assertStringContainsString('MoneyData', $xml);
-
-        // Should not contain any invoice or receipt elements
-        $this->assertStringNotContainsString('<SeznamFaktVyd>', $xml);
-        $this->assertStringNotContainsString('<SeznamFaktPrij>', $xml);
-        $this->assertStringNotContainsString('<Prijemka>', $xml);
-
-        // Validate empty XML
-        $dom = new \DOMDocument();
-        $result = $dom->loadXML($xml);
-        $this->assertTrue($result, 'Empty XML should still be well-formed');
+        $this->assertEmpty($xmls, 'No XML should be generated for empty agendas');
     }
 
     public function testFluentInterfaceChaining(): void
     {
+
         // Test that we can chain method calls throughout the creation process
-        $invoice = $this->moneyS3
+        $invoice = $this->moneyS3->getInvoiceAgenda()
             ->addInvoice(InvoiceType::ISSUED)
             ->setDocumentNumber('CHAIN001')
             ->setDescription('Fluent Interface Test')
@@ -177,14 +179,19 @@ class MoneyS3IntegrationTest extends TestCase
             ->setTotal(500.00)
             ->setVatRate1(21)
             ->setMyCompany(
-                (new \eProduct\MoneyS3\Document\Invoice\Company())
+                (new Company())
                     ->setInvoiceName('Test Company')
                     ->setIco('12345678')
             );
 
-        $this->assertInstanceOf(\eProduct\MoneyS3\Document\Invoice\Invoice::class, $invoice);
+        $this->assertInstanceOf(Invoice::class, $invoice);
 
-        $xml = $this->moneyS3->getXml();
+        $xml = $this->moneyS3->getXmls();
+
+        $this->assertCount(1, $xml);
+        $this->assertArrayHasKey(EAgenda::INVOICES_ISSUED_AND_RECEIVED->value, $xml);
+        $xml = $xml[EAgenda::INVOICES_ISSUED_AND_RECEIVED->value];
+
         $this->assertStringContainsString('<Doklad>CHAIN001</Doklad>', $xml);
         $this->assertStringContainsString('<Popis>Fluent Interface Test</Popis>', $xml);
     }
@@ -193,31 +200,34 @@ class MoneyS3IntegrationTest extends TestCase
     {
         // Test with multiple invoices to ensure performance and memory handling
         for ($i = 1; $i <= 10; $i++) {
-            $issuedInvoice = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
-            $issuedInvoice
+            $this->moneyS3->getInvoiceAgenda()
+                ->addInvoice(InvoiceType::ISSUED)
                 ->setDocumentNumber(sprintf("OUT%03d", $i))
                 ->setDescription("Test Invoice {$i}")
                 ->setTotal((float)($i * 100))
                 ->setMyCompany(
-                    (new \eProduct\MoneyS3\Document\Invoice\Company())
+                    (new Company())
                         ->setInvoiceName('Test Company')
                         ->setIco('12345678')
                 );
 
-            $receivedInvoice = $this->moneyS3->addInvoice(InvoiceType::RECEIVED);
-            $receivedInvoice
+            $this->moneyS3->getInvoiceAgenda()
+                ->addInvoice(InvoiceType::RECEIVED)
                 ->setDocumentNumber(sprintf("IN%03d", $i))
                 ->setDescription("Received Invoice {$i}")
                 ->setMyCompany(
-                    (new \eProduct\MoneyS3\Document\Invoice\Company())
+                    (new Company())
                         ->setInvoiceName('Test Company')
                         ->setIco('12345678')
                 );
-
-            $this->moneyS3->addReceipt();
         }
 
-        $xml = $this->moneyS3->getXml();
+        $xmls = $this->moneyS3->getXmls();
+
+        $this->assertCount(1, $xmls);
+        $this->assertArrayHasKey(EAgenda::INVOICES_ISSUED_AND_RECEIVED->value, $xmls);
+
+        $xml = $xmls[EAgenda::INVOICES_ISSUED_AND_RECEIVED->value];
 
         // Verify all elements are present
         $this->assertEquals(10, substr_count($xml, '<Doklad>OUT'));
