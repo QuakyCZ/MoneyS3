@@ -10,6 +10,11 @@
             "eProduct\\MoneyS3\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "eProduct\\MoneyS3\\Test\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Tomáš Kratschmer",

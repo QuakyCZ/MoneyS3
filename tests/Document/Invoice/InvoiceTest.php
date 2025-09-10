@@ -29,7 +29,7 @@ class InvoiceTest extends TestCase
     {
         $issuedInvoice = new Invoice(InvoiceType::ISSUED);
         $receivedInvoice = new Invoice(InvoiceType::RECEIVED);
-        
+
         $this->assertEquals(InvoiceType::ISSUED, $issuedInvoice->invoiceType);
         $this->assertEquals(InvoiceType::RECEIVED, $receivedInvoice->invoiceType);
     }
@@ -38,7 +38,7 @@ class InvoiceTest extends TestCase
     {
         $documentNumber = '2023001';
         $result = $this->invoice->setDocumentNumber($documentNumber);
-        
+
         $this->assertSame($this->invoice, $result); // Test fluent interface
     }
 
@@ -48,20 +48,23 @@ class InvoiceTest extends TestCase
             ->setDocumentNumber('2023001')
             ->setDescription('Test Invoice')
             ->setTotal(1000.00);
-        
+
         $this->assertSame($this->invoice, $result);
     }
 
     public function testSerializeBasicInvoice(): void
     {
+        $company = new Company();
+        $company->setInvoiceName('My Company');
         $this->invoice
+            ->setMyCompany($company)
             ->setDocumentNumber('2023001')
             ->setDescription('Test Invoice')
             ->setTotal(1000.00);
-        
+
         $this->invoice->serialize($this->writer);
         $xml = $this->writer->outputMemory();
-        
+
         $this->assertStringContainsString('<FaktVyd>', $xml);
         $this->assertStringContainsString('<Doklad>2023001</Doklad>', $xml);
         $this->assertStringContainsString('<Popis>Test Invoice</Popis>', $xml);
@@ -71,12 +74,16 @@ class InvoiceTest extends TestCase
 
     public function testSerializeReceivedInvoice(): void
     {
+        $company = new Company();
+        $company->setInvoiceName('My Company');
+
         $receivedInvoice = new Invoice(InvoiceType::RECEIVED);
-        $receivedInvoice->setDocumentNumber('IN001');
-        
+        $receivedInvoice->setDocumentNumber('IN001')
+            ->setMyCompany($company);
+
         $receivedInvoice->serialize($this->writer);
         $xml = $this->writer->outputMemory();
-        
+
         $this->assertStringContainsString('<FaktPrij>', $xml);
         $this->assertStringContainsString('<Doklad>IN001</Doklad>', $xml);
         $this->assertStringContainsString('</FaktPrij>', $xml);
@@ -124,6 +131,10 @@ class InvoiceTest extends TestCase
             ->setDocumentNumber('2023001')
             ->setAccountingMethod(1)
             ->setNumberSeries(1)
+            ->setMyCompany(
+                (new Company())
+                    ->setInvoiceName('Test Company')
+            )
             ->setDescription('Test Invoice')
             ->setIssued(new \DateTime('2023-01-01'))
             ->setAccountingDate(new \DateTime('2023-01-01'))
@@ -131,14 +142,17 @@ class InvoiceTest extends TestCase
             ->setDueDate(new \DateTime('2023-01-31'))
             ->setVariableSymbol('123456')
             ->setTotal(1000.00);
-        
+
         $this->invoice->serialize($this->writer);
         $xml = $this->writer->outputMemory();
-        
+
+        //print_r($xml); // Uncomment for debugging
+
         $expectedElements = [
             '<Doklad>2023001</Doklad>',
             '<ZpusobUctovani>1</ZpusobUctovani>',
             '<CisRada>1</CisRada>',
+            '<MojeFirma><FaktNazev>Test Company</FaktNazev></MojeFirma>',
             '<Popis>Test Invoice</Popis>',
             '<Vystaveno>2023-01-01</Vystaveno>',
             '<DatUcPr>2023-01-01</DatUcPr>',
@@ -147,7 +161,7 @@ class InvoiceTest extends TestCase
             '<VarSymbol>123456</VarSymbol>',
             '<Celkem>1000</Celkem>',
         ];
-        
+
         foreach ($expectedElements as $element) {
             $this->assertStringContainsString($element, $xml);
         }
@@ -158,14 +172,16 @@ class InvoiceTest extends TestCase
         // Create mock invoice item
         $mockItem = $this->createMock(InvoiceItem::class);
         $mockItem->expects($this->once())
-                 ->method('serialize')
-                 ->with($this->isInstanceOf(XMLWriter::class));
-        
-        $this->invoice->setDocumentNumber('INV001');
+            ->method('serialize')
+            ->with($this->isInstanceOf(XMLWriter::class));
+        $company = new Company();
+        $company->setInvoiceName('My Company');
+        $this->invoice->setMyCompany($company);
         $this->invoice->setItemsList([$mockItem]);
+        $this->invoice->setDocumentNumber('2023001');
         $this->invoice->serialize($this->writer);
         $xml = $this->writer->outputMemory();
-        
+
         $this->assertStringContainsString('<SeznamPolozek>', $xml);
         $this->assertStringContainsString('<Polozka', $xml);
         $this->assertStringContainsString('</SeznamPolozek>', $xml);
@@ -173,10 +189,13 @@ class InvoiceTest extends TestCase
 
     public function testSerializeWithoutItemsList(): void
     {
+        $company = new Company();
+        $company->setInvoiceName('My Company');
+        $this->invoice->setMyCompany($company);
         $this->invoice->setDocumentNumber('2023001');
         $this->invoice->serialize($this->writer);
         $xml = $this->writer->outputMemory();
-        
+
         $this->assertStringNotContainsString('<SeznamPolozek>', $xml);
     }
 
@@ -185,46 +204,49 @@ class InvoiceTest extends TestCase
         // Create mock objects for complex properties
         $mockVatSummary = $this->createMock(VatSummary::class);
         $mockVatSummary->expects($this->once())
-                       ->method('serialize')
-                       ->with($this->isInstanceOf(XMLWriter::class));
+            ->method('serialize')
+            ->with($this->isInstanceOf(XMLWriter::class));
 
         $mockPartner = $this->createMock(Partner::class);
         $mockPartner->expects($this->once())
-                    ->method('serialize')
-                    ->with($this->isInstanceOf(XMLWriter::class));
+            ->method('serialize')
+            ->with($this->isInstanceOf(XMLWriter::class));
 
         $mockCompany = $this->createMock(Company::class);
         $mockCompany->expects($this->once())
-                    ->method('serialize')
-                    ->with($this->isInstanceOf(XMLWriter::class));
+            ->method('serialize')
+            ->with($this->isInstanceOf(XMLWriter::class));
 
         $mockFinalRecipient = $this->createMock(FinalRecipient::class);
         $mockFinalRecipient->expects($this->once())
-                           ->method('serialize')
-                           ->with($this->isInstanceOf(XMLWriter::class));
+            ->method('serialize')
+            ->with($this->isInstanceOf(XMLWriter::class));
 
         $this->invoice
-            ->setDocumentNumber('INV002')
             ->setVatSummary($mockVatSummary)
             ->setPartner($mockPartner)
             ->setMyCompany($mockCompany)
-            ->setFinalRecipient($mockFinalRecipient);
+            ->setFinalRecipient($mockFinalRecipient)
+            ->setDocumentNumber('2023001');
 
         $this->invoice->serialize($this->writer);
-        
+
         // The mocks ensure that serialize is called on each object
     }
 
     public function testXmlStructureIsValid(): void
     {
+        $company = new Company();
+        $company->setInvoiceName('My Company');
+        $this->invoice->setMyCompany($company);
         $this->invoice->setDocumentNumber('2023001');
         $this->invoice->serialize($this->writer);
         $xml = $this->writer->outputMemory();
-        
+
         // Test that XML is well-formed
         $dom = new \DOMDocument();
         $result = $dom->loadXML($xml);
-        
+
         $this->assertTrue($result, 'Generated invoice XML should be well-formed');
     }
 }

@@ -5,6 +5,8 @@ namespace eProduct\MoneyS3\Test\Integration;
 use eProduct\MoneyS3\MoneyS3;
 use eProduct\MoneyS3\Document\Invoice\InvoiceType;
 use PHPUnit\Framework\TestCase;
+use eProduct\MoneyS3\Document\Invoice\Company;
+
 
 class MoneyS3IntegrationTest extends TestCase
 {
@@ -23,12 +25,16 @@ class MoneyS3IntegrationTest extends TestCase
         $invoice = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
         $invoice
             ->setDocumentNumber('2023001')
+            ->setMyCompany(
+                (new Company())
+                    ->setInvoiceName('Test Company')
+            )
             ->setDescription('Test Product')
             ->setIssued(new \DateTime('2023-01-01'))
             ->setDueDate(new \DateTime('2023-01-31'))
             ->setVariableSymbol('123456789')
-            ->setTotal(1210.00)
-            ->setToPay(1210.00)
+            ->setTotal(1210.25)
+            ->setToPay(1210.25)
             ->setVatRate1(21);
 
         // Generate XML
@@ -40,12 +46,13 @@ class MoneyS3IntegrationTest extends TestCase
         $this->assertStringContainsString('<SeznamFaktVyd>', $xml);
         $this->assertStringContainsString('<FaktVyd>', $xml);
         $this->assertStringContainsString('<Doklad>2023001</Doklad>', $xml);
+        $this->assertStringContainsString('<MojeFirma><FaktNazev>Test Company</FaktNazev></MojeFirma>', $xml);
         $this->assertStringContainsString('<Popis>Test Product</Popis>', $xml);
         $this->assertStringContainsString('<Vystaveno>2023-01-01</Vystaveno>', $xml);
         $this->assertStringContainsString('<Splatno>2023-01-31</Splatno>', $xml);
         $this->assertStringContainsString('<VarSymbol>123456789</VarSymbol>', $xml);
-        $this->assertStringContainsString('<Celkem>1210</Celkem>', $xml);
-        $this->assertStringContainsString('<Proplatit>1210</Proplatit>', $xml);
+        $this->assertStringContainsString('<Celkem>1210.25</Celkem>', $xml);
+        $this->assertStringContainsString('<Proplatit>1210.25</Proplatit>', $xml);
         $this->assertStringContainsString('<SazbaDPH1>21</SazbaDPH1>', $xml);
         $this->assertStringContainsString('</FaktVyd>', $xml);
         $this->assertStringContainsString('</SeznamFaktVyd>', $xml);
@@ -56,10 +63,22 @@ class MoneyS3IntegrationTest extends TestCase
     {
         // Add multiple invoices
         $issuedInvoice = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
-        $issuedInvoice->setDocumentNumber('OUT001')->setDescription('Issued Invoice');
+        $issuedInvoice->setDocumentNumber('OUT001')
+            ->setDescription('Issued Invoice')
+            ->setMyCompany(
+                (new \eProduct\MoneyS3\Document\Invoice\Company())
+                    ->setInvoiceName('Test Company')
+                    ->setIco('12345678')
+            );
 
         $receivedInvoice = $this->moneyS3->addInvoice(InvoiceType::RECEIVED);
-        $receivedInvoice->setDocumentNumber('IN001')->setDescription('Received Invoice');
+        $receivedInvoice->setDocumentNumber('IN001')
+            ->setDescription('Received Invoice')
+            ->setMyCompany(
+                (new \eProduct\MoneyS3\Document\Invoice\Company())
+                    ->setInvoiceName('Test Company')
+                    ->setIco('12345678')
+            );
 
         // Add receipts
         $receipt1 = $this->moneyS3->addReceipt();
@@ -75,7 +94,7 @@ class MoneyS3IntegrationTest extends TestCase
         $this->assertStringContainsString('<Doklad>IN001</Doklad>', $xml);
         $this->assertStringContainsString('<Popis>Issued Invoice</Popis>', $xml);
         $this->assertStringContainsString('<Popis>Received Invoice</Popis>', $xml);
-        
+
         // Should have two receipt elements
         $this->assertEquals(2, substr_count($xml, '<Prijemka>'));
         $this->assertEquals(2, substr_count($xml, '</Prijemka>'));
@@ -90,10 +109,20 @@ class MoneyS3IntegrationTest extends TestCase
             ->setDescription('Complex Invoice')
             ->setIssued(new \DateTime('2023-01-01'))
             ->setDueDate(new \DateTime('2023-01-31'))
-            ->setTotal(1000.00);
+            ->setTotal(1000.00)
+            ->setMyCompany(
+                (new Company())
+                    ->setInvoiceName('Test Company')
+                    ->setIco('12345678')
+            );
 
         $invoice2 = $this->moneyS3->addInvoice(InvoiceType::RECEIVED);
-        $invoice2->setDocumentNumber('IN001');
+        $invoice2->setDocumentNumber('IN001')
+            ->setMyCompany(
+                (new Company())
+                    ->setInvoiceName('Test Company')
+                    ->setIco('12345678')
+            );
 
         $receipt = $this->moneyS3->addReceipt();
 
@@ -146,7 +175,12 @@ class MoneyS3IntegrationTest extends TestCase
             ->setIssued(new \DateTime('2023-01-01'))
             ->setDueDate(new \DateTime('2023-01-31'))
             ->setTotal(500.00)
-            ->setVatRate1(21);
+            ->setVatRate1(21)
+            ->setMyCompany(
+                (new \eProduct\MoneyS3\Document\Invoice\Company())
+                    ->setInvoiceName('Test Company')
+                    ->setIco('12345678')
+            );
 
         $this->assertInstanceOf(\eProduct\MoneyS3\Document\Invoice\Invoice::class, $invoice);
 
@@ -163,12 +197,22 @@ class MoneyS3IntegrationTest extends TestCase
             $issuedInvoice
                 ->setDocumentNumber(sprintf("OUT%03d", $i))
                 ->setDescription("Test Invoice {$i}")
-                ->setTotal((float)($i * 100));
+                ->setTotal((float)($i * 100))
+                ->setMyCompany(
+                    (new \eProduct\MoneyS3\Document\Invoice\Company())
+                        ->setInvoiceName('Test Company')
+                        ->setIco('12345678')
+                );
 
             $receivedInvoice = $this->moneyS3->addInvoice(InvoiceType::RECEIVED);
             $receivedInvoice
                 ->setDocumentNumber(sprintf("IN%03d", $i))
-                ->setDescription("Received Invoice {$i}");
+                ->setDescription("Received Invoice {$i}")
+                ->setMyCompany(
+                    (new \eProduct\MoneyS3\Document\Invoice\Company())
+                        ->setInvoiceName('Test Company')
+                        ->setIco('12345678')
+                );
 
             $this->moneyS3->addReceipt();
         }
