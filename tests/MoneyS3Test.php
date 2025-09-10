@@ -32,7 +32,7 @@ class MoneyS3Test extends TestCase
     public function testAddInvoiceReturnsInvoiceInstance(): void
     {
         $invoice = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
-        
+
         $this->assertInstanceOf(Invoice::class, $invoice);
         $this->assertEquals(InvoiceType::ISSUED, $invoice->invoiceType);
     }
@@ -40,15 +40,23 @@ class MoneyS3Test extends TestCase
     public function testAddReceiptReturnsReceiptInstance(): void
     {
         $receipt = $this->moneyS3->addReceipt();
-        
+
         $this->assertInstanceOf(Receipt::class, $receipt);
     }
 
     public function testGetXmlReturnsValidXmlString(): void
     {
+        // Add a basic invoice with required parameters to generate valid XML
+        $this->moneyS3->addInvoice(InvoiceType::ISSUED)
+            ->setDocumentNumber('TEST001')
+            ->setMyCompany(
+                (new Company())
+                    ->setInvoiceName('Test Company')
+                    ->setIco('12345678')
+            );
 
         $xml = $this->moneyS3->getXml();
-        
+
         $this->assertIsString($xml); // @phpstan-ignore-line
         $this->assertStringStartsWith('<?xml version="1.0" encoding="UTF-8"?>', $xml);
         $this->assertStringContainsString('MoneyData', $xml);
@@ -60,10 +68,14 @@ class MoneyS3Test extends TestCase
     {
         $invoice = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
         $invoice->setDocumentNumber('2023001')
-               ->setDescription('Test Invoice');
+            ->setDescription('Test Invoice')
+            ->setMyCompany(
+                (new Company())
+                    ->setInvoiceName('Test Company')
+            );
 
         $xml = $this->moneyS3->getXml();
-        
+
         $this->assertStringContainsString('<SeznamFaktVyd>', $xml);
         $this->assertStringContainsString('<FaktVyd>', $xml);
         $this->assertStringContainsString('<Doklad>2023001</Doklad>', $xml);
@@ -75,9 +87,9 @@ class MoneyS3Test extends TestCase
     public function testGetXmlWithReceipts(): void
     {
         $receipt = $this->moneyS3->addReceipt();
-        
+
         $xml = $this->moneyS3->getXml();
-        
+
         $this->assertStringContainsString('<Prijemka>', $xml);
         $this->assertStringContainsString('</Prijemka>', $xml);
     }
@@ -85,13 +97,23 @@ class MoneyS3Test extends TestCase
     public function testMultipleInvoicesOfSameType(): void
     {
         $invoice1 = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
-        $invoice1->setDocumentNumber('2023001');
-        
+        $invoice1->setDocumentNumber('2023001')
+            ->setMyCompany(
+                (new Company())
+                    ->setInvoiceName('Test Company')
+                    ->setIco('12345678')
+            );
+
         $invoice2 = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
-        $invoice2->setDocumentNumber('2023002');
-        
+        $invoice2->setDocumentNumber('2023002')
+            ->setMyCompany(
+                (new Company())
+                    ->setInvoiceName('Test Company')
+                    ->setIco('12345678')
+            );
+
         $xml = $this->moneyS3->getXml();
-        
+
         $this->assertStringContainsString('<Doklad>2023001</Doklad>', $xml);
         $this->assertStringContainsString('<Doklad>2023002</Doklad>', $xml);
     }
@@ -99,15 +121,25 @@ class MoneyS3Test extends TestCase
     public function testMultipleInvoicesOfDifferentTypes(): void
     {
         $issuedInvoice = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
-        $issuedInvoice->setDocumentNumber('OUT001');
-        
+        $issuedInvoice->setDocumentNumber('OUT001')
+            ->setMyCompany(
+                (new Company())
+                    ->setInvoiceName('Test Company')
+                    ->setIco('12345678')
+            );
+
         $receivedInvoice = $this->moneyS3->addInvoice(InvoiceType::RECEIVED);
-        $receivedInvoice->setDocumentNumber('IN001');
-        
+        $receivedInvoice->setDocumentNumber('IN001')
+            ->setMyCompany(
+                (new Company())
+                    ->setInvoiceName('Test Company')
+                    ->setIco('12345678')
+            );
+
         $xml = $this->moneyS3->getXml();
 
         file_put_contents(__DIR__.'/../temp/moneyS3_output.xml', $xml);
-        
+
         $this->assertStringContainsString('<SeznamFaktVyd>', $xml);
         $this->assertStringContainsString('<SeznamFaktPrij>', $xml);
         $this->assertStringContainsString('<Doklad>OUT001</Doklad>', $xml);
@@ -116,16 +148,21 @@ class MoneyS3Test extends TestCase
 
     public function testXmlValidatesAsWellFormedXml(): void
     {
-        $invoice = $this->moneyS3->addInvoice(InvoiceType::ISSUED);
-        $invoice->setDocumentNumber('TEST001');
+        $this->moneyS3->addInvoice(InvoiceType::ISSUED)
+            ->setDocumentNumber('TEST001')
+            ->setMyCompany(
+                (new Company())
+                    ->setInvoiceName('Test Company')
+                    ->setIco('12345678')
+            );
         $this->moneyS3->addReceipt();
-        
+
         $xml = $this->moneyS3->getXml();
-        
+
         // Test that XML is well-formed by trying to parse it
         $dom = new \DOMDocument();
         $result = $dom->loadXML($xml);
-        
+
         $this->assertTrue($result, 'Generated XML should be well-formed');
     }
 
