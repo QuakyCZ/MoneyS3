@@ -2,6 +2,7 @@
 
 namespace eProduct\MoneyS3;
 
+use BackedEnum;
 use eProduct\MoneyS3\Exception\MoneyS3Exception;
 use XMLWriter;
 
@@ -45,6 +46,8 @@ class Element implements ISerializable
             $writer->startElement($this->name);
             $this->value->serialize($writer);
             $writer->endElement();
+        } else if ($this->value instanceof BackedEnum) {
+            $writer->writeElement($this->name, $this->value->value);
         } else {
             $writer->writeElement($this->name, $this->serializeValue());
         }

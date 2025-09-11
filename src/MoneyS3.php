@@ -55,14 +55,14 @@ class MoneyS3
     public function getXmls(bool $flushMemory = true): array
     {
         $xmls = [];
-        foreach ($this->agendaFactory->instances as $key => $agenda) {
+        foreach ($this->agendaFactory->instances as $agenda) {
             if ($agenda->isEmpty()) {
                 continue; // Skip empty agendas
             }
             $writer = new XMLWriter();
             $writer->openMemory();
             $this->serializeDocument($writer, $agenda, $flushMemory);
-            $xmls[$key] = $writer->outputMemory($flushMemory);
+            $xmls[$agenda->getType()->value] = $writer->outputMemory($flushMemory);
         }
 
         return $xmls;

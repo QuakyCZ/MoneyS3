@@ -14,7 +14,7 @@ class InvoiceItem implements ISerializable
     /** @var Element<string> */
     private Element $quantity;
 
-    /** @var Element<string> */
+    /** @var Element<int> */
     private Element $vatRate;
 
     /** @var Element<string> */
@@ -23,7 +23,7 @@ class InvoiceItem implements ISerializable
     /** @var Element<ItemVatSummary> */
     private Element $vatSummary;
 
-    /** @var Element<string> */
+    /** @var Element<bool> */
     private Element $priceType;
 
     /** @var Element<string> */
@@ -90,7 +90,7 @@ class InvoiceItem implements ISerializable
      * @param string|null $vatRate The VAT rate
      * @return self Returns this instance for method chaining
      */
-    public function setVatRate(?string $vatRate): self
+    public function setVatRate(?int $vatRate): self
     {
         $this->vatRate->setValue($vatRate);
         return $this;
@@ -122,11 +122,13 @@ class InvoiceItem implements ISerializable
 
     /**
      * Sets the price type
+     * True - price is with VAT
+     * False - price is without VAT
      *
      * @param string|null $priceType The price type
      * @return self Returns this instance for method chaining
      */
-    public function setPriceType(?string $priceType): self
+    public function setPriceType(?bool $priceType): self
     {
         $this->priceType->setValue($priceType);
         return $this;

@@ -8,16 +8,16 @@ use XMLWriter;
 
 class ItemVatSummary implements ISerializable
 {
-    /** @var Element<string> */
+    /** @var Element<float> */
     private Element $baseMJ;
 
-    /** @var Element<string> */
+    /** @var Element<float> */
     private Element $vatMJ;
 
-    /** @var Element<string> */
+    /** @var Element<float> */
     private Element $base;
 
-    /** @var Element<string> */
+    /** @var Element<float> */
     private Element $vat;
 
     /**
@@ -32,25 +32,25 @@ class ItemVatSummary implements ISerializable
         $this->vat = new Element("DPH");
     }
 
-    public function setBaseMJ(?string $baseMJ): self
+    public function setBaseMJ(?float $baseMJ): self
     {
         $this->baseMJ->setValue($baseMJ);
         return $this;
     }
 
-    public function setVatMJ(?string $vatMJ): self
+    public function setVatMJ(?float $vatMJ): self
     {
         $this->vatMJ->setValue($vatMJ);
         return $this;
     }
 
-    public function setBase(?string $base): self
+    public function setBase(?float $base): self
     {
         $this->base->setValue($base);
         return $this;
     }
 
-    public function setVat(?string $vat): self
+    public function setVat(?float $vat): self
     {
         $this->vat->setValue($vat);
         return $this;

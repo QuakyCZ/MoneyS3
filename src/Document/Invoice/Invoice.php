@@ -5,10 +5,14 @@ namespace eProduct\MoneyS3\Document\Invoice;
 use DateTime;
 use eProduct\MoneyS3\Document\IDocument;
 use eProduct\MoneyS3\Element;
+use eProduct\MoneyS3\Enum\EPaymentMethod;
 use XMLWriter;
 
 class Invoice implements IDocument
 {
+    /** @var Element<InvoiceSubtype>  */
+    private Element $invoiceSubtype;
+
     /** @var Element<string> */
     private Element $documentNumber;
 
@@ -41,6 +45,12 @@ class Invoice implements IDocument
 
     /** @var Element<string> */
     private Element $variableSymbol;
+
+    /** @var Element<string> */
+    private Element $specificSymbol;
+
+    /** @var Element<string> */
+    private Element $constantSymbol;
 
     /** @var Element<string> */
     private Element $account;
@@ -105,14 +115,20 @@ class Invoice implements IDocument
     /** @var Element<Company> */
     private Element $myCompany;
 
+    /** @var Element<EPaymentMethod> */
+    private Element $paymentMethod;
+
     /**
      * Constructor for Invoice class
      *
      * @param InvoiceType $invoiceType The type of invoice (issued or received)
      */
-    public function __construct(public readonly InvoiceType $invoiceType)
+    public function __construct(
+        public readonly InvoiceType $invoiceType,
+    )
     {
-        $this->documentNumber = new Element("Doklad", true);
+        $this->invoiceSubtype = new Element('Druh');
+        $this->documentNumber = new Element("Doklad");
         $this->accountingMethod = new Element("ZpusobUctovani");
         $this->numberSeries = new Element("CisRada");
         $this->description = new Element("Popis");
@@ -123,6 +139,8 @@ class Invoice implements IDocument
         $this->taxDocumentDate = new Element("DatSkPoh");
         $this->simplified = new Element("ZjednD");
         $this->variableSymbol = new Element("VarSymbol");
+        $this->specificSymbol = new Element("SpecSymbol");
+        $this->constantSymbol = new Element("KonstSym");
         $this->account = new Element("Ucet");
         $this->type = new Element("Druh");
         $this->creditNote = new Element("Dobropis");
@@ -144,6 +162,7 @@ class Invoice implements IDocument
         $this->discount = new Element("Sleva");
         $this->itemsList = new Element("SeznamPolozek");
         $this->myCompany = new Element("MojeFirma");
+        $this->paymentMethod = new Element("Uhrada");
     }
 
     /**
@@ -275,6 +294,30 @@ class Invoice implements IDocument
     public function setVariableSymbol(?string $variableSymbol): self
     {
         $this->variableSymbol->setValue($variableSymbol);
+        return $this;
+    }
+
+    /**
+     * Sets the special symbol for payment identification
+     *
+     * @param string|null $specificSymbol The special symbol
+     * @return self Returns this instance for method chaining
+     */
+    public function setSpecificSymbol(?string $specificSymbol): self
+    {
+        $this->specificSymbol->setValue($specificSymbol);
+        return $this;
+    }
+
+    /**
+     * Sets the constant symbol for payment identification
+     *
+     * @param string|null $constantSymbol The constant symbol
+     * @return self Returns this instance for method chaining
+     */
+    public function setConstantSymbol(?string $constantSymbol): self
+    {
+        $this->constantSymbol->setValue($constantSymbol);
         return $this;
     }
 
@@ -530,6 +573,18 @@ class Invoice implements IDocument
         return $this;
     }
 
+    public function setPaymentMethod(?EPaymentMethod $paymentMethod): self
+    {
+        $this->paymentMethod->setValue($paymentMethod);
+        return $this;
+    }
+
+    public function setInvoiceSubtype(?InvoiceSubtype $invoiceSubtype): self
+    {
+        $this->invoiceSubtype->setValue($invoiceSubtype);
+        return $this;
+    }
+
     /**
      * Serializes the invoice to XML
      *
@@ -584,6 +639,7 @@ class Invoice implements IDocument
         }
 
         $this->myCompany->serialize($writer);
+        $this->paymentMethod->serialize($writer);
 
         $writer->endElement();
     }

@@ -20,6 +20,9 @@ class Partner implements ISerializable
 
     /** @var Element<string> */
     private Element $ico;
+    
+    /** @var Element<string> */
+    private Element $dic;
 
     /** @var Element<Address> */
     private Element $invoiceAddress;
@@ -48,6 +51,7 @@ class Partner implements ISerializable
         $this->tradeAddress = new Element("ObchAdresa");
         $this->invoiceName = new Element("FaktNazev");
         $this->ico = new Element("ICO");
+        $this->dic = new Element("DIC");
         $this->invoiceAddress = new Element("FaktAdresa");
         $this->vatPayer = new Element("PlatceDPH");
         $this->physicalPerson = new Element("FyzOsoba");
@@ -74,6 +78,12 @@ class Partner implements ISerializable
     public function setIco(?string $ico): self
     {
         $this->ico->setValue($ico);
+        return $this;
+    }
+    
+    public function setDic(?string $dic): self
+    {
+        $this->dic->setValue($dic);
         return $this;
     }
 
