@@ -68,7 +68,7 @@ $invoice = $moneyS3->addInvoice(InvoiceType::ISSUED)
 $receipt = $moneyS3->addReceipt();
 
 // Generate XML
-$xml = $moneyS3->getXml();
+$xml = $moneyS3->getXmls();
 echo $xml;
 ```
 
@@ -227,12 +227,12 @@ $vatSummary = (new VatSummary())
 ```php
 <?php
 
-use eProduct\MoneyS3\MoneyS3;
+use eProduct\MoneyS3\Document\Common\Address;
+use eProduct\MoneyS3\Document\Common\VatSummary;
+use eProduct\MoneyS3\Document\Invoice\Company;
 use eProduct\MoneyS3\Document\Invoice\InvoiceType;
 use eProduct\MoneyS3\Document\Invoice\Partner;
-use eProduct\MoneyS3\Document\Invoice\Company;
-use eProduct\MoneyS3\Document\Invoice\VatSummary;
-use eProduct\MoneyS3\Document\Common\Address;
+use eProduct\MoneyS3\MoneyS3;
 
 $moneyS3 = new MoneyS3('12345678');
 
@@ -292,7 +292,7 @@ $invoice = $moneyS3->addInvoice(InvoiceType::ISSUED)
     );
 
 // Generate and save XML
-$xml = $moneyS3->getXml();
+$xml = $moneyS3->getXmls();
 file_put_contents('invoices.xml', $xml);
 ```
 

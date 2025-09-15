@@ -7,17 +7,10 @@ use eProduct\MoneyS3\Agenda\EAgenda;
 use eProduct\MoneyS3\Agenda\IAgenda;
 use eProduct\MoneyS3\Agenda\InvoiceAgenda;
 use eProduct\MoneyS3\Agenda\ReceiptAgenda;
-use eProduct\MoneyS3\Document\Accounting\AccountingDocument;
-use eProduct\MoneyS3\Document\Accounting\AccountingDocumentType;
-use eProduct\MoneyS3\Document\Internal\InternalDocument;
-use eProduct\MoneyS3\Document\Inventory\InventoryDocument;
 use eProduct\MoneyS3\Document\Invoice\Invoice;
 use eProduct\MoneyS3\Document\Invoice\InvoiceType;
-use eProduct\MoneyS3\Document\Order\Order;
-use eProduct\MoneyS3\Document\Order\OrderType;
 use eProduct\MoneyS3\Document\Receipt\Receipt;
-use eProduct\MoneyS3\Document\Warehouse\WarehouseDocument;
-use eProduct\MoneyS3\Document\Warehouse\WarehouseType;
+use eProduct\MoneyS3\Document\Receipt\ReceiptType;
 use XMLWriter;
 
 class MoneyS3
@@ -44,6 +37,28 @@ class MoneyS3
     {
         $agenda = $this->agendaFactory->getInstance(ReceiptAgenda::class);
         return $agenda;
+    }
+
+    /**
+     * Add a new invoice to the invoice agenda
+     *
+     * @param InvoiceType $invoiceType Type of invoice (issued or received)
+     * @return Invoice
+     */
+    public function addInvoice(InvoiceType $invoiceType): Invoice
+    {
+        return $this->getInvoiceAgenda()->addInvoice($invoiceType);
+    }
+
+    /**
+     * Add a new receipt to the receipt agenda
+     *
+     * @param ReceiptType $receiptType Type of receipt (expense or income)
+     * @return Receipt
+     */
+    public function addReceipt(ReceiptType $receiptType): Receipt
+    {
+        return $this->getReceiptAgenda()->addReceipt($receiptType);
     }
 
     /**

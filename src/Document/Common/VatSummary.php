@@ -1,6 +1,6 @@
 <?php
 
-namespace eProduct\MoneyS3\Document\Invoice;
+namespace eProduct\MoneyS3\Document\Common;
 
 use eProduct\MoneyS3\Element;
 use eProduct\MoneyS3\ISerializable;

@@ -3,6 +3,7 @@
 namespace eProduct\MoneyS3\Document\Invoice;
 
 use DateTime;
+use eProduct\MoneyS3\Document\Common\VatSummary;
 use eProduct\MoneyS3\Document\IDocument;
 use eProduct\MoneyS3\Element;
 use eProduct\MoneyS3\Enum\EPaymentMethod;

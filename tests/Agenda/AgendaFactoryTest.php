@@ -10,6 +10,7 @@ use eProduct\MoneyS3\Agenda\IAgenda;
 use eProduct\MoneyS3\Agenda\InvoiceAgenda;
 use eProduct\MoneyS3\Agenda\ReceiptAgenda;
 use eProduct\MoneyS3\Document\Invoice\InvoiceType;
+use eProduct\MoneyS3\Document\Receipt\ReceiptType;
 use eProduct\MoneyS3\Exception\MoneyS3Exception;
 use PHPUnit\Framework\TestCase;
 
@@ -83,7 +84,7 @@ class AgendaFactoryTest extends TestCase
 
         /** @var ReceiptAgenda $receiptAgenda */
         $receiptAgenda = $this->agendaFactory->getInstance(EAgenda::RECEIPTS->getClassName());
-        $receiptAgenda->addReceipt()
+        $receiptAgenda->addReceipt(ReceiptType::EXPENSE)
             ->setDocumentNumber('456');
 
         $this->assertFalse($receiptAgenda->isEmpty());

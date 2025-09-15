@@ -3,6 +3,7 @@
 namespace eProduct\MoneyS3\Test\XmlDiff;
 
 use eProduct\MoneyS3\Document\Invoice\Company;
+use eProduct\MoneyS3\Document\Receipt\ReceiptType;
 use eProduct\MoneyS3\MoneyS3;
 use eProduct\MoneyS3\Document\Invoice\InvoiceType;
 use eProduct\MoneyS3\Test\Utility\XmlTestUtility;
@@ -22,8 +23,8 @@ class MoneyS3XmlDiffTest extends TestCase
 
     public function testXmlDiffEmptyDocuments(): void
     {
-        $xml1 = $this->moneyS3->getXml();
-        $xml2 = (new MoneyS3($this->testIco))->getXml();
+        $xml1 = $this->moneyS3->getXmls();
+        $xml2 = (new MoneyS3($this->testIco))->getXmls();
 
         // Should be identical
         $comparison = XmlTestUtility::compareXml($xml1, $xml2);
@@ -46,8 +47,8 @@ class MoneyS3XmlDiffTest extends TestCase
                     ->setIco('12345678')
             );
 
-        $emptyXml = $this->moneyS3->getXml();
-        $withInvoiceXml = $moneyS3WithInvoice->getXml();
+        $emptyXml = $this->moneyS3->getXmls();
+        $withInvoiceXml = $moneyS3WithInvoice->getXmls();
 
         // Should be different
         $comparison = XmlTestUtility::compareXml($emptyXml, $withInvoiceXml);
@@ -85,8 +86,8 @@ class MoneyS3XmlDiffTest extends TestCase
                     ->setIco('12345678')
             );
 
-        $xml1 = $moneyS31->getXml();
-        $xml2 = $moneyS32->getXml();
+        $xml1 = $moneyS31->getXmls();
+        $xml2 = $moneyS32->getXmls();
 
         // Should have same structure but different content
         $comparison = XmlTestUtility::compareXml($xml1, $xml2);
@@ -119,8 +120,8 @@ class MoneyS3XmlDiffTest extends TestCase
                     ->setIco('12345678')
             );
 
-        $xml1 = $moneyS31->getXml();
-        $xml2 = $moneyS32->getXml();
+        $xml1 = $moneyS31->getXmls();
+        $xml2 = $moneyS32->getXmls();
 
         $comparison = XmlTestUtility::compareXml($xml1, $xml2);
         $this->assertFalse($comparison['structural_identical']);
@@ -136,8 +137,8 @@ class MoneyS3XmlDiffTest extends TestCase
         $moneyS31 = new MoneyS3('11111111');
         $moneyS32 = new MoneyS3('22222222');
 
-        $xml1 = $moneyS31->getXml();
-        $xml2 = $moneyS32->getXml();
+        $xml1 = $moneyS31->getXmls();
+        $xml2 = $moneyS32->getXmls();
 
         $comparison = XmlTestUtility::compareXml($xml1, $xml2);
         $this->assertFalse($comparison['normalized_identical']);
@@ -152,17 +153,17 @@ class MoneyS3XmlDiffTest extends TestCase
     public function testXmlDiffReceiptAddition(): void
     {
         $moneyS3WithReceipt = new MoneyS3($this->testIco);
-        $moneyS3WithReceipt->addReceipt();
+        $moneyS3WithReceipt->addReceipt(ReceiptType::EXPENSE);
 
-        $emptyXml = $this->moneyS3->getXml();
-        $withReceiptXml = $moneyS3WithReceipt->getXml();
+        $emptyXml = $this->moneyS3->getXmls();
+        $withReceiptXml = $moneyS3WithReceipt->getXmls();
 
         $comparison = XmlTestUtility::compareXml($emptyXml, $withReceiptXml);
         $this->assertFalse($comparison['normalized_identical']);
 
         // Should detect receipt addition
         $differencesText = implode(' ', $comparison['differences']);
-        $this->assertStringContainsString('Prijemka', $differencesText);
+        $this->assertStringContainsString('SeznamPokDokl', $differencesText);
     }
 
     public function testXmlDiffComplexDocument(): void
@@ -176,7 +177,7 @@ class MoneyS3XmlDiffTest extends TestCase
                 (new Company())
                     ->setInvoiceName('Test Company')
             );
-        $moneyS31->addReceipt();
+        $moneyS31->addReceipt(ReceiptType::EXPENSE);
 
         $moneyS32 = new MoneyS3($this->testIco);
         $invoice2 = $moneyS32->addInvoice(InvoiceType::ISSUED);
@@ -187,11 +188,11 @@ class MoneyS3XmlDiffTest extends TestCase
             (new Company())
                 ->setInvoiceName('Test Company')
         );
-        $moneyS32->addReceipt();
-        $moneyS32->addReceipt();  // Extra receipt
+        $moneyS32->addReceipt(ReceiptType::EXPENSE);
+        $moneyS32->addReceipt(ReceiptType::INCOME);  // Extra receipt
 
-        $xml1 = $moneyS31->getXml();
-        $xml2 = $moneyS32->getXml();
+        $xml1 = $moneyS31->getXmls();
+        $xml2 = $moneyS32->getXmls();
 
         $comparison = XmlTestUtility::compareXml($xml1, $xml2);
         $this->assertFalse($comparison['normalized_identical']);
@@ -224,8 +225,8 @@ class MoneyS3XmlDiffTest extends TestCase
                     ->setInvoiceName('Test Company')
             );
 
-        $xml1 = $moneyS31->getXml();
-        $xml2 = $moneyS32->getXml();
+        $xml1 = $moneyS31->getXmls();
+        $xml2 = $moneyS32->getXmls();
 
         // Should not throw exception
         XmlTestUtility::assertXmlEquals($xml1, $xml2);
@@ -250,8 +251,8 @@ class MoneyS3XmlDiffTest extends TestCase
                     ->setInvoiceName('Another Company')
             );
 
-        $xml1 = $moneyS31->getXml();
-        $xml2 = $moneyS32->getXml();
+        $xml1 = $moneyS31->getXmls();
+        $xml2 = $moneyS32->getXmls();
 
         $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
         $this->expectExceptionMessage('XML documents are not equivalent');
@@ -270,7 +271,7 @@ class MoneyS3XmlDiffTest extends TestCase
                     ->setInvoiceName('Test Company')
             );
 
-        $xml = $this->moneyS3->getXml();
+        $xml = $this->moneyS3->getXmls();
 
         // Should not throw exception
         XmlTestUtility::assertXmlContains($xml, [
@@ -308,8 +309,8 @@ class MoneyS3XmlDiffTest extends TestCase
                     ->setIco('87654321')
             );
 
-        $xml1 = $moneyS31->getXml();
-        $xml2 = $moneyS32->getXml();
+        $xml1 = $moneyS31->getXmls();
+        $xml2 = $moneyS32->getXmls();
 
         // Should not throw exception (same structure)
         XmlTestUtility::assertXmlStructureEquals($xml1, $xml2);
@@ -328,12 +329,12 @@ class MoneyS3XmlDiffTest extends TestCase
                     ->setInvoiceName('Test Company')
             );
 
-        $this->moneyS3->addReceipt();
+        $this->moneyS3->addReceipt(ReceiptType::EXPENSE);
 
         $emptyMoneyS3 = new MoneyS3($this->testIco);
 
-        $fullXml = $this->moneyS3->getXml();
-        $emptyXml = $emptyMoneyS3->getXml();
+        $fullXml = $this->moneyS3->getXmls();
+        $emptyXml = $emptyMoneyS3->getXmls();
 
         $comparison = XmlTestUtility::compareXml($emptyXml, $fullXml);
 
@@ -361,8 +362,8 @@ class MoneyS3XmlDiffTest extends TestCase
         $invoice2->setDocumentNumber('NEW001');
         $invoice2->setMyCompany($company2);
 
-        $xml1 = $moneyS31->getXml();
-        $xml2 = $moneyS32->getXml();
+        $xml1 = $moneyS31->getXmls();
+        $xml2 = $moneyS32->getXmls();
 
         $systemDiff = XmlTestUtility::xmlDiffSystem($xml1, $xml2, ['formatter' => 'diff']);
 
