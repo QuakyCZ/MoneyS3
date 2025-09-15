@@ -13,4 +13,18 @@ enum EPaymentMethod: string
     case COLLECTION = 'inkasem';
     case CREDIT = 'zápočtem';
 
+
+    public function getAccount(): string
+    {
+        return match ($this) {
+            self::CASH => 'POK',
+            self::BANK_TRANSFER => 'BAN',
+            self::SLIP => 'BAN',
+            self::ON_DELIVERY => 'HOT',
+            self::CARD => 'BAN',
+            self::COLLECTION => 'BAN',
+            self::CREDIT => 'BAN',
+        };
+    }
+
 }

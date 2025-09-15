@@ -31,7 +31,7 @@ class Invoice implements IDocument
     /** @var Element<DateTime> */
     private Element $accountingDate;
 
-    /** @var Element<string> */
+    /** @var Element<DateTime> */
     private Element $vatPerformed;
 
     /** @var Element<DateTime> */
@@ -243,7 +243,7 @@ class Invoice implements IDocument
      * @param string|null $vatPerformed The VAT performance date/period
      * @return self Returns this instance for method chaining
      */
-    public function setVatPerformed(?string $vatPerformed): self
+    public function setVatPerformed(?DateTime $vatPerformed): self
     {
         $this->vatPerformed->setValue($vatPerformed);
         return $this;
