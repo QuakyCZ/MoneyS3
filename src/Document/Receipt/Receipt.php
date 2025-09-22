@@ -118,6 +118,12 @@ class Receipt implements IDocument
     /** @var Element<Partner> */
     private Element $partner;
 
+    /** @var Element <string> */
+    private Element $caseShortcut;
+
+    /** @var Element<string> */
+    private Element $precoding_abbr;
+
     public function __construct(
         public readonly ReceiptType $receiptType,
     ) {
@@ -155,6 +161,8 @@ class Receipt implements IDocument
         $this->itemsList = new Element('SeznamNormPolozek');
         $this->myCompany = new Element('MojeFirma');
         $this->partner = new Element('Adresa');
+        $this->caseShortcut = new Element('Pokl');
+        $this->precoding_abbr = new Element('PrKont');
 
         // Set the receipt type with int value
         $this->expense->setValue($this->receiptType->toBool());
@@ -534,6 +542,30 @@ class Receipt implements IDocument
         return $this;
     }
 
+    /**
+     * Set case shortcut
+     *
+     * @param string|null $caseShortcut Case shortcut
+     * @return self
+     */
+    public function setCaseShortcut(?string $caseShortcut): self
+    {
+        $this->caseShortcut->setValue($caseShortcut);
+        return $this;
+    }
+
+    /**
+     * Set preaccounting abbreviation
+     *
+     * @param string|null $precoding_abbr Preaccounting abbreviation
+     * @return self
+     */
+    public function setPrecodingAbbr(?string $precoding_abbr): self
+    {
+        $this->precoding_abbr->setValue($precoding_abbr);
+        return $this;
+    }
+
     public function serialize(XMLWriter $writer): void
     {
         $writer->startElement('PokDokl');
@@ -570,6 +602,8 @@ class Receipt implements IDocument
         $this->documentType->serialize($writer);
         $this->simplified->serialize($writer);
         $this->partner->serialize($writer);
+        $this->caseShortcut->serialize($writer);
+        $this->precoding_abbr->serialize($writer);
 
         // Serialize items list
         if ($this->itemsList->getValue() !== null && count($this->itemsList->getValue()) > 0) {
