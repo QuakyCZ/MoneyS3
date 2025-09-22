@@ -2,13 +2,13 @@
 
 namespace eProduct\MoneyS3\Test\Document\Invoice;
 
+use eProduct\MoneyS3\Document\Common\Partner;
 use eProduct\MoneyS3\Document\Common\VatSummary;
 use eProduct\MoneyS3\Document\Invoice\Company;
 use eProduct\MoneyS3\Document\Invoice\FinalRecipient;
 use eProduct\MoneyS3\Document\Invoice\Invoice;
 use eProduct\MoneyS3\Document\Invoice\InvoiceItem;
 use eProduct\MoneyS3\Document\Invoice\InvoiceType;
-use eProduct\MoneyS3\Document\Invoice\Partner;
 use PHPUnit\Framework\TestCase;
 use XMLWriter;
 

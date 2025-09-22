@@ -1,8 +1,7 @@
 <?php
 
-namespace eProduct\MoneyS3\Document\Invoice;
+namespace eProduct\MoneyS3\Document\Common;
 
-use eProduct\MoneyS3\Document\Common\Address;
 use eProduct\MoneyS3\Element;
 use eProduct\MoneyS3\ISerializable;
 use XMLWriter;
@@ -45,8 +44,8 @@ class Partner implements ISerializable
      */
     public function __construct()
     {
-        $this->name = new Element("Nazev", true);
-        $this->address = new Element("Adresa", true);
+        $this->name = new Element("Nazev" );
+        $this->address = new Element("Adresa");
         $this->tradeName = new Element("ObchNazev");
         $this->tradeAddress = new Element("ObchAdresa");
         $this->invoiceName = new Element("FaktNazev");

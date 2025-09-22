@@ -4,6 +4,7 @@ namespace eProduct\MoneyS3\Document\Receipt;
 
 use DateTime;
 use eProduct\MoneyS3\Document\Common\Address;
+use eProduct\MoneyS3\Document\Common\Partner;
 use eProduct\MoneyS3\Document\Common\VatSummary;
 use eProduct\MoneyS3\Document\IDocument;
 use eProduct\MoneyS3\Element;
@@ -114,6 +115,9 @@ class Receipt implements IDocument
     /** @var Element<Address> */
     private Element $myCompany;
 
+    /** @var Element<Partner> */
+    private Element $partner;
+
     public function __construct(
         public readonly ReceiptType $receiptType,
     ) {
@@ -150,6 +154,7 @@ class Receipt implements IDocument
         $this->simplified = new Element('ZjednD');
         $this->itemsList = new Element('SeznamNormPolozek');
         $this->myCompany = new Element('MojeFirma');
+        $this->partner = new Element('Adresa');
 
         // Set the receipt type with int value
         $this->expense->setValue($this->receiptType->toBool());
@@ -517,6 +522,18 @@ class Receipt implements IDocument
         return $this;
     }
 
+    /**
+     * Set partner information
+     *
+     * @param Partner|null $partner Partner information
+     * @return self
+     */
+    public function setPartner(?Partner $partner): self
+    {
+        $this->partner->setValue($partner);
+        return $this;
+    }
+
     public function serialize(XMLWriter $writer): void
     {
         $writer->startElement('PokDokl');
@@ -552,6 +569,7 @@ class Receipt implements IDocument
         $this->issuer->serialize($writer);
         $this->documentType->serialize($writer);
         $this->simplified->serialize($writer);
+        $this->partner->serialize($writer);
 
         // Serialize items list
         if ($this->itemsList->getValue() !== null && count($this->itemsList->getValue()) > 0) {
