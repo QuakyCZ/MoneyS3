@@ -6,9 +6,11 @@ use eProduct\MoneyS3\Agenda\AgendaFactory;
 use eProduct\MoneyS3\Agenda\EAgenda;
 use eProduct\MoneyS3\Agenda\IAgenda;
 use eProduct\MoneyS3\Agenda\InvoiceAgenda;
+use eProduct\MoneyS3\Agenda\ObligationAgenda;
 use eProduct\MoneyS3\Agenda\ReceiptAgenda;
 use eProduct\MoneyS3\Document\Invoice\Invoice;
 use eProduct\MoneyS3\Document\Invoice\InvoiceType;
+use eProduct\MoneyS3\Document\Obligation\Obligation;
 use eProduct\MoneyS3\Document\Receipt\Receipt;
 use eProduct\MoneyS3\Document\Receipt\ReceiptType;
 use XMLWriter;
@@ -39,6 +41,12 @@ class MoneyS3
         return $agenda;
     }
 
+    public function getObligationAgenda(): ObligationAgenda
+    {
+        $agenda = $this->agendaFactory->getInstance(ObligationAgenda::class);
+        return $agenda;
+    }
+
     /**
      * Add a new invoice to the invoice agenda
      *
@@ -59,6 +67,16 @@ class MoneyS3
     public function addReceipt(ReceiptType $receiptType): Receipt
     {
         return $this->getReceiptAgenda()->addReceipt($receiptType);
+    }
+
+    /**
+     * Add a new obligation to the obligation agenda
+     *
+     * @return Obligation
+     */
+    public function addObligation(): Obligation
+    {
+        return $this->getObligationAgenda()->addObligation();
     }
 
     /**
