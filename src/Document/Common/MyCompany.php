@@ -29,13 +29,13 @@ class MyCompany implements ISerializable
     /** @var Element<Address> */
     private Element $invoiceAddress;
 
-    /** @var Element<string> */
+    /** @var Element<PhoneTax> */
     private Element $phone;
 
-    /** @var Element<string> */
+    /** @var Element<PhoneTax> */
     private Element $fax;
 
-    /** @var Element<string> */
+    /** @var Element<PhoneTax> */
     private Element $mobile;
 
     /** @var Element<string> */
@@ -173,7 +173,7 @@ class MyCompany implements ISerializable
      * @param string|null $phone Phone number
      * @return self
      */
-    public function setPhone(?string $phone): self
+    public function setPhone(?PhoneTax $phone): self
     {
         $this->phone->setValue($phone);
         return $this;
@@ -185,7 +185,7 @@ class MyCompany implements ISerializable
      * @param string|null $fax Fax number
      * @return self
      */
-    public function setFax(?string $fax): self
+    public function setFax(?PhoneTax $fax): self
     {
         $this->fax->setValue($fax);
         return $this;
@@ -197,7 +197,7 @@ class MyCompany implements ISerializable
      * @param string|null $mobile Mobile number
      * @return self
      */
-    public function setMobile(?string $mobile): self
+    public function setMobile(?PhoneTax $mobile): self
     {
         $this->mobile->setValue($mobile);
         return $this;
