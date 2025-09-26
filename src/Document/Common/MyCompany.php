@@ -14,20 +14,20 @@ class MyCompany implements ISerializable
     /** @var Element<string> */
     private Element $name;
 
-    /** @var Address */
-    private Address $address;
+    /** @var Element<Address> */
+    private Element $address;
 
     /** @var Element<string> */
     private Element $tradeName;
 
-    /** @var Address */
-    private Address $tradeAddress;
+    /** @var Element<Address> */
+    private Element $tradeAddress;
 
     /** @var Element<string> */
     private Element $invoiceName;
 
-    /** @var Address */
-    private Address $invoiceAddress;
+    /** @var Element<Address> */
+    private Element $invoiceAddress;
 
     /** @var Element<string> */
     private Element $phone;
@@ -74,11 +74,11 @@ class MyCompany implements ISerializable
     public function __construct()
     {
         $this->name = new Element('Nazev');
-        $this->address = new Address();
+        $this->address = new Element('Adresa');
         $this->tradeName = new Element('ObchNazev');
-        $this->tradeAddress = new Address();
+        $this->tradeAddress = new Element('ObchAdresa');
         $this->invoiceName = new Element('FaktNazev');
-        $this->invoiceAddress = new Address();
+        $this->invoiceAddress = new Element('FaktAdresa');
         $this->phone = new Element('Tel');
         $this->fax = new Element('Fax');
         $this->mobile = new Element('Mobil');
@@ -108,13 +108,15 @@ class MyCompany implements ISerializable
     }
 
     /**
-     * Get address
+     * Set company address
      *
-     * @return Address
+     * @param Address|null $address  Company address
+     * @return self
      */
-    public function getAddress(): Address
+    public function setAddress(?Address $address): self
     {
-        return $this->address;
+        $this->address->setValue($address);
+        return $this;
     }
 
     /**
@@ -130,13 +132,15 @@ class MyCompany implements ISerializable
     }
 
     /**
-     * Get trade address
+     * Set trade address
      *
-     * @return Address
+     * @param Address|null $address Trade address
+     * @return self
      */
-    public function getTradeAddress(): Address
+    public function setTradeAddress(?Address $address): self
     {
-        return $this->tradeAddress;
+        $this->tradeAddress->setValue($address);
+        return $this;
     }
 
     /**
@@ -152,13 +156,15 @@ class MyCompany implements ISerializable
     }
 
     /**
-     * Get invoice address
+     * Set invoice address
      *
-     * @return Address
+     * @param Address|null $address Invoice address
+     * @return self
      */
-    public function getInvoiceAddress(): Address
+    public function setInvoiceAddress(?Address $address): self
     {
-        return $this->invoiceAddress;
+        $this->invoiceAddress->setValue($address);
+        return $this;
     }
 
     /**
@@ -334,31 +340,11 @@ class MyCompany implements ISerializable
         $writer->startElement('MojeFirma');
 
         $this->name->serialize($writer);
-
-        // Serialize address with custom element name
-        if ($this->address->hasValues()) {
-            $writer->startElement('Adresa');
-            $this->address->serializeContent($writer);
-            $writer->endElement();
-        }
-
+        $this->address->serialize($writer);
         $this->tradeName->serialize($writer);
-
-        // Serialize trade address with custom element name
-        if ($this->tradeAddress->hasValues()) {
-            $writer->startElement('ObchAdresa');
-            $this->tradeAddress->serializeContent($writer);
-            $writer->endElement();
-        }
-
+        $this->tradeAddress->serialize($writer);
         $this->invoiceName->serialize($writer);
-
-        // Serialize invoice address with custom element name
-        if ($this->invoiceAddress->hasValues()) {
-            $writer->startElement('FaktAdresa');
-            $this->invoiceAddress->serializeContent($writer);
-            $writer->endElement();
-        }
+        $this->invoiceAddress->serialize($writer);
 
         $this->phone->serialize($writer);
         $this->fax->serialize($writer);

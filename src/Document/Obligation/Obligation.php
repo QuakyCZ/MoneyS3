@@ -4,6 +4,7 @@ namespace eProduct\MoneyS3\Document\Obligation;
 
 use DateTime;
 use eProduct\MoneyS3\Document\Common\Address;
+use eProduct\MoneyS3\Document\Common\MyCompany;
 use eProduct\MoneyS3\Document\Common\Partner;
 use eProduct\MoneyS3\Document\Common\VatSummary;
 use eProduct\MoneyS3\Document\IDocument;
@@ -160,6 +161,9 @@ class Obligation implements IDocument
     /** @var Element<Partner> */
     private Element $partner;
 
+    /** @var Element<MyCompany> */
+    private Element $company;
+
     public function __construct()
     {
         $this->documentNumber = new Element('Doklad');
@@ -210,6 +214,7 @@ class Obligation implements IDocument
         $this->storno = new Element('Storno');
         $this->deleted = new Element('Del');
         $this->partner = new Element('Adresa');
+        $this->company = new Element('MojeFirma');
     }
 
     /**
@@ -417,13 +422,15 @@ class Obligation implements IDocument
     }
 
     /**
-     * Get address
+     * Set address
      *
-     * @return Address
+     * @param Address|null $address Address
+     * @return self
      */
-    public function getAddress(): Address
+    public function setAddress(?Address $address): self
     {
-        return $this->address;
+        $this->address->setValue($address);
+        return $this;
     }
 
     /**
@@ -787,6 +794,24 @@ class Obligation implements IDocument
         return $this;
     }
 
+    /**
+     * Set company information
+     * @param MyCompany|null $company Company information
+     * @return self
+     */
+    public function setCompany(?MyCompany $company): self
+    {
+        $this->company->setValue($company);
+        return $this;
+    }
+
+    /**
+     * Serializes the obligation document to XML
+     *
+     * @param XMLWriter $writer The XML writer instance
+     * @return void
+     */
+
     public function serialize(XMLWriter $writer): void
     {
         $writer->startElement('Zavazek');
@@ -839,6 +864,7 @@ class Obligation implements IDocument
         $this->storno->serialize($writer);
         $this->deleted->serialize($writer);
         $this->partner->serialize($writer);
+        $this->company->serialize($writer);
 
         $writer->endElement();
     }
