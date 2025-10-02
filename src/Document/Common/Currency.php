@@ -28,19 +28,10 @@ class Currency implements ISerializable
      * @param int|null $amount Currency amount for the exchange rate
      * @param float|null $rate Exchange rate
      */
-    public function __construct(
-        ?string $code = null,
-        ?int $amount = null,
-        ?float $rate = null
-    ) {
+    public function __construct() {
         $this->code = new Element("Kod");
-        $this->code->setValue($code);
-
         $this->amount = new Element("Mnozstvi");
-        $this->amount->setValue($amount);
-
         $this->rate = new Element("Kurs");
-        $this->rate->setValue($rate);
     }
 
     /**

@@ -28,19 +28,10 @@ class Valuty implements ISerializable
      * @param VatSummary|null $vatSummary VAT summary in foreign currency
      * @param float|null $total Total amount with VAT in foreign currency
      */
-    public function __construct(
-        Currency $currency,
-        ?VatSummary $vatSummary = null,
-        ?float $total = null
-    ) {
+    public function __construct() {
         $this->currency = new Element("Mena");
-        $this->currency->setValue($currency);
-
         $this->vatSummary = new Element("SouhrnDPH");
-        $this->vatSummary->setValue($vatSummary ?? new VatSummary());
-
         $this->total = new Element("Celkem");
-        $this->total->setValue($total);
     }
 
     /**

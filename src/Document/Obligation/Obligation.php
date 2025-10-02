@@ -6,6 +6,7 @@ use DateTime;
 use eProduct\MoneyS3\Document\Common\Address;
 use eProduct\MoneyS3\Document\Common\MyCompany;
 use eProduct\MoneyS3\Document\Common\Partner;
+use eProduct\MoneyS3\Document\Common\Valuty;
 use eProduct\MoneyS3\Document\Common\VatSummary;
 use eProduct\MoneyS3\Document\IDocument;
 use eProduct\MoneyS3\Element;
@@ -164,6 +165,9 @@ class Obligation implements IDocument
     /** @var Element<MyCompany> */
     private Element $company;
 
+    /** @var Element<Valuty> */
+    private Element $valuty;
+
     public function __construct()
     {
         $this->documentNumber = new Element('Doklad');
@@ -215,6 +219,7 @@ class Obligation implements IDocument
         $this->deleted = new Element('Del');
         $this->partner = new Element('Adresa');
         $this->company = new Element('MojeFirma');
+        $this->valuty = new Element('Valuty');
     }
 
     /**
@@ -806,6 +811,18 @@ class Obligation implements IDocument
     }
 
     /**
+     * Set valuty information
+     *
+     * @param Valuty|null $valuty Valuty information
+     * @return self
+     */
+    public function setValuty(?Valuty $valuty): self
+    {
+        $this->valuty->setValue($valuty);
+        return $this;
+    }
+
+    /**
      * Serializes the obligation document to XML
      *
      * @param XMLWriter $writer The XML writer instance
@@ -865,6 +882,7 @@ class Obligation implements IDocument
         $this->deleted->serialize($writer);
         $this->partner->serialize($writer);
         $this->company->serialize($writer);
+        $this->valuty->serialize($writer);
 
         $writer->endElement();
     }
