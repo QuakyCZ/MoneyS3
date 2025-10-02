@@ -119,6 +119,8 @@ class Invoice implements IDocument
 
     /** @var Element<EPaymentMethod> */
     private Element $paymentMethod;
+    /** @var Element<string> */
+    private Element $note;
 
     /**
      * Constructor for Invoice class
@@ -165,6 +167,7 @@ class Invoice implements IDocument
         $this->itemsList = new Element("SeznamPolozek");
         $this->myCompany = new Element("MojeFirma");
         $this->paymentMethod = new Element("Uhrada");
+        $this->note = new Element("Poznamka");
     }
 
     /**
@@ -587,6 +590,12 @@ class Invoice implements IDocument
         return $this;
     }
 
+    public function setNote(?string $note): self
+    {
+        $this->note->setValue($note);
+        return $this;
+    }
+
     /**
      * Serializes the invoice to XML
      *
@@ -642,6 +651,7 @@ class Invoice implements IDocument
 
         $this->myCompany->serialize($writer);
         $this->paymentMethod->serialize($writer);
+        $this->note->serialize($writer);
 
         $writer->endElement();
     }
