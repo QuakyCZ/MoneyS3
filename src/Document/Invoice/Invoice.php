@@ -4,6 +4,7 @@ namespace eProduct\MoneyS3\Document\Invoice;
 
 use DateTime;
 use eProduct\MoneyS3\Document\Common\Partner;
+use eProduct\MoneyS3\Document\Common\Valuty;
 use eProduct\MoneyS3\Document\Common\VatSummary;
 use eProduct\MoneyS3\Document\IDocument;
 use eProduct\MoneyS3\Element;
@@ -122,6 +123,9 @@ class Invoice implements IDocument
     /** @var Element<string> */
     private Element $note;
 
+    /** @var Element<Valuty> */
+    private Element $currency;
+
     /**
      * Constructor for Invoice class
      *
@@ -168,6 +172,7 @@ class Invoice implements IDocument
         $this->myCompany = new Element("MojeFirma");
         $this->paymentMethod = new Element("Uhrada");
         $this->note = new Element("Poznamka");
+        $this->currency = new Element("Valuty");
     }
 
     /**
@@ -596,6 +601,12 @@ class Invoice implements IDocument
         return $this;
     }
 
+    public function setValuty(?Valuty $valuty): self
+    {
+        $this->currency->setValue($valuty);
+        return $this;
+    }
+
     /**
      * Serializes the invoice to XML
      *
@@ -652,6 +663,8 @@ class Invoice implements IDocument
         $this->myCompany->serialize($writer);
         $this->paymentMethod->serialize($writer);
         $this->note->serialize($writer);
+
+        $this->currency->serialize($writer);
 
         $writer->endElement();
     }

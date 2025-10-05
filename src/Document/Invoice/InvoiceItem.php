@@ -41,6 +41,9 @@ class InvoiceItem implements ISerializable
     /** @var Element<string> */
     private Element $priceAfterDiscount;
 
+    /** @var Element<float> */
+    private Element $valuty;
+
     /**
      * Constructor for InvoiceItem class
      * Initializes all invoice item elements
@@ -58,6 +61,7 @@ class InvoiceItem implements ISerializable
         $this->currencies = new Element("Valuty");
         $this->nonStockItem = new Element("NesklPolozka");
         $this->priceAfterDiscount = new Element("CenaPoSleve");
+        $this->valuty = new Element("Valuty");
     }
 
     /**
@@ -194,6 +198,12 @@ class InvoiceItem implements ISerializable
         return $this;
     }
 
+    public function setValuty(?float $valuty): self
+    {
+        $this->valuty->setValue($valuty);
+        return $this;
+    }
+
     /**
      * Serializes the invoice item to XML
      *
@@ -213,5 +223,6 @@ class InvoiceItem implements ISerializable
         $this->currencies->serialize($writer);
         $this->nonStockItem->serialize($writer);
         $this->priceAfterDiscount->serialize($writer);
+        $this->valuty->serialize($writer);
     }
 }

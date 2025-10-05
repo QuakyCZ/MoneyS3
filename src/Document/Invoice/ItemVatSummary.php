@@ -2,6 +2,7 @@
 
 namespace eProduct\MoneyS3\Document\Invoice;
 
+use eProduct\MoneyS3\Document\Common\Valuty;
 use eProduct\MoneyS3\Element;
 use eProduct\MoneyS3\ISerializable;
 use XMLWriter;
