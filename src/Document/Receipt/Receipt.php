@@ -5,6 +5,7 @@ namespace eProduct\MoneyS3\Document\Receipt;
 use DateTime;
 use eProduct\MoneyS3\Document\Common\Address;
 use eProduct\MoneyS3\Document\Common\Partner;
+use eProduct\MoneyS3\Document\Common\Valuty;
 use eProduct\MoneyS3\Document\Common\VatSummary;
 use eProduct\MoneyS3\Document\IDocument;
 use eProduct\MoneyS3\Element;
@@ -124,6 +125,9 @@ class Receipt implements IDocument
     /** @var Element<string> */
     private Element $precoding_abbr;
 
+    /** @var Element<Valuty> */
+    private Element $valuty;
+
     public function __construct(
         public readonly ReceiptType $receiptType,
     ) {
@@ -163,6 +167,7 @@ class Receipt implements IDocument
         $this->partner = new Element('Adresa');
         $this->caseShortcut = new Element('Pokl');
         $this->precoding_abbr = new Element('PrKont');
+        $this->valuty = new Element('Valuty');
 
         // Set the receipt type with int value
         $this->expense->setValue($this->receiptType->toBool());
@@ -566,6 +571,24 @@ class Receipt implements IDocument
         return $this;
     }
 
+    /**
+     * Set Valuty information
+     *
+     * @param Valuty|null $valuty Valuty information
+     * @return self
+     */    public function setValuty(?Valuty $valuty): self
+    {
+        $this->valuty->setValue($valuty);
+        return $this;
+    }
+
+    /**
+     * Serialize the receipt document to XML
+     *
+     * @param XMLWriter $writer XML writer instance
+     * @return void
+     */
+
     public function serialize(XMLWriter $writer): void
     {
         $writer->startElement('PokDokl');
@@ -604,6 +627,7 @@ class Receipt implements IDocument
         $this->partner->serialize($writer);
         $this->caseShortcut->serialize($writer);
         $this->precoding_abbr->serialize($writer);
+        $this->valuty->serialize($writer);
 
         // Serialize items list
         if ($this->itemsList->getValue() !== null && count($this->itemsList->getValue()) > 0) {
