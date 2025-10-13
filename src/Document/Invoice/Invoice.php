@@ -662,6 +662,7 @@ class Invoice implements IDocument
 
         $this->myCompany->serialize($writer);
         $this->paymentMethod->serialize($writer);
+        $this->invoiceSubtype->serialize($writer);
         $this->note->serialize($writer);
 
         $this->currency->serialize($writer);
