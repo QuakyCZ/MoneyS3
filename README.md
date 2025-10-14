@@ -2,6 +2,7 @@
 
 A PHP library for generating XML data compatible with MoneyS3 accounting software. This library provides a simple and intuitive API for creating invoices and receipts in the MoneyS3 XML format.
 
+[![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)]()
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D8.3-blue.svg)](https://php.net/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -9,9 +10,10 @@ A PHP library for generating XML data compatible with MoneyS3 accounting softwar
 
 | Document Type | Status | XML Element | Description |
 |---------------|--------|-------------|-------------|
-| Issued Invoice | 🚧 WIP | `FaktVyd` | Outgoing invoices sent to customers |
-| Received Invoice | 🚧 WIP | `FaktPrij` | Incoming invoices from suppliers |
-| Receipt | 🚧 WIP | `Prijemka` | Receipt documents for goods/services |
+| Issued Invoice | ✅ Done | `FaktVyd` | Outgoing invoices sent to customers |
+| Received Invoice | ✅ Done | `FaktPrij` | Incoming invoices from suppliers |
+| Receipt | ✅ Done | `Prijemka` | Receipt documents for goods/services |
+| Obligation | ✅ Done | `Zavazek` | Financial obligations |
 
 ## Table of Contents
 
