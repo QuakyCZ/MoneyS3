@@ -1,5 +1,8 @@
 {
     "name": "eproduct/money-s3",
+    "type": "library",
+    "license": ["MIT"],
+    "version": "0.0.1",
     "require-dev": {
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^12.3",
@@ -19,7 +22,13 @@
     "authors": [
         {
             "name": "Tomáš Kratschmer",
-            "email": "info@quaky.cz"
+            "email": "info@quaky.cz",
+            "role": "Developer"
+        },
+        {
+            "name": "Lukáš Chytil",
+            "email": "chytil.lukas3@gmail.com",
+            "role": "Developer"
         }
     ],
     "require": {
