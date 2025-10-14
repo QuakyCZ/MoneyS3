@@ -432,12 +432,15 @@ The library uses type-safe approach with PHP 8.3+ features:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Author
+## Authors
 
 **Tomáš Kratschmer**
 - Email: info@quaky.cz
+
+**Lukáš Chytil**
+- Email: chytil.lukas3@gmail.com
 
 ## Contributing
 
@@ -445,10 +448,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Changelog
 
-### Version 1.0.0
+### Version 0.0.1
 - Initial release
-- Invoice management (issued/received)
-- Receipt support
+- Invoice agenda (issued/received)
+- Receipt agenda
+- Obligation agenda
 - XML generation
 - Comprehensive test suite
 - Docker development environment
