@@ -19,6 +19,12 @@ class Invoice implements IDocument
     /** @var Element<string> */
     private Element $documentNumber;
 
+    /** @var Element<string> */
+    private Element $receivedDocument;
+
+    /** @var Element<string> */
+    private Element $evidenceNumber;
+
     /** @var Element<int> */
     private Element $accountingMethod;
 
@@ -137,6 +143,8 @@ class Invoice implements IDocument
     {
         $this->invoiceSubtype = new Element('Druh');
         $this->documentNumber = new Element("Doklad");
+        $this->receivedDocument = new Element("PrijatDokl");
+        $this->evidenceNumber = new Element("EvCisDokl");
         $this->accountingMethod = new Element("ZpusobUctovani");
         $this->numberSeries = new Element("CisRada");
         $this->description = new Element("Popis");
@@ -184,6 +192,30 @@ class Invoice implements IDocument
     public function setDocumentNumber(?string $documentNumber): self
     {
         $this->documentNumber->setValue($documentNumber);
+        return $this;
+    }
+
+    /**
+     * Sets the received document number - only for received invoices
+     *
+     * @param string|null $receivedDocument The received document number (max 50 characters)
+     * @return self Returns this instance for method chaining
+     */
+    public function setReceivedDocument(?string $receivedDocument): self
+    {
+        $this->receivedDocument->setValue($receivedDocument);
+        return $this;
+    }
+
+    /**
+     * Sets the tax document evidence number for VAT control statement - only for issued invoices
+     *
+     * @param string|null $evidenceNumber The evidence number of tax document (max 50 characters)
+     * @return self Returns this instance for method chaining
+     */
+    public function setEvidenceNumber(?string $evidenceNumber): self
+    {
+        $this->evidenceNumber->setValue($evidenceNumber);
         return $this;
     }
 
@@ -618,6 +650,8 @@ class Invoice implements IDocument
         $writer->startElement($this->invoiceType->getRootElement());
 
         $this->documentNumber->serialize($writer);
+        $this->receivedDocument->serialize($writer);
+        $this->evidenceNumber->serialize($writer);
         $this->accountingMethod->serialize($writer);
         $this->numberSeries->serialize($writer);
         $this->description->serialize($writer);
