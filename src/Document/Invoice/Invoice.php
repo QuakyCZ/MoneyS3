@@ -47,6 +47,9 @@ class Invoice implements IDocument
     private Element $dueDate;
 
     /** @var Element<DateTime> */
+    private Element $delivered;
+
+    /** @var Element<DateTime> */
     private Element $taxDocumentDate;
 
     /** @var Element<bool> */
@@ -152,6 +155,7 @@ class Invoice implements IDocument
         $this->accountingDate = new Element("DatUcPr");
         $this->vatPerformed = new Element("PlnenoDPH");
         $this->dueDate = new Element("Splatno");
+        $this->delivered = new Element("Doruceno");
         $this->taxDocumentDate = new Element("DatSkPoh");
         $this->simplified = new Element("ZjednD");
         $this->variableSymbol = new Element("VarSymbol");
@@ -300,6 +304,18 @@ class Invoice implements IDocument
     public function setDueDate(?DateTime $dueDate): self
     {
         $this->dueDate->setValue($dueDate);
+        return $this;
+    }
+
+    /**
+     * Sets the delivered date
+     *
+     * @param DateTime|null $delivered The date when the invoice was delivered
+     * @return self Returns this instance for method chaining
+     */
+    public function setDelivered(?DateTime $delivered): self
+    {
+        $this->delivered->setValue($delivered);
         return $this;
     }
 
@@ -659,6 +675,7 @@ class Invoice implements IDocument
         $this->accountingDate->serialize($writer);
         $this->vatPerformed->serialize($writer);
         $this->dueDate->serialize($writer);
+        $this->delivered->serialize($writer);
         $this->taxDocumentDate->serialize($writer);
         $this->simplified->serialize($writer);
         $this->variableSymbol->serialize($writer);
