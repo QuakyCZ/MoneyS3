@@ -97,7 +97,8 @@ class InvoiceTest extends TestCase
             'setNumberSeries' => 1,
             'setIssued' => new \DateTime('2023-01-01'),
             'setAccountingDate' => new \DateTime('2023-01-01'),
-            'setVatPerformed' => '2023-01-01',
+            'setVatPerformed' => new \DateTime('2023-01-01'),
+            'setVatApplicationDate' => new \DateTime('2023-01-02'),
             'setDueDate' => new \DateTime('2023-01-31'),
             'setTaxDocumentDate' => new \DateTime('2023-01-01'),
             'setSimplified' => false,
@@ -138,7 +139,8 @@ class InvoiceTest extends TestCase
             ->setDescription('Test Invoice')
             ->setIssued(new \DateTime('2023-01-01'))
             ->setAccountingDate(new \DateTime('2023-01-01'))
-            ->setVatPerformed('2023-01-01')
+            ->setVatPerformed(new \DateTime('2023-01-01'))
+            ->setVatApplicationDate(new \DateTime('2023-01-02'))
             ->setDueDate(new \DateTime('2023-01-31'))
             ->setVariableSymbol('123456')
             ->setTotal(1000.00);
@@ -157,6 +159,7 @@ class InvoiceTest extends TestCase
             '<Vystaveno>2023-01-01</Vystaveno>',
             '<DatUcPr>2023-01-01</DatUcPr>',
             '<PlnenoDPH>2023-01-01</PlnenoDPH>',
+            '<DatUplDPH>2023-01-02</DatUplDPH>',
             '<Splatno>2023-01-31</Splatno>',
             '<VarSymbol>123456</VarSymbol>',
             '<Celkem>1000</Celkem>',

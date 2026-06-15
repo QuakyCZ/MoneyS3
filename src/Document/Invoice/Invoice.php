@@ -44,6 +44,9 @@ class Invoice implements IDocument
     private Element $vatPerformed;
 
     /** @var Element<DateTime> */
+    private Element $vatApplicationDate;
+
+    /** @var Element<DateTime> */
     private Element $dueDate;
 
     /** @var Element<DateTime> */
@@ -154,6 +157,7 @@ class Invoice implements IDocument
         $this->issued = new Element("Vystaveno");
         $this->accountingDate = new Element("DatUcPr");
         $this->vatPerformed = new Element("PlnenoDPH");
+        $this->vatApplicationDate = new Element("DatUplDPH");
         $this->dueDate = new Element("Splatno");
         $this->delivered = new Element("Doruceno");
         $this->taxDocumentDate = new Element("DatSkPoh");
@@ -286,12 +290,24 @@ class Invoice implements IDocument
     /**
      * Sets when VAT was performed
      *
-     * @param string|null $vatPerformed The VAT performance date/period
+     * @param DateTime|null $vatPerformed The VAT performance date/period
      * @return self Returns this instance for method chaining
      */
     public function setVatPerformed(?DateTime $vatPerformed): self
     {
         $this->vatPerformed->setValue($vatPerformed);
+        return $this;
+    }
+
+    /**
+     * Sets the VAT application date
+     *
+     * @param DateTime|null $vatApplicationDate The VAT application date
+     * @return self Returns this instance for method chaining
+     */
+    public function setVatApplicationDate(?DateTime $vatApplicationDate): self
+    {
+        $this->vatApplicationDate->setValue($vatApplicationDate);
         return $this;
     }
 
@@ -674,6 +690,7 @@ class Invoice implements IDocument
         $this->issued->serialize($writer);
         $this->accountingDate->serialize($writer);
         $this->vatPerformed->serialize($writer);
+        $this->vatApplicationDate->serialize($writer);
         $this->dueDate->serialize($writer);
         $this->delivered->serialize($writer);
         $this->taxDocumentDate->serialize($writer);
